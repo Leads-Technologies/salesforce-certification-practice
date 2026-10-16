@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "quiz.schema.json",
+  "title": "Quiz",
+  "description": "Shape of window.QUIZ_CONFIG in quiz.js. Questions in window.QUIZ_QUESTIONS in questions.js use the question definition below. Every quiz uses this same shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "storageKey", "sections", "focus", "groups"],
+  "properties": {
+    "id": { "type": "string", "description": "Short id for this exam. Used only as a name." },
+    "title": { "type": "string" },
+    "subtitle": { "type": "string" },
+    "storageKey": { "type": "string", "description": "Browser storage key. Keep it stable so saved answers are not wiped. Use a different key for each exam." },
+    "headline": { "type": "string" },
+    "lead": { "type": "string" },
+    "groupsTitle": { "type": "string" },
+    "groupsNote": { "type": "string" },
+    "sectionsTitle": { "type": "string" },
+    "allLabel": { "type": "string" },
+    "allDetail": { "type": "string" },
+    "copy": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Optional replacements for button and label text. Keys match the library defaults."
+    },
+    "legend": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "text"],
+        "properties": {
+          "label": { "type": "string" },
+          "text": { "type": "string" }
+        }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Order of this array is the order on the home page.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "weight": { "type": "string" }
+        }
+      }
+    },
+    "focus": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "detail": { "type": "string" },
+          "lead": { "type": "boolean", "description": "Highlight this rank on the home page." },
+          "ordered": { "type": "boolean", "description": "Practice this rank in study-group order, then question id." }
+        }
+      }
+    },
+    "groups": {
+      "type": "array",
+      "description": "Study groups. Order is the study order for a focus marked ordered.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "block": {
+      "oneOf": [
+        { "type": "string", "description": "A paragraph of the question, explanation, or notes." },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ask"],
+          "properties": { "ask": { "type": "string" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["code"],
+          "properties": {
+            "code": {
+              "description": "Source code. An array of lines is easier to edit than one string.",
+              "oneOf": [
+                { "type": "string" },
+                { "type": "array", "items": { "type": "string" } }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "choice": {
+      "oneOf": [
+        { "type": "string" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["code"],
+          "properties": {
+            "code": {
+              "oneOf": [
+                { "type": "string" },
+                { "type": "array", "items": { "type": "string" } }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "section", "focus", "group", "stem", "choices", "answer", "why", "wrong", "notes"],
+      "properties": {
+        "id": { "type": "number" },
+        "section": { "type": "string", "description": "Must match a section id in quiz.js." },
+        "focus": { "type": "string", "description": "Must match a focus id in quiz.js." },
+        "group": { "type": "string", "description": "Must match a group id in quiz.js." },
+        "stem": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/block" } },
+        "choices": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "#/$defs/choice" },
+          "description": "First item is A, second is B, and so on."
+        },
+        "answer": { "type": "string", "description": "\"A\" or \"A,C\". With acceptAny, any one of the letters is correct. An ungraded question without a verified answer may use an empty string." },
+        "type": { "enum": ["single", "multi"] },
+        "choose": { "type": "number" },
+        "acceptAny": { "type": "boolean" },
+        "corrected": { "type": "boolean", "description": "True only when the original mock answer key is wrong. Do not flag wording-only repairs, unchanged answer sets, or acceptAny additions that still accept the printed answer." },
+        "repaired": { "type": "boolean", "description": "True for a scored question with repaired wording, code, choices, or necessary assumptions whose original answer remains accepted. Excludes explanation-only edits and questions marked Corrected or Not scored. Preserve source content for the repair." },
+        "printed": { "type": "string", "description": "Letters printed in the original mock. Retain for source history even when corrected is absent." },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["stem", "choices", "answer"],
+          "description": "Original question content retained when an answer or wording is corrected.",
+          "properties": {
+            "stem": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/block" } },
+            "choices": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/choice" } },
+            "answer": { "type": "string" }
+          }
+        },
+        "ungraded": { "type": "boolean" },
+        "exhibitMissing": { "type": "boolean" },
+        "why": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "array", "items": { "$ref": "#/$defs/block" } }
+          ]
+        },
+        "wrong": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "One sentence for each incorrect letter."
+        },
+        "notes": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "array", "items": { "$ref": "#/$defs/block" } }
+          ]
+        }
+      }
+    }
+  }
+}

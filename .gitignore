@@ -1,0 +1,22 @@
+# Operating-system metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+Desktop.ini
+
+# Local editor settings and temporary files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.tmp
+*.log
+~$*
+
+# Local environment files and optional dependency installs
+.env
+.env.*
+!.env.example
+node_modules/
