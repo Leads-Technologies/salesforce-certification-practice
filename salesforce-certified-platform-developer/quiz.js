@@ -1,6 +1,7 @@
 window.QUIZ_CONFIG = {
   "id": "pd1",
   "title": "Platform Developer practice",
+  "examMinutes": 105,
   "subtitle": "204 mock questions, reviewed with study explanations",
   "storageKey": "pd1-practice-v1",
   "headline": "Practice one question at a time.",

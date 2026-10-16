@@ -1,13 +1,10 @@
 /* Shared review pages; all content is present in the standalone HTML. */
 body.notice-page { background: #f3f6f8; }
 .notice-page [hidden] { display: none !important; }
-.notice-shell { width: min(1280px, calc(100% - 48px)); margin: 0 auto; padding-bottom: 48px; }
-.notice-header { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; }
-.notice-back { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--navy); font-size: 14px; font-weight: 500; text-decoration: none; }
-.notice-back:hover { text-decoration: underline; text-underline-offset: 4px; }
-.notice-header-actions { display: flex; align-items: center; gap: 22px; }
+.notice-shell { padding-bottom: 48px; }
+.notice-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; }
+.notice-header-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .notice-header-actions > span { color: var(--muted); font-size: 12px; }
-.notice-header-actions button { border-radius: 10px; font-size: 12px; }
 .notice-skip { position: fixed; left: 16px; top: 12px; z-index: 10; padding: 12px 18px; border-radius: 10px; background: var(--navy); color: white; transform: translateY(-200%); }
 .notice-skip:focus { transform: none; }
 .notice-layout { display: grid; grid-template-columns: 218px minmax(0, 1fr); align-items: start; gap: 28px; }
@@ -88,8 +85,6 @@ body.notice-page { background: #f3f6f8; }
 .notice-table-empty { color: var(--muted); background: #f7f9fb; border-radius: 8px; padding: 14px; }
 .notice-footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 24px; padding: 20px 4px; }
 .notice-footer p { margin: 0; color: var(--muted); font-size: 13px; }
-.notice-return { display: inline-flex; align-items: center; justify-content: center; gap: 16px; flex: none; background: var(--navy); color: white; min-height: 44px; padding: 10px 16px; font-size: 13px; border-radius: 10px; text-decoration: none; }
-.notice-return:hover { background: #1b405e; }
 
 @media (max-width: 1000px) {
   .notice-layout { grid-template-columns: 180px minmax(0, 1fr); gap: 20px; }
@@ -99,7 +94,6 @@ body.notice-page { background: #f3f6f8; }
   .notice-stat { padding: 14px; }
 }
 @media (max-width: 800px) {
-  .notice-shell { width: calc(100% - 32px); }
   .notice-header { padding: 14px 0; }
   .notice-header-actions > span { display: none; }
   .notice-layout { grid-template-columns: minmax(0, 1fr); gap: 18px; }
@@ -113,7 +107,7 @@ body.notice-page { background: #f3f6f8; }
   .notice-tools { padding: 22px 24px; }
 }
 @media (max-width: 600px) {
-  .notice-shell { width: calc(100% - 24px); padding-bottom: 24px; }
+  .notice-shell { padding-bottom: 24px; }
   .notice-hero, .notice-section { padding: 22px 18px; border-radius: 14px; }
   .notice-intro { font-size: 14px; }
   .notice-meta { gap: 8px 12px; }

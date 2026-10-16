@@ -1,6 +1,7 @@
 window.QUIZ_CONFIG = {
   "id": "sales-cloud-platform-admin",
   "title": "Sales Cloud Platform Admin practice",
+  "examMinutes": 105,
   "subtitle": "150 mock questions, with study priorities and explanations",
   "storageKey": "sales-cloud-platform-admin-practice-v1",
   "headline": "Practise your admin questions.",

@@ -1,0 +1,16 @@
+/* One container owns the outer edges of every screen. */
+:root {
+  --page-max-width: 1180px;
+  --page-gutter: 24px;
+}
+html { scrollbar-gutter: stable; }
+.wrap {
+  width: min(var(--page-max-width), calc(100% - var(--page-gutter) * 2));
+  margin: 0 auto;
+}
+@media (max-width: 860px) {
+  :root { --page-gutter: 12px; }
+}
+@media print {
+  html { scrollbar-gutter: auto; }
+}

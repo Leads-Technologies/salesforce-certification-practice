@@ -1,13 +1,12 @@
 // Optional development check. The browser player has no Node dependency.
 const fs = require("node:fs");
 const path = require("node:path");
-const vm = require("node:vm");
 const assert = require("node:assert/strict");
-const { pathToFileURL, fileURLToPath } = require("node:url");
 
 const rootDir = path.resolve(__dirname, "..", "..");
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const schema = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "schema.json"), "utf8"));
+require("./validate-assets.js");
 
 function checkSchema(value, rule, label) {
   if (rule.$ref) return checkSchema(value, rule.$ref.split("/").slice(1).reduce((item, key) => item[key], schema), label);
@@ -45,81 +44,7 @@ function checkBlocks(value, label) {
   }
 }
 
-function player(folder, seed = {}, savedStorage) {
-  const pagePath = path.join(rootDir, folder, "index.html");
-  const pageUrl = pathToFileURL(pagePath);
-  const html = fs.readFileSync(pagePath, "utf8");
-  assert.ok(!/type\s*=\s*["']module/.test(html), `${folder}: module loading breaks file://`);
-  assert.ok(!/\?v=/.test(html), `${folder}: unexpected asset version suffix`);
-  const scripts = [...html.matchAll(/<script\s+src=["']([^"']+)["'][^>]*>\s*<\/script>/g)].map(match => match[1]);
-  assert.deepEqual(scripts, ["quiz.js", "questions.js", "../quiz/js/app.js"], `${folder}: classic script order`);
-  let htmlContent = "";
-  let body = null;
-  let nav = null;
-  let homeNodes = new Map();
-  let actionNodes = new Map();
-  const effects = { focused: null, scrolled: null };
-  const makeHomeNode = name => ({
-    value: "", innerHTML: "", textContent: "", hidden: false, events: new Map(),
-    addEventListener(event, callback) { this.events.set(event, callback); },
-    focus() { effects.focused = name; },
-  });
-  const app = {
-    get innerHTML() { return htmlContent; },
-    set innerHTML(html) {
-      htmlContent = html;
-      body = html.includes('class="panel-body"') ? { scrollTop: 0, getBoundingClientRect: () => ({ top: 180 }) } : null;
-      nav = html.includes('class="jump"') ? { scrollTop: 0, querySelector: () => null } : null;
-      homeNodes = new Map();
-      actionNodes = new Map();
-      for (const match of html.matchAll(/<button\b([^>]*\bdata-action="([^"]+)"[^>]*)>/g)) {
-        const node = makeHomeNode(`[data-action="${match[2]}"]`);
-        node.dataset = { action: match[2] };
-        node.disabled = /\bdisabled\b/.test(match[1]);
-        actionNodes.set(match[2], node);
-      }
-      if (html.includes('id="home-search"')) {
-        for (const name of ["#home-search", "#home-catalog", "#home-search-status", ".home-search-form", "[data-clear-search]", "[data-question]"]) homeNodes.set(name, makeHomeNode(name));
-        homeNodes.get("#home-search").value = (html.match(/id="home-search"[^>]*value="([^"]*)"/)?.[1] || "").replaceAll("&quot;", '"').replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&");
-      }
-    },
-  };
-  const storage = new Map(savedStorage || []);
-  const events = new Map();
-  const context = vm.createContext({
-    window: { location: pageUrl },
-    document: {
-      getElementById: id => id === "app" ? app : homeNodes.get(`#${id}`) || null,
-      querySelectorAll: selector => selector === "[data-action]" ? [...actionNodes.values()] : [],
-      querySelector: selector => {
-        if (selector === ".panel-body") return body;
-        if (selector === ".jump") return nav;
-        if (homeNodes.has(selector)) return homeNodes.get(selector);
-        const action = selector.match(/^\[data-action="([^"]+)"\]$/)?.[1];
-        if (action) return actionNodes.get(action) || null;
-        const focusedNode = selector === ".qnum" && htmlContent.includes('class="qnum"') ||
-          selector === ".explain" && htmlContent.includes('tabindex="-1" aria-label=') ||
-          selector === ".summary-title" && htmlContent.includes('class="summary-title"') ||
-          /^\[data-home-mode="(priority|topic)"\]$/.test(selector) ||
-          /^\[data-pick="[A-Z]"\]$/.test(selector);
-        if (!focusedNode) return null;
-        return { focus: () => { effects.focused = selector; }, scrollIntoView: () => { effects.scrolled = selector; }, getBoundingClientRect: () => ({ top: 980 }) };
-      },
-      addEventListener: (name, callback) => events.set(name, callback),
-    },
-    localStorage: {
-      getItem: key => storage.has(key) ? storage.get(key) : JSON.stringify(seed),
-      setItem: (key, value) => storage.set(key, value),
-    },
-    fetch() { throw Error("Quiz data must not use fetch"); },
-  });
-  for (const src of scripts) {
-    const file = fileURLToPath(new URL(src, pageUrl));
-    vm.runInContext(fs.readFileSync(file, "utf8"), context, { filename: file });
-  }
-  assert.ok(app.innerHTML && !app.innerHTML.includes("Could not load this quiz"), `${folder}: player startup`);
-  return { context, app, storage, events, effects, run: code => vm.runInContext(code, context) };
-}
+const player = require("./lib/player.js");
 
 const folders = fs.readdirSync(rootDir, { withFileTypes: true })
   .filter(entry => entry.isDirectory() && entry.name !== "quiz")
@@ -131,8 +56,18 @@ let total = 0;
 for (const folder of folders) {
   const page = player(folder);
   const cfg = JSON.parse(page.run("JSON.stringify(window.QUIZ_CONFIG)"));
+  if (total === 0) require('./validate-architecture.js')(player, folder, cfg);
+  assert.ok(page.app.innerHTML.includes('aria-label="Quiz sections"') && page.app.innerHTML.includes('class="site-footer"'), `${folder}: shared navigation and footer load on the practice page`);
+  assert.ok(page.app.innerHTML.includes('href="index.html" aria-current="page"'), `${folder}: Practice is the active section`);
+  assert.ok(page.app.innerHTML.includes(`<strong>${cfg.title.replace(/\s+practice$/i, "")}</strong>`), `${folder}: header identifies its own quiz`);
+  assert.ok(!page.app.innerHTML.includes("quiz-switcher") && !page.app.innerHTML.includes("../salesforce-"), `${folder}: navigation stays within this quiz`);
+  assert.ok(page.run("window.QuizNavigation.guideHtml()").includes(cfg.groupsNote), `${folder}: shared help retains this quiz's study caveats`);
+  const escapedHelp = page.run(`window.QuizNavigation.footer(false, {hasPriorities:true, groupsNote:'<img src=x onerror=alert(1)>'}); window.QuizNavigation.guideHtml()`);
+  assert.ok(escapedHelp.includes('&lt;img') && !escapedHelp.includes('<img'), `${folder}: help escapes quiz-specific notes`);
+  page.run("render()");
   const questions = JSON.parse(page.run("JSON.stringify(window.QUIZ_QUESTIONS)"));
   checkSchema(cfg, schema, folder);
+  if (cfg.examMinutes != null) assert.ok(Number.isInteger(cfg.examMinutes) && cfg.examMinutes >= 1 && cfg.examMinutes <= 1440, `${folder}: valid default exam duration`);
   assert.ok(!storageKeys.has(cfg.storageKey), `${folder}: duplicate storage key`);
   storageKeys.add(cfg.storageKey);
   const sections = new Set(cfg.sections.map(s => s.id));
@@ -225,7 +160,8 @@ for (const folder of folders) {
     assert.deepEqual(JSON.parse(restored.run("JSON.stringify(state.ids)")), expected, `${folder}: resumed review membership`);
     if (first.ungraded) {
       restored.run("showSummary()");
-      assert.ok(restored.app.innerHTML.includes("0 of 0 scored questions answered"), `${folder}: review-only set excluded from accuracy`);
+      assert.ok(restored.app.innerHTML.includes("questions reviewed. This set is for study and does not affect accuracy."), `${folder}: review-only results describe review progress`);
+      assert.ok(restored.app.innerHTML.includes("Not reviewed") && !restored.app.innerHTML.includes("0 of 0 scored"), `${folder}: review-only summary omits misleading scoring metrics`);
     }
   }
   page.run("state.results = {}; saveResults()");
@@ -243,11 +179,24 @@ for (const folder of folders) {
     makeQuestion(903, '<img src=x onerror="alert(1)"> UniqueBeta case study', cfg.focus[1].id),
   ];
   const setupHome = `window.Quiz.start(${JSON.stringify(homeCfg)}, ${JSON.stringify(homeQuestions)})`;
+  const resetHome = player(folder);
+  resetHome.run(setupHome);
+  assert.ok(resetHome.app.innerHTML.includes('<small class="review-progress">0 of 1 reviewed</small>'), `${folder}: a fresh unscored set shows review progress`);
+  assert.ok(resetHome.context.document.querySelector('[data-action="reset"]').disabled, `${folder}: reset is disabled without saved practice state`);
+  resetHome.run("state.resume={filter:'all',id:901}; saveSession(); render()");
+  assert.ok(!resetHome.context.document.querySelector('[data-action="reset"]').disabled, `${folder}: a resume point alone can be reset`);
+  const beforeCanceledReset = JSON.stringify([...resetHome.storage]);
+  resetHome.run("window.Quiz.application.confirm=()=>false; resetAll()");
+  assert.equal(JSON.stringify([...resetHome.storage]), beforeCanceledReset, `${folder}: canceling reset leaves saved progress untouched`);
+  assert.equal(resetHome.run("state.resume.id"), 901, `${folder}: canceling reset keeps the resume point`);
   const homePage = player(folder);
   homePage.run(`${setupHome}; state.results = {900:{picked:[],status:'ungraded'},901:{picked:['A'],status:'correct'},902:{picked:['B'],status:'wrong'}}; state.drafts = {903:['A']}; state.resume = {filter:'all',id:901}; saveResults(); saveSession(); render()`);
   assert.ok(homePage.app.innerHTML.includes('aria-valuetext="2 of 3 scored questions answered"'), `${folder}: unscored reading does not inflate home coverage`);
   assert.ok(homePage.app.innerHTML.includes('<b>50%</b>'), `${folder}: home accuracy uses scored answers`);
-  assert.ok(homePage.app.innerHTML.includes('1 of 1 unscored questions reviewed separately'), `${folder}: separate unscored progress`);
+  const unscoredCard = homePage.app.innerHTML.match(/<button[^>]+data-start="review:ungraded"[\s\S]*?<\/button>/)[0];
+  assert.ok(unscoredCard.includes('<small class="review-progress">1 of 1 reviewed</small>'), `${folder}: unscored review progress belongs to the Not scored card`);
+  const progressCard = homePage.app.innerHTML.match(/<section class="card home-progress"[\s\S]*?<\/section>/)[0];
+  assert.ok(!progressCard.includes('reviewed'), `${folder}: the progress card stays focused on scored results`);
   assert.equal(homePage.run("nextFocus()"), cfg.focus[1].id, `${folder}: recommendation skips a priority with only unresolved items left`);
   assert.equal(homePage.run("resumeTarget().id"), 903, `${folder}: resume advances past an answered question`);
   for (const query of ["903", "#903", "Q 903", "UNIQUEBETA", "uniquebeta study"]) {
@@ -258,6 +207,7 @@ for (const folder of folders) {
   search.events.get("input")();
   const catalog = homePage.context.document.getElementById("home-catalog");
   assert.ok(catalog.innerHTML.includes('data-question="903"'), `${folder}: input updates search results`);
+  assert.ok(catalog.innerHTML.includes("Draft selection"), `${folder}: search identifies saved unfinished selections`);
   assert.ok(catalog.innerHTML.includes("&lt;img"), `${folder}: question preview escapes markup`);
   assert.ok(!catalog.innerHTML.includes("<img"), `${folder}: preview cannot create source markup`);
   assert.equal(homePage.context.document.querySelector("#home-search"), search, `${folder}: typing does not replace the search input or caret`);
@@ -267,10 +217,32 @@ for (const folder of folders) {
   search.events.get("keydown")({key:"Escape", preventDefault(){}});
   assert.equal(homePage.run("state.homeQuery"), "", `${folder}: Escape clears the search`);
   const homeClick = dataset => homePage.events.get("click")({defaultPrevented:false, target:{closest:()=>({disabled:false,dataset,hasAttribute:()=>false})}});
+  const dashboard = homePage.context.document.querySelector(".home-dashboard");
+  const resetButton = homePage.context.document.querySelector('[data-action="reset"]');
+  homePage.context.window.scrollY = 330;
+  homePage.context.window.scrollTo = (x, y) => { homePage.effects.pageScroll = y; };
   homeClick({homeMode:"topic"});
   assert.equal(homePage.run("state.homeMode"), "topic", `${folder}: topic browsing`);
   assert.ok(homePage.run("homeCatalogHtml()").includes(cfg.sections[0].label), `${folder}: topic cards displayed`);
   assert.equal(homePage.effects.focused, '[data-home-mode="topic"]', `${folder}: browse mode keeps keyboard focus`);
+  assert.equal(homePage.context.document.querySelector(".home-dashboard"), dashboard, `${folder}: browse switch keeps the dashboard node so its animation cannot restart`);
+  assert.equal(homePage.context.document.querySelector("#home-search"), search, `${folder}: browse switch preserves the search input`);
+  assert.equal(homePage.context.document.querySelector("#home-catalog"), catalog, `${folder}: browse switch updates the existing catalog`);
+  assert.ok(catalog.innerHTML.includes(cfg.sections[0].label), `${folder}: topic cards appear in the live catalog`);
+  assert.equal(homePage.context.document.querySelector('[data-action="reset"]'), resetButton, `${folder}: browse switch preserves the reset control`);
+  assert.equal(homePage.effects.pageScroll, 330, `${folder}: browse switch preserves page scroll`);
+  assert.equal(homePage.context.document.querySelector('[data-home-mode="topic"]').getAttribute("aria-pressed"), "true", `${folder}: active browse mode is announced`);
+  assert.equal(homePage.context.document.querySelector('[data-home-mode="priority"]').getAttribute("aria-pressed"), "false", `${folder}: previous browse mode is inactive`);
+  assert.equal(homePage.context.document.querySelector(".priority-hint").textContent, "Choose an area to work on", `${folder}: topic hint updates`);
+  search.value = "UniqueBeta";
+  search.events.get("input")();
+  homeClick({homeMode:"topic"});
+  assert.equal(search.value, "UniqueBeta", `${folder}: clicking the active mode leaves the search unchanged`);
+  homeClick({homeMode:"priority"});
+  assert.equal(search.value, "", `${folder}: changing mode clears the search without replacing its input`);
+  assert.equal(homePage.context.document.querySelector("#home-search-status").textContent, "", `${folder}: switching mode clears search announcements`);
+  assert.equal(homePage.context.document.querySelector("[data-clear-search]").hidden, true, `${folder}: switching mode hides the empty-search clear action`);
+  assert.ok(catalog.innerHTML.includes("data-start=\"" + cfg.focus[0].id + "\""), `${folder}: switching back displays priority cards`);
   homeClick({start:"practice:unanswered"});
   assert.deepEqual(JSON.parse(homePage.run("JSON.stringify(state.ids)")), [903], `${folder}: unanswered practice excludes answered and unscored questions`);
   assert.deepEqual(JSON.parse(homePage.run("JSON.stringify(state.picked)")), ["A"], `${folder}: home shortcut restores a draft`);
@@ -288,6 +260,13 @@ for (const folder of folders) {
   assert.ok(homePage.app.innerHTML.includes("You’ve covered every scored question"), `${folder}: completed bank has a useful next step`);
   assert.ok(!homePage.app.innerHTML.includes("NaN"), `${folder}: valid completed progress`);
   console.log("PASS home: score-aware progress, priority/topic browsing, safe live search, numeric lookup, keyboard search, draft shortcuts, unanswered resume, completion guidance");
+  const nextSetPage = player(folder);
+  nextSetPage.run(`${setupHome}; state.results={900:{picked:[],status:'ungraded'},901:{picked:['A'],status:'correct'},902:{picked:['A'],status:'correct'}}; start(${JSON.stringify(cfg.focus[0].id)}); showSummary()`);
+  assert.ok(nextSetPage.app.innerHTML.includes(`Continue with ${cfg.focus[1].label}`), `${folder}: completing a priority set suggests the next unfinished priority`);
+  assert.ok(nextSetPage.app.innerHTML.includes('data-action="review-set"'), `${folder}: completed sets can still be reviewed`);
+  const cachedEntry = player(folder);
+  cachedEntry.run(`window.QuizNavigation=undefined; ${setupHome}`);
+  assert.ok(cachedEntry.app.innerHTML.includes('id="home-title"'), `${folder}: an older cached entry page remains usable without the optional navigation script`);
   const readerCfg = { ...cfg, storageKey: `${cfg.storageKey}:reader-check` };
   const readerQuestions = [
     { ...homeQuestions[1], id: 600 },
@@ -309,7 +288,7 @@ for (const folder of folders) {
   assert.ok(reader.app.innerHTML.includes("Question 600: Draft selection"), `${folder}: navigator marks an unfinished selection`);
   click("clear-selection");
   assert.equal(reader.run("state.picked.length"), 0, `${folder}: clear selection empties the draft`);
-  assert.equal(reader.effects.focused, '[data-pick="A"]', `${folder}: clear selection returns focus to answers`);
+  assert.equal(reader.effects.focused, `[data-pick="${reader.run("displayOptions(current())[0].id")}"]`, `${folder}: clear selection returns focus to the first displayed answer`);
   const cleared = player(folder, {}, reader.storage);
   cleared.run(`window.Quiz.start(${JSON.stringify(readerCfg)}, ${JSON.stringify(readerQuestions)})`);
   assert.equal(cleared.run("state.drafts[600].length"), 0, `${folder}: cleared draft stays cleared after reopening`);
@@ -319,7 +298,8 @@ for (const folder of folders) {
   reader.run("toggle('B')");
   assert.ok(reader.app.innerHTML.includes("Ready to check your answers."), `${folder}: exact selection is ready to check`);
   click("check");
-  assert.ok(reader.app.innerHTML.includes("Your answers: A, C · Correct answers: A, C"), `${folder}: feedback separates chosen and correct answers`);
+  const multiLabels = reader.run("displayLetters(current(), ['A','C']).join(', ')");
+  assert.ok(reader.app.innerHTML.includes(`Your answers: ${multiLabels} · Correct answers: ${multiLabels}`), `${folder}: feedback separates chosen and correct answers`);
   assert.equal(action("clear-selection"), null, `${folder}: clear is hidden after checking`);
   reader.run("clearSelection()");
   assert.equal(reader.run("state.results[601].status"), "correct", `${folder}: completed answers cannot be cleared`);
@@ -330,7 +310,7 @@ for (const folder of folders) {
   assert.equal(reader.run("current().id"), 600, `${folder}: next unanswered wraps and skips answered and unscored items`);
   assert.ok(action("next-unanswered").disabled, `${folder}: next unanswered does not loop to the current question`);
   reader.run("toggle('B'); check()");
-  assert.ok(reader.app.innerHTML.includes("Your answer: B · Correct answer: A"), `${folder}: missed feedback identifies the difference`);
+  assert.ok(reader.app.innerHTML.includes(reader.run("'Your answer: '+displayLetters(current(), ['B']).join(', ')+' · Correct answer: '+displayLetters(current(), ['A']).join(', ')")), `${folder}: missed feedback identifies the difference`);
   reader.run("jump(4)");
   assert.ok(reader.app.innerHTML.includes("Accepted answers (choose one): A, B"), `${folder}: equivalent single-choice answers are clearly labeled`);
   reader.run("start('review:ungraded'); check()");
@@ -339,6 +319,25 @@ for (const folder of folders) {
   assert.ok(!reader.app.innerHTML.includes('class="answer-heading"'), `${folder}: no answer is invented for an unresolved item`);
   click("results");
   assert.equal(reader.run("state.view"), "summary", `${folder}: results is reachable during practice`);
+  reader.run("start('all', 600)");
+  const beforeFiltering = reader.run("JSON.stringify({ids:state.ids,picked:state.picked,results:state.results,drafts:state.drafts,resume:state.resume})");
+  const savedBeforeFiltering = JSON.stringify([...reader.storage]);
+  const chooseNavigatorFilter = value => {
+    const select = reader.context.document.querySelector("#navigator-filter");
+    select.value = value;
+    select.events.get("change")();
+  };
+  chooseNavigatorFilter("missed");
+  assert.deepEqual(JSON.parse(reader.run("JSON.stringify(pool().filter(q=>navigatorMatches(q)).map(q=>q.id))")), [600,603], `${folder}: missed navigator filter includes only missed questions`);
+  assert.ok(reader.app.innerHTML.includes('data-jump="1" hidden'), `${folder}: completed correct questions are hidden by the missed filter`);
+  chooseNavigatorFilter("answered");
+  assert.equal(reader.run("pool().filter(q=>navigatorMatches(q)).length"), 5, `${folder}: answered filter includes unscored questions that were reviewed`);
+  chooseNavigatorFilter("unanswered");
+  assert.ok(reader.app.innerHTML.includes("No questions match this filter"), `${folder}: an empty navigator filter explains how to recover`);
+  chooseNavigatorFilter("all");
+  assert.equal(reader.run("JSON.stringify({ids:state.ids,picked:state.picked,results:state.results,drafts:state.drafts,resume:state.resume})"), beforeFiltering, `${folder}: navigator filtering cannot change the set or practice selections`);
+  assert.equal(JSON.stringify([...reader.storage]), savedBeforeFiltering, `${folder}: filtering does not write to saved progress`);
+  console.log("PASS navigation: independent quiz identity, active section, shared footer, status filters and progress preservation");
   console.log("PASS question page: clear drafts, selection guidance, answer recaps, set progress, unanswered navigation, mobile scroll retention, unscored and equivalent-answer feedback");
   if (folder === "salesforce-certified-platform-developer") {
     const codePage = player(folder);
@@ -416,6 +415,8 @@ for (const folder of folders) {
   assert.ok(page.app.innerHTML.includes("Progress could not be saved"));
   console.log(`PASS ${folder}: ${questions.length} questions, ${questions.filter(q=>q.corrected).length} corrected, ${questions.filter(q=>q.repaired).length} repaired, ${questions.filter(q=>q.ungraded).length} ungraded; schema, metadata, grading, file startup, review counts, filters, badges, saved review resume and regrading`);
   console.log("PASS UX: exact multi count, draft/resume persistence, scroll/focus retention, native keyboard actions, final summary, mobile navigator defaults, safe reference links, unscored reading");
+  require("./validate-shuffle.js")(player, folder, cfg);
+  require("./validate-exam.js")(player, folder, cfg);
   total += questions.length;
 }
 console.log(`PASS ${folders.length} quizzes / ${total} questions. No data fetch or build step required.`);

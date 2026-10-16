@@ -12,11 +12,12 @@
 </head>
 <body class="notice-page">
 <a class="notice-skip" href="#notice-overview">Skip to review notes</a>
-<div class="notice-shell">
-  <header class="notice-header">
-    <a class="notice-back" href="index.html"><span aria-hidden="true">←</span> Back to quiz</a>
-    <div class="notice-header-actions"><span>Study resources / Mock review</span><button type="button" class="ghost" data-notice-print hidden>Print notes</button></div>
-  </header>
+<div class="wrap notice-shell">
+  <div data-site-header></div>
+  <div class="notice-header">
+    <a class="ghost nav-control notice-back" href="index.html"><span aria-hidden="true">←</span> Back to quiz</a>
+    <div class="notice-header-actions"><span>Study resources / Mock review</span><button type="button" class="ghost nav-control" data-notice-print hidden>Print notes</button></div>
+  </div>
   <div class="notice-layout">
     <nav class="notice-contents" aria-label="On this page">
       <h2>In this review</h2>
@@ -844,10 +845,12 @@
 <p>The full review was a source/documentation review, not a live Salesforce-org execution of every scenario. All local validation checks passed, including question metadata, scoring, equivalent answers, unscored exclusion, saved-answer regrading, and direct-file startup. Existing question IDs, choice order, progress storage keys, original DOCX files, and existing source snapshots were preserved.</p>
 <a class="notice-section-top" href="#notice-overview">Back to overview <span aria-hidden="true">↑</span></a>
 </section>
-      <footer class="notice-footer"><p>Ready to put these notes into practice?</p><a class="notice-return" href="index.html">Return to quiz <span aria-hidden="true">→</span></a></footer>
+      <footer class="notice-footer"><p>Ready to put these notes into practice?</p><a class="primary nav-control notice-return" href="index.html">Return to quiz <span aria-hidden="true">→</span></a></footer>
     </main>
   </div>
+  <div data-site-footer></div>
 </div>
-<script src="../quiz/js/notice.js" defer></script>
+<script src="../quiz/js/ui/navigation.js" defer></script>
+<script src="../quiz/js/ui/notice.js" defer></script>
 </body>
 </html>

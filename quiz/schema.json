@@ -11,6 +11,7 @@
     "title": { "type": "string" },
     "subtitle": { "type": "string" },
     "storageKey": { "type": "string", "description": "Browser storage key. Keep it stable so saved answers are not wiped. Use a different key for each exam." },
+    "examMinutes": { "type": "number", "minimum": 1, "maximum": 1440, "description": "Default Mock Exam time limit in whole minutes. Verify the certification's official guide before setting it. Learners can choose a custom limit before starting." },
     "headline": { "type": "string" },
     "lead": { "type": "string" },
     "groupsTitle": { "type": "string" },

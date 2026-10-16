@@ -1,0 +1,82 @@
+/* Shared site chrome stays consistent across practice, exams, and review notes. */
+.site-header { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 24px; padding: 16px 0; margin-bottom: 20px; border-bottom: 1px solid #dce5ec; flex: none; }
+.site-brand { display: inline-flex; align-items: center; justify-self: start; min-width: 0; min-height: 44px; gap: 12px; border-radius: 8px; color: var(--navy); text-decoration: none; }
+.site-brand > span[aria-hidden] { position: relative; display: grid; place-items: center; flex: none; width: 36px; height: 38px; border-radius: 10px; background: var(--navy); color: white; font: 25px/1 var(--serif); }
+.site-brand > span[aria-hidden] > span { position: absolute; top: 4px; right: 4px; color: #ade5ce; font: 11px/1 var(--sans); }
+.site-brand-copy { display: grid; gap: 4px; min-width: 0; max-width: 460px; }
+.site-brand small { color: var(--muted); font-size: 10px; font-weight: 500; letter-spacing: .06em; line-height: 1.3; }
+.site-brand strong { font-size: 15px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+select:focus-visible { outline: 3px solid var(--navy-2); outline-offset: 3px; }
+.site-navigation { display: flex; gap: 5px; align-items: center; }
+.site-navigation a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 9px 12px; border-radius: 9px; color: #506576; text-decoration: none; font-size: 13px; font-weight: 500; white-space: nowrap; }
+.site-navigation a:hover { background: #e6edf2; color: var(--navy); }
+.site-navigation a[aria-current="page"] { background: #e2eee8; color: #20543f; }
+.site-menu-toggle { display: none; }
+.site-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 24px; padding: 8px 0; margin-top: 16px; border-top: 1px solid #dce5ec; flex: none; }
+.site-footer-links { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.site-footer button { display: inline-flex; align-items: center; min-height: 44px; border: 0; border-radius: 4px; padding: 4px 0; background: none; color: var(--navy-2); font: 12px var(--sans); text-decoration: none; }
+.site-footer button:hover { text-decoration: underline; text-underline-offset: 3px; }
+.site-footer p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.site-footer .site-save-warning { color: var(--bad); }
+.home-context { margin: -4px 0 22px; font-size: 12px; color: var(--muted); }
+.home-dashboard { padding-bottom: 12px; }
+.exam-page-shell { padding-bottom: 16px; }
+.exam-page-intro { padding-top: 6px; }
+.question-shell > .site-header { margin-bottom: 0; padding-block: 12px; }
+.question-shell .question-top { padding: 12px 0; }
+.question-shell > .site-footer { padding-block: 0; margin-top: 8px; }
+.question-shell .qhead { padding: 16px 24px 14px; gap: 8px; }
+.selection-guidance { flex-wrap: wrap; }
+.selection-guidance > .selection-help { flex: 1 1 220px; }
+.selection-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.save-status { display: inline-flex; align-items: center; gap: 4px; color: var(--good); font-size: 11px; font-weight: 500; white-space: nowrap; }
+.save-status.pending { color: var(--muted); font-weight: 400; }
+.save-status.unsaved { color: var(--bad); }
+.site-help-dialog { width: min(560px, calc(100% - 32px)); max-height: calc(100dvh - 40px); padding: 0; border: 1px solid var(--line); border-radius: 18px; color: var(--ink); background: white; box-shadow: 0 24px 80px #102a4340; }
+.site-help-dialog::backdrop { background: #102a4380; }
+.site-help-content > header { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 26px 16px; border-bottom: 1px solid var(--line); background: white; }
+.site-help-body { padding: 20px 26px 26px; }
+.site-help-body > p:first-child { margin-top: 0; }
+.site-help-content h2 { margin: 0; font: 600 23px/1.3 var(--serif); color: var(--navy); }
+.site-help-content header button { flex: none; min-width: 44px; padding: 6px; font-size: 24px; }
+.site-help-content p, .site-help-content dd { font-size: 14px; line-height: 1.7; color: #465b6a; }
+.site-help-content p:last-child { margin-bottom: 0; }
+.site-help-section + .site-help-section { margin-top: 20px; }
+.site-help-section h3 { margin: 0 0 6px; color: var(--navy); font-size: 13px; font-weight: 600; line-height: 1.5; }
+.site-help-section p { margin: 0; }
+.site-help-content dl { display: grid; gap: 12px; }
+.site-help-content dl > div { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 12px; border-bottom: 1px solid var(--line); padding-bottom: 12px; }
+.site-help-content dt { font-size: 12px; font-weight: 600; color: var(--navy); }
+.site-help-content dd { margin: 0; }
+.notice-shell .notice-header { padding-top: 0; }
+.notice-shell .site-header { margin-bottom: 16px; }
+@media (max-width: 760px) {
+  .site-header { grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding-block: 16px; margin-bottom: 18px; }
+  .site-brand { grid-column: 1; grid-row: 1; gap: 10px; }
+  .site-brand strong { font-size: 13px; }
+  .site-menu-toggle { display: inline-flex; grid-column: 2; grid-row: 1; align-items: center; gap: 10px; border-radius: 9px; padding-inline: 12px; font-size: 12px; }
+  .site-navigation { display: none; grid-column: 1 / -1; padding: 6px; border-radius: 12px; background: white; border: 1px solid var(--line); }
+  .menu-open > .site-navigation { display: flex; flex-wrap: wrap; }
+  .site-navigation a { flex: 1 1 auto; }
+  .site-footer { align-items: flex-start; padding-block: 8px 14px; }
+  .site-footer-links { gap: 0 16px; }
+  .site-footer p { flex-basis: 100%; }
+  .question-shell > .site-header { padding-top: 16px; }
+  .question-shell .question-top { padding-block: 12px; }
+  .question-shell > .site-footer { margin-top: 0; padding-block: 16px; }
+  .site-help-content > header { padding: 16px 20px; }
+  .site-help-body { padding: 18px 20px 20px; }
+  .site-help-content dl > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+}
+@media print {
+  .site-header, .site-footer, .site-help-dialog { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

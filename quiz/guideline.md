@@ -2,23 +2,51 @@
 
 Read this before creating or updating a quiz. Reuse the shared player and follow the user's conventions below.
 
+Read [requirements.md](requirements.md) for shared product requirements and UI/UX design intent, and [README.md](README.md) for code ownership and loading order. Keep these documents aligned when behavior or design intentionally changes.
+
+Follow [architecture.md](architecture.md) for object-oriented JavaScript, composition, design patterns, dependency contracts, and lifecycle ownership. Keep mutable player state inside application instances, not ambient globals.
+
 ## Files and launch behavior
 
 ```text
 quiz/
+  README.md
+  requirements.md
+  architecture.md
   guideline.md
+  schema.json
   css/
     styles.css
+    base.css
+    layout.css
+    question.css
+    pages.css
+    navigation.css
     notice.css
   js/
     app.js
-    notice.js
+    core/
+      model.js
+      storage.js
+      exam.js
+    ui/
+      content.js
+      screens.js
+      events.js
+      navigation.js
+      notice.js
   tools/
     validate.js
+    validate-assets.js
+    validate-architecture.js
     validate-notices.js
-  schema.json
+    validate-shuffle.js
+    validate-exam.js
+    lib/player.js
+    lib/player-access.js
 <quiz-name>/
   index.html
+  exam.html
   quiz.js
   questions.js
   notice.html
@@ -26,9 +54,9 @@ quiz/
 ```
 
 - Put all shared implementation, styling, schemas, optional tools, and AI guidance under `/quiz`. Browser scripts belong in `/quiz/js`, styles in `/quiz/css`, and development checks in `/quiz/tools`. Keep `schema.json` and `guideline.md` at the top of `/quiz`.
-- Each quiz folder holds its entry point, editable data, original mock, and user-facing `notice.html`. Put mock-specific findings in that notice, not in `/quiz`.
+- Each quiz folder holds its practice and Mock Exam entry points, editable data, original mock, and user-facing `notice.html`. Put mock-specific findings in that notice, not in `/quiz`.
 - Use vanilla HTML/CSS/JavaScript. Opening a quiz's `index.html` directly must start that quiz without a server, installation, build, upload dialog, or quiz picker.
-- Load ordinary classic scripts in this order: `quiz.js`, `questions.js`, `../quiz/js/app.js`. Link `../quiz/css/styles.css`. Do not use ES modules, `fetch`, XHR, or a per-quiz loader for local data.
+- Use the classic script order documented in [README.md](README.md#loading): quiz data first, shared core and UI scripts next, and `../quiz/js/app.js` last. Copy an existing entry point. Link `../quiz/css/styles.css`. Do not use ES modules, `fetch`, XHR, or a per-quiz loader for local data.
 - Data files assign `window.QUIZ_CONFIG = {...};` and `window.QUIZ_QUESTIONS = [...];`. Edit these JS files directly; do not add parallel JSON copies, split question folders, or embedded HTML data.
 - Use plain local asset paths without `?v=...`. Preserve functional query parameters such as Google Fonts specifications.
 - Keep existing quiz/question Ids, choice order, and storage keys stable. Give each new quiz a unique `storageKey`.
@@ -54,7 +82,7 @@ quiz/
 
 Use `schema.json` and the existing quizzes as structural examples. Do not copy another certification's percentages or content.
 
-- Config supplies `id`, `title`, `storageKey`, `sections`, `focus`, and `groups`, plus suitable descriptions, legends, and copy.
+- Config supplies `id`, `title`, `storageKey`, `sections`, `focus`, and `groups`, plus suitable descriptions, legends, and copy. Set `examMinutes` to the certification's verified time limit in whole minutes (1–1440), recording the official guide and verification date. The three existing quizzes use 105 minutes; verify new certifications individually.
 - `section` is a broad topic. `group` is a narrower study concept. Every reference must match an entry in the config.
 - Use the focus levels `must`, `high`, `familiar`, and `low`. Put foundational patterns first, then important applications, additional practice, and narrow/duplicate details. These are AI study priorities, not exam predictions.
 - Set `lead: true` and `ordered: true` on Must; list conceptual groups in teaching order.
@@ -86,6 +114,8 @@ window.QUIZ_QUESTIONS = [
 ```
 
 - Choices are labeled by position: A, B, C, etc. Do not repeat letters inside their text.
+- Keep those data letters stable. Regular practice uses the original choice order on start, resume, and Try again. Only Mock Exam shuffles the displayed order, labels positions A/B/C/D, and grades/stores selections by their original choice IDs. Resuming an exam restores its saved permutation. Ignore old shuffled-practice permutations while preserving canonical draft and result IDs. Never rewrite data keys or source snapshots to implement shuffling.
+- Prefer explanations and prompts that identify choices by their content instead of relying on letters or positions. The player remaps explicit choice-letter references in question prose, reasoning, and distractor explanations; code and URLs remain literal. Full explanation notes and notices retain original mock letters, with a session letter key shown above the full notes. Avoid order-dependent choices such as “both of the above” unless the wording has been made independent of presentation order.
 - Code in stems, explanations, or choices uses `{ "code": ["line 1", "line 2"] }`. Prompts use `{ "ask": "..." }`. Imported markup must display as escaped text, not execute.
 - Multiple selection uses `type: "multi"` and a canonical key such as `answer: "A,C"`. Any `choose` value and Choose N prompt must agree. Grade the complete set independently of selection order.
 - `acceptAny: true` is only for a single selection among equivalent correct alternatives. Explain the exception clearly; it is not a multi-select question.
@@ -134,11 +164,13 @@ Apply factual fixes consistently to repeated questions, even when their answer l
 
 ## Write `<quiz-name>/notice.html` for the user
 
+Use `class="wrap notice-shell"` on the review page container so its outer edges match every quiz screen. Load `../quiz/js/ui/navigation.js` before the optional notice script.
+
 Write a standalone HTML page with `lang="en"`, UTF-8, a viewport meta tag, and a descriptive title. Link `../quiz/css/styles.css` and `../quiz/css/notice.css`, provide a Back to quiz link to `index.html`, and use the existing notices as layout examples. Include a contents navigation with section anchors and put wide tables in keyboard-focusable `.notice-table` regions. Keep all notice content in the HTML file so it opens directly from disk without JavaScript, a server, or a Markdown renderer. Escape literal code and markup.
 
 Use the shared notice layout: a short overview with Corrected, Repaired, and Not scored counts; a native Source document & review scope disclosure; section cards; and links back to the quiz. Keep counts aligned with `questions.js`, distinguishing Repaired badges from broader review-note totals. Preserve existing section IDs and all review findings when changing the presentation. Give table headers `scope="col"` and cells matching `data-label` values so rows remain understandable in the mobile card layout. Review rows have stable IDs and a `data-questions` list for exact question-number search; grouped rows list every relevant ID. Keep hidden accessibility text anchored so it cannot enlarge the page.
 
-Load the optional classic script `../quiz/js/notice.js` with `defer` for local table search, current-section navigation, and printing. All findings and references must still be readable if JavaScript is disabled. Search matches complete question numbers or all words in a phrase, filters only table rows, keeps the input stable, supports Escape to clear and Enter to focus the first matching note, and announces the result count. Other review text remains visible. Printing includes every table row, even when a search is active. Keep all shared notice development under `/quiz`.
+Load the optional classic script `../quiz/js/ui/notice.js` with `defer` for local table search, current-section navigation, and printing. All findings and references must still be readable if JavaScript is disabled. Search matches complete question numbers or all words in a phrase, filters only table rows, keeps the input stable, supports Escape to clear and Enter to focus the first matching note, and announces the result count. Other review text remains visible. Printing includes every table row, even when a search is active. Keep all shared notice development under `/quiz`.
 
 Keep notices specific to the mock and understandable without developer context. Include:
 
@@ -153,7 +185,15 @@ Do not put mock-specific review logs in `/quiz` or mix a shared UI change histor
 
 ## Player behavior and verification
 
-Preserve drafts, resume, skip, missed review, and end-of-set results. Require exactly the requested multi-selection count. Keep native keyboard behavior, focus/scroll position, readable mobile layouts, accessible status labels, and safe reference links. Exclude ungraded questions from accuracy. Clear progress resets results, drafts, and resume together after confirmation. Keep practice usable and explain save failures if browser storage is unavailable.
+Preserve drafts, resume, skip, missed review, and end-of-set results. Require exactly the requested multi-selection count. Keep native keyboard behavior, focus/scroll position, readable mobile layouts, accessible status labels, and safe reference links. Exclude ungraded questions from accuracy. Reset practice progress resets results, drafts, and resume together after confirmation. Keep practice usable and explain save failures if browser storage is unavailable.
+
+Verify shuffling with single, multiple, equivalent-answer, and unscored questions. Keyboard letters must select the displayed choice, and answer recaps, highlighted answers, and distractor labels must use the same display mapping. Selecting, checking, navigating, and resuming must not reshuffle an active session. Old saved results and drafts must retain their meaning, and invalid saved permutations must be regenerated without discarding valid progress. Keep all shuffle checks in the shared development tools.
+
+Mock Exam has its own standalone `<quiz-name>/exam.html` page. Use the same classic script order and stylesheet as `index.html`, with `<body data-quiz-page="exam">` to select the exam setup screen. The practice home links to this page but contains no exam setup or resume controls. Keep the name **Mock Exam** consistent. Regular practice must not randomly sample questions or shuffle choices.
+
+On the exam page, offer a configurable count defaulting to 60 (or the available scored pool if smaller). Sample scored question IDs uniformly without replacement, randomize their order, and shuffle their choices. Display exam positions **1–N** in the question heading, navigator text and accessibility labels, numeric jump field, and pre/post-submission review rows. Jumping to K opens the Kth sampled question; never interpret it as a source ID. Keep original IDs internally for storage and grading. Verify any official time limit using the certification’s current guide; do not infer timing, pass thresholds, or topic quotas from this count. Save the latest attempt under `<storageKey>:exam`, separately from regular practice results and session data. Preserve its exact sampled IDs, order, current position, canonical selections, and choice permutations across reloads. The exam page must not write practice session data, including when opening an attempt from a stale tab. Show neutral selection progress before submission; never reuse practice grades or expose exam correctness early. Review & finish is a pre-submission checkpoint. Submission locks the attempt, reveals explanations, and scores against the entire sample, with skipped questions earning no points and partial selections graded incorrect. Save & exit returns to exam setup; Back to practice links to `index.html`. Clearly state that starting a new exam replaces the latest attempt. Clear saved attempt clears only the exam; Reset practice progress clears only regular practice. Validate separate direct-file entry points, numbering, sampling, bounds, resume, isolation, grading, and locked-result behavior with the shared exam checks.
+
+Mock Exam also offers a time limit in whole minutes (1–1440), defaulting to `examMinutes`; custom question counts do not silently scale the limit. Save the duration, start time, absolute deadline, submission time, and timeout status with the attempt. Derive the countdown from the deadline instead of decrementing a counter, so background throttling, Save & exit, reloading, and closing the page cannot reset or pause it. Keep the timer visible on question, pre-submission review, and saved-attempt setup screens. Update only its DOM nodes each second, preserving focus, drafts, and scroll position; announce warnings at five minutes and one minute without reading every second aloud. At expiry, submit saved selections, lock editing, retain incomplete/skipped grading rules, and explain automatic submission and time used in results. Check the deadline before accepting an answer or manual submission, and when the tab becomes visible/focused again. An overdue attempt reopened from disk must submit before edits are possible. Preserve older untimed attempts, starting one full default timer on their first resume; keep submitted historical results available without inventing elapsed time. Stop intervals after submission/reset and avoid duplicate timers. Test all of these paths with a fake clock in the shared exam checks.
 
 Keep the question page focused on reading and answering. Distinguish the original question number from position in the current set. Show scored coverage and accuracy separately; unscored-only sets should say they are for review. Give live selection guidance, a clear-selection action before checking, and explicit chosen-versus-correct answer feedback afterward. Equivalent single-choice alternatives must be labeled as alternatives. Never invent a reference answer for an unresolved item. Mark unfinished selections as drafts in the navigator. Next unanswered stays within the current set, skips scored results and unscored items, and wraps without returning to the current question. Preserve drafts and both page and reader scroll when changing selections. Keep results available during practice, mobile action buttons accessible, and keyboard help secondary to the question.
 
@@ -163,8 +203,22 @@ Constrain the question stem and prompt grid columns with `minmax(0, 1fr)` so lon
 
 The home-page review lists must use the question's current review state, show counts and progress, and support saved resume with the same question IDs and grading rules. Disable a list with no matching questions. Repaired is a source-review label, not a grading result, and does not change the accepted answers.
 
-Keep the home page focused on the learner's next action. Offer priority/topic browsing and a search of question text, topic, or original question number. Search previews must not reveal answer keys or render imported markup. Keep the input and caret stable while updating results; support Enter to open a unique match and Escape to clear the query. Search is local and needs no network access.
+Keep the home page focused on the learner's next action. Offer priority/topic browsing and a search of question text, topic, or original question number. Switching By priority/By topic must update only the catalog, toggle states, hint, and search state. Do not rebuild the dashboard or replay its entrance animation; preserve open disclosures, keyboard focus, and page scroll. Clicking the active browse mode is a no-op. Search previews must not reveal answer keys or render imported markup. Keep the input and caret stable while updating results; support Enter to open a unique match and Escape to clear the query. Search is local and needs no network access.
 
-Home coverage and accuracy count scored questions only; show unscored reading progress separately. The unanswered-practice shortcut must exclude previously answered and unscored questions. Resume should restore saved selections and advance past a completed question to the next unfinished one. When scored practice is complete, offer missed-question review or revisiting the quiz. Keep study-priority caveats accessible without making them the main action.
+Home coverage and accuracy count scored questions only. Put unscored reading progress below the description in Mock review’s Not scored card as “X of Y reviewed”, including zero before the first review. Do not duplicate it in Your progress or append a second Not started/complete status to that card. Put one Reset practice progress button at the bottom of Your progress after the metrics and review shortcuts, separated by a subtle divider. Do not add a disclosure, separate reset section, or instructions beside the button. Keep the existing confirmation and disable the button when no answers, drafts, or resume point are saved; explain reset scope in the confirmation and shared help. Consolidate the study guide and quiz-specific caveats in the footer’s How to use dialog; do not duplicate them inside the question browser. Reserve the page header for quiz identity and Mock Exam navigation. The unanswered-practice shortcut must exclude previously answered and unscored questions. Resume should restore saved selections and advance past a completed question to the next unfinished one. When scored practice is complete, offer missed-question review or revisiting the quiz. Keep study-priority caveats accessible without making them the main action.
 
-Run `node quiz/tools/validate.js` from the project root. Node is optional development tooling; learners still just open HTML. Check counts against the DOCX, complete metadata, schema, answer/distractor consistency, Corrected-label rules, direct-file startup, grading, saved regrading, navigation, and absence of the removed source-history disclosure. When changing UI, also check real browser/mobile/keyboard behavior where available and state any verification limits honestly.
+Run `node quiz/tools/validate.js` from the project root. Node is optional development tooling; learners still just open HTML. Check counts against the DOCX, complete metadata, schema, answer/distractor consistency, Corrected-label rules, direct-file startup, grading, saved regrading, navigation, and absence of the removed source-history disclosure.
+
+## Required UI/UX review for every UI change
+
+Keep all screens on the shared `.wrap` container. Change outer widths and responsive gutters only in `css/layout.css`; do not add page-specific width overrides. Reserve scrollbar space on the root so pages with and without document scrolling stay aligned. Inner reading columns can remain narrower.
+
+Whenever changing an existing interface or adding a new one, review it for UI bugs and improve the affected experience before finishing. This is a standing user requirement; do not wait for a separate testing request.
+
+- Walk through the affected journey and connected screens: practice home, question, explanation, results, Mock Exam setup/submission/resume, and mock review notices as applicable. Check labels, primary actions, navigation, saved state, empty states, invalid input, and recovery from errors. Keep exam answers hidden until submission.
+- Review desktop, narrow mobile, short windows, and enlarged text/zoom. Use long certification names, long questions/code, expanded Full explanation notes, and large navigators. Check wrapping, clipping, accidental page scrollbars, panel scrolling, sticky controls, and hidden accessibility text. Keep the question reader's desktop scrolling behavior intact.
+- Check keyboard-only use, visible focus, focus after navigation, native Enter/Space behavior, accessible names/statuses, readable contrast, and usable touch targets. Preserve the input/caret and scroll position when updating selections or live search.
+- Use the shared `nav-control` class with `ghost` for secondary page navigation and toolbar disclosures, or `primary` for a primary return action. Apply it consistently to Mock Exam, Reset practice progress, Back to practice/quiz, Home, Save & exit, Exam setup, and notice toolbar controls. Keep the shared 44px minimum height, typography, spacing, and corner style across pages and screen widths; allow the surrounding toolbar to wrap instead of shrinking individual controls. Do not add page-specific sizing overrides for these controls.
+- Use `ghost nav-control danger` for Clear saved attempt and Reset practice progress. Keep the saved-attempt actions together in a wrapping row, with matching control sizes and a clear destructive-action color. Preserve the existing confirmation and separate exam/practice reset behavior.
+- Open the affected HTML entry points directly in a real browser where available, exercise the controls, and inspect the rendered layout at desktop and mobile widths. Fix issues found and recheck the affected path. Automated logic checks do not establish visual correctness.
+- Run the relevant shared checks, including `node quiz/tools/validate.js` when player behavior changes. In the completion report, briefly state what was fixed and verified. If browser access is unavailable, report that limit explicitly and distinguish code/logic review from visual testing.

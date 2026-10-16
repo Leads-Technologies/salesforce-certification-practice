@@ -1,6 +1,7 @@
 window.QUIZ_CONFIG = {
   "id": "marketing-cloud-engagement-administrator",
   "title": "Marketing Cloud Engagement Administrator practice",
+  "examMinutes": 105,
   "subtitle": "165 questions, with reviewed answers, study priorities, and explanations",
   "storageKey": "marketing-cloud-engagement-administrator-practice-v1",
   "headline": "Practise your Marketing Cloud questions.",

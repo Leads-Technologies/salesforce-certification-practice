@@ -1,0 +1,108 @@
+// Test-only adapter for the original regression vocabulary. No aliases ship in the app.
+module.exports = function exposePlayerAssertions(context) {
+  const app = () => context.window.Quiz.application;
+  const owners = {
+  "t": "app",
+  "isExamPage": "app",
+  "boot": "app",
+  "focusMeta": "app",
+  "groups": "app",
+  "patternMeta": "app",
+  "sectionIds": "app",
+  "questionsFor": "app",
+  "pool": "app",
+  "current": "app",
+  "tally": "app",
+  "sectionLabel": "app",
+  "rememberedPick": "app",
+  "rememberDraft": "app",
+  "start": "app",
+  "go": "app",
+  "jump": "app",
+  "showSummary": "app",
+  "canCheck": "app",
+  "toggle": "app",
+  "check": "app",
+  "retry": "app",
+  "clearSelection": "app",
+  "nextUnansweredIndex": "app",
+  "resetAll": "app",
+  "clearExam": "app",
+  "render": "app",
+  "updateHomeSearch": "app",
+  "setHomeMode": "app",
+  "openQuestion": "app",
+  "examSecondsLeft": "examController",
+  "clockText": "examController",
+  "timerStage": "examController",
+  "examTimerHtml": "examController",
+  "finishExam": "examController",
+  "expireExam": "examController",
+  "stopForExpiredExam": "examController",
+  "updateExamTimer": "examController",
+  "syncExamTimer": "examController",
+  "examSelectionComplete": "examController",
+  "examAnswered": "examController",
+  "examResults": "examController",
+  "leaveExam": "examController",
+  "activateExam": "examController",
+  "startRandomExam": "examController",
+  "submitExam": "examController",
+  "saveExamAttempt": "examController",
+  "persistExamAttempt": "examController",
+  "esc": "content",
+  "inlineHtml": "content",
+  "blocksHtml": "content",
+  "askBlockHtml": "content",
+  "stemHtml": "content",
+  "answerPreview": "content",
+  "displayOptions": "content",
+  "displayLetters": "content",
+  "choiceReferenceText": "content",
+  "explanationBlocks": "content",
+  "choiceListHtml": "content",
+  "explanationHtml": "content",
+  "optionClass": "content",
+  "storageNoteHtml": "screens",
+  "siteHeader": "screens",
+  "siteFooter": "screens",
+  "navigatorMatches": "screens",
+  "listButton": "screens",
+  "nextFocus": "screens",
+  "reviewSectionHtml": "screens",
+  "resumeTarget": "screens",
+  "matchingQuestions": "screens",
+  "homeCatalogHtml": "screens",
+  "examSetupHtml": "screens",
+  "examPageHtml": "screens",
+  "homeHtml": "screens",
+  "summaryHtml": "screens",
+  "examSummaryHtml": "screens",
+  "emptyHtml": "screens",
+  "quizHtml": "screens",
+  "filterTitle": "screens",
+  "loadSession": "repository",
+  "loadResults": "repository",
+  "loadExamAttempt": "repository",
+  "saveSession": "app",
+  "saveResults": "app",
+  "bind": "events",
+  "grade": "grader",
+  "validOptionOrder": "choiceOrder",
+  "shuffled": "choiceOrder",
+  "shuffleOptionOrder": "choiceOrder"
+};
+  for (const [name, owner] of Object.entries(owners)) {
+    context[name] = (...args) => {
+      const instance = owner === "app" ? app() : app()[owner];
+      if (name === "loadSession" && !args.length) args = [app().state.results];
+      return instance[name](...args);
+    };
+  }
+  for (const name of ["state", "data", "exam", "questions", "byId"]) {
+    Object.defineProperty(context, name, { configurable: true, get: () => app()[name] });
+  }
+  Object.defineProperty(context, 'STORAGE_KEY', { get: () => app().storageKey });
+  context.normalizeQuestion = raw => context.window.QuizModules.QuestionBank.normalizeQuestion(raw);
+  Object.assign(context, context.window.QuizModules.constants);
+};

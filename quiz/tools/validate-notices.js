@@ -4,13 +4,14 @@ const path = require("node:path");
 const vm = require("node:vm");
 const assert = require("node:assert/strict");
 const root = path.resolve(__dirname, "..", "..");
-const script = fs.readFileSync(path.join(__dirname, "..", "js", "notice.js"), "utf8");
+const script = fs.readFileSync(path.join(__dirname, "..", "js", "ui", "notice.js"), "utf8");
 const plain = html => html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 const folders = fs.readdirSync(root).filter(folder => fs.existsSync(path.join(root, folder, "notice.html")));
 
 for (const folder of folders) {
   const html = fs.readFileSync(path.join(root, folder, "notice.html"), "utf8");
-  assert.ok(html.includes('<script src="../quiz/js/notice.js" defer></script>'), `${folder}: local optional enhancements`);
+  assert.ok(html.includes('<script src="../quiz/js/ui/notice.js" defer></script>'), `${folder}: local optional enhancements`);
+  assert.ok(html.includes('<script src="../quiz/js/ui/navigation.js" defer></script>') && html.includes('data-site-header') && html.includes('data-site-footer'), `${folder}: review notes share the quiz navigation and footer`);
   assert.ok(!/\bfetch\s*\(|XMLHttpRequest|type="module"/.test(html + script), `${folder}: direct-file compatibility`);
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
   assert.equal(new Set(ids).size, ids.length, `${folder}: unique anchors`);
@@ -29,6 +30,7 @@ for (const folder of folders) {
     return {
       hidden: false, disabled: false, value: "", textContent: "", open: false, events: new Map(), attributes: new Map(),
       addEventListener(name, callback) { this.events.set(name, callback); },
+      removeEventListener(name, callback) { if (this.events.get(name) === callback) this.events.delete(name); },
       focus() { this.focused = true; }, scrollIntoView() { this.scrolled = true; },
       setAttribute(name, value) { this.attributes.set(name, value); },
       getAttribute(name) { return this.attributes.get(name); },
@@ -55,7 +57,7 @@ for (const folder of folders) {
       querySelector: selector => nodes.get(selector),
       querySelectorAll: selector => selector === ".notice-table" ? tables.map(table => table.region) : selector === ".notice-contents a" ? links : sections,
     },
-    window: { addEventListener: (name, callback) => events.set(name, callback), requestAnimationFrame: callback => callback(), print: () => prints++ },
+    window: { addEventListener: (name, callback) => events.set(name, callback), removeEventListener: (name, callback) => { if (events.get(name) === callback) events.delete(name); }, requestAnimationFrame: callback => callback(), print: () => prints++ },
   };
   vm.runInNewContext(script, context);
   const input = nodes.get("#notice-search");
@@ -99,5 +101,21 @@ for (const folder of folders) {
   sections[0].top = -2000; sections[1].top = -1000; sections[2].top = 50;
   events.get("scroll")();
   assert.equal(links[2].getAttribute("aria-current"), "location", `${folder}: current section is indicated`);
+  const controller = context.window.QuizModules.notice;
+  const inputHandler = input.events.get('input');
+  controller.mount();
+  assert.equal(input.events.get('input'), inputHandler, `${folder}: repeated notice mounting does not bind twice`);
+  let pendingFrame;
+  let cancelledFrame;
+  context.window.requestAnimationFrame = callback => { pendingFrame = callback; return 7; };
+  context.window.cancelAnimationFrame = handle => { cancelledFrame = handle; };
+  events.get('scroll')();
+  controller.dispose();
+  assert.equal(cancelledFrame, 7, `${folder}: notice disposal cancels its scheduled frame`);
+  assert.equal(input.events.size, 0, `${folder}: notice disposal removes input handlers`);
+  assert.equal(events.size, 0, `${folder}: notice disposal removes window handlers`);
+  sections[2].top = 2000;
+  pendingFrame();
+  assert.equal(links[2].getAttribute('aria-current'), 'location', `${folder}: an already queued callback cannot update a disposed notice`);
   console.log(`PASS notice ${folder}: ${rows.length} table notes, counts, complete correction list, anchors, exact/grouped lookup, keyword search, empty state, keyboard, navigation, printing`);
 }
