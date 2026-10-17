@@ -10,844 +10,299 @@
   <link rel="stylesheet" href="../quiz/css/styles.css">
   <link rel="stylesheet" href="../quiz/css/notice.css">
 </head>
-<body class="notice-page">
+
+<body class="notice-page notice-compact">
 <a class="notice-skip" href="#notice-overview">Skip to review notes</a>
 <div class="wrap notice-shell">
   <div data-site-header></div>
-  <div class="notice-header">
-    <a class="ghost nav-control notice-back" href="index.html"><span aria-hidden="true">←</span> Back to quiz</a>
-    <div class="notice-header-actions"><span>Study resources / Mock review</span><button type="button" class="ghost nav-control" data-notice-print hidden>Print notes</button></div>
-  </div>
-  <div class="notice-layout">
-    <nav class="notice-contents" aria-label="On this page">
-      <h2>In this review</h2>
-      <ul><li><a href="#notice-overview">Overview</a></li><li><a href="#full-question-review--16-october-2026">Review summary</a></li><li><a href="#incorrect-answer-keys">Corrected answers</a></li><li><a href="#wording-options-code-and-assumptions">Question repairs &amp; study notes</a></li><li><a href="#images-and-incomplete-source-content">Images &amp; missing content</a></li><li><a href="#explanation-and-version-caveats">Explanation &amp; version caveats</a></li><li><a href="#official-references">Official references</a></li><li><a href="#internet-comparison-and-additional-references">Additional references</a></li></ul>
-      <p>Review states describe the mock. They are separate from your practice score.</p>
-    </nav>
-    <main class="notice-article">
-      <header class="notice-hero" id="notice-overview" tabindex="-1" aria-labelledby="mock-notices--platform-developer">
-        <p class="notice-kicker">Platform Developer</p>
-        <h1 id="mock-notices--platform-developer">Mock review notes</h1>
-        <p class="notice-intro">See which answers changed, what was repaired, and which questions need more context before they can be scored.</p>
-        <div class="notice-meta"><span>204 questions</span><span>201 scored</span><span>Reviewed 16 October 2026</span></div>
-        <div class="notice-summary"><a class="notice-stat corrected" href="#incorrect-answer-keys" data-review-count="corrected"><span class="notice-stat-top">Corrected<span aria-hidden="true">↗</span></span><strong>28</strong><span>The source answer key was wrong.</span></a><a class="notice-stat repaired" href="#wording-options-code-and-assumptions" data-review-count="repaired"><span class="notice-stat-top">Repaired<span aria-hidden="true">↗</span></span><strong>92</strong><span>Content repaired; source key accepted.</span></a><a class="notice-stat ungraded" href="#full-question-review--16-october-2026" data-review-count="ungraded"><span class="notice-stat-top">Not scored<span aria-hidden="true">↗</span></span><strong>3</strong><span>Unresolved; excluded from accuracy.</span></a></div>
-        <details class="notice-about"><summary>Source document &amp; review scope</summary><div><p>Source: <a href="Salesforce Certified Platform Developer Mock.docx">Salesforce Certified Platform Developer Mock.docx</a>. Reviewed 16 October 2026. The original document is unchanged.</p>
-<p>This quiz contains <strong>204 questions: 201 scored and 3 unscored</strong>. There are <strong>28 demonstrably incorrect source keys</strong> marked <strong>Corrected</strong>, plus <strong>99 other documented question repairs or review notes</strong> with accepted source keys. Every question has study metadata and explanations; the unresolved items explain their uncertainty instead of supplying a grading key.</p>
-<p><strong>Repaired: 92 questions.</strong> These have repaired question wording, code, choices, or necessary assumptions while their original answer remains accepted. Explanation-only review notes do not receive this badge. Corrected and Not scored questions use their own states; the lists are separate.</p>
-<p>Open <a href="index.html">index.html</a> and use the navigator’s Go to question field to inspect a question by its original number. The player shows the reviewed question and its explanation, without an Earlier wording disclosure.</p></div></details>
-      </header>
-      <section class="notice-tools" aria-labelledby="notice-search-title" data-notice-tools hidden>
-        <div><h2 id="notice-search-title">Find a review note</h2><p>Search question numbers or keywords in the review tables.</p></div>
-        <form class="notice-search-form" role="search">
-          <label for="notice-search" class="sr-only">Search review tables</label>
-          <div class="notice-search-field"><span aria-hidden="true">⌕</span><input id="notice-search" type="search" placeholder="Question number or keyword…" autocomplete="off" aria-describedby="notice-search-status"><button type="button" class="quiet" data-notice-clear disabled>Clear</button></div>
-        </form>
-        <p class="notice-search-status" id="notice-search-status" role="status" aria-live="polite"></p>
-        <p class="notice-search-empty" hidden>No matching table notes. Try another question number or a shorter phrase. Other review sections remain available below.</p>
-      </section>
-      <section class="notice-section summary" aria-labelledby="full-question-review--16-october-2026" data-notice-section>
-<div class="notice-section-heading"><p class="notice-kicker">Review outcome</p><span class="notice-section-count">3 notes</span></div>
-<h2 id="full-question-review--16-october-2026">Full question review — 16 October 2026</h2>
-<p>All <strong>204 questions</strong> were read again, including the previous corrections, complete option sets, correct-answer reasoning, distractor explanations, and study notes. This pass improved <strong>64 questions</strong>. Problematic variants were compared online; technical claims were checked against relevant primary documentation.</p>
-<p><strong>201 questions are scored; Q102, Q183, and Q202 are not scored.</strong> Two previous Corrected badges have been withdrawn: the original keys were not demonstrably wrong without assumptions missing from the mock. These questions remain visible for study, and are excluded from accuracy.</p>
-<div class="notice-table" role="region" tabindex="0" aria-label="Full question review — 16 October 2026 table"><table role="table">
-<thead role="rowgroup">
-<tr role="row">
-<th scope="col" role="columnheader">Question</th>
-<th scope="col" role="columnheader">Why it is not scored</th>
-<th scope="col" role="columnheader">What is needed</th>
+  <div class="notice-header"><a class="ghost nav-control notice-back" href="index.html">← Back to quiz</a><button type="button" class="ghost nav-control" data-notice-print hidden>Print</button></div>
+  <main class="notice-article">
+    <header class="notice-hero" id="notice-overview" tabindex="-1" aria-labelledby="mock-review-title">
+      <p class="notice-kicker">Platform Developer</p>
+      <h1 id="mock-review-title">Mock review notes</h1>
+      <p class="notice-intro">Key corrections, repairs, and unresolved questions. Open a question in Practice for its full explanation and exact changes.</p>
+      <div class="notice-meta"><span>204 questions</span><span>192 scored</span></div>
+      <nav class="notice-summary" aria-label="Review categories"><a class="notice-stat corrected" href="#incorrect-answer-keys" data-review-count="corrected"><span class="notice-stat-top">Corrected answers</span><strong>29</strong></a>
+<a class="notice-stat repaired" href="#wording-options-code-and-assumptions" data-review-count="repaired"><span class="notice-stat-top">Repaired questions</span><strong>43</strong></a>
+<a class="notice-stat ungraded" href="#not-scored" data-review-count="ungraded"><span class="notice-stat-top">Not scored</span><strong>12</strong></a></nav>
+      <details class="notice-about"><summary>Original mock</summary><div><p><a href="Salesforce Certified Platform Developer Mock.docx">Salesforce Certified Platform Developer Mock.docx</a>. Original question numbers and DOCX answers are preserved.</p></div></details>
+    </header>
+    <section class="notice-tools" aria-label="Find a review note" data-notice-tools hidden>
+      <form class="notice-search-form" role="search"><label for="notice-search" class="sr-only">Search review notes</label><div class="notice-search-field"><input id="notice-search" type="search" placeholder="Question number or keyword…" autocomplete="off" aria-describedby="notice-search-status"><button type="button" class="quiet" data-notice-clear disabled>Clear</button></div></form>
+      <p class="notice-search-status" id="notice-search-status" role="status" aria-live="polite"></p>
+      <p class="notice-search-empty" hidden>No matching review notes. Try another question number or keyword.</p>
+    </section>
+<section class="notice-section corrected" aria-labelledby="incorrect-answer-keys" data-notice-section>
+<h2 id="incorrect-answer-keys">Corrected answers <span class="notice-section-count">29</span></h2>
+<p>The quiz uses a different answer from the DOCX mock.</p>
+<div class="notice-table" role="region" tabindex="0" aria-label="Corrected answers"><table role="table"><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Question</th><th scope="col" role="columnheader">DOCX answer</th><th scope="col" role="columnheader">Quiz answer</th><th scope="col" role="columnheader">Reason</th></tr></thead><tbody role="rowgroup">
+<tr role="row" id="note-corrected-18" data-questions="18">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-18">Q18</a></td><td role="cell" data-label="DOCX answer" class="source-key">A, B, C</td><td role="cell" data-label="Quiz answer" class="reviewed-key">A, B, E</td><td role="cell" data-label="Reason">Upload the SVG as a static resource, import its URL in JavaScript, expose that URL on the component instance, and bind the property from the template.</td>
 </tr>
-</thead>
-<tbody role="rowgroup">
-<tr role="row" id="note-full-question-review--16-october-2026-1" data-questions="102">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-full-question-review--16-october-2026-1" aria-label="Link to review note for question 102"><span aria-hidden="true">Q</span>102</a></td>
-<td role="cell" data-label="Why it is not scored">No API version or caller context; modern and legacy omitted-sharing behavior differs. The prior API 67.0 repair did not prove the historical source key wrong.</td>
-<td role="cell" data-label="What is needed">Specify the class API version and entry/caller context.</td>
+<tr role="row" id="note-corrected-26" data-questions="26">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-26">Q26</a></td><td role="cell" data-label="DOCX answer" class="source-key">B</td><td role="cell" data-label="Quiz answer" class="reviewed-key">A or D</td><td role="cell" data-label="Reason">With conversion validation and triggers enabled, a validation rule or an after trigger calling addError can require LeadSource during conversion.</td>
 </tr>
-<tr role="row" id="note-full-question-review--16-october-2026-2" data-questions="183">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-full-question-review--16-october-2026-2" aria-label="Link to review note for question 183"><span aria-hidden="true">Q</span>183</a></td>
-<td role="cell" data-label="Why it is not scored">The direct bulk repair is valid, but the original Queueable option can also be implemented correctly. The prior explanation assumed an internal per-record query pattern that its option never specified.</td>
-<td role="cell" data-label="What is needed">Specify synchronous completion or the proposed Queueable implementation.</td>
+<tr role="row" id="note-corrected-35" data-questions="35">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-35">Q35</a></td><td role="cell" data-label="DOCX answer" class="source-key">A</td><td role="cell" data-label="Quiz answer" class="reviewed-key">C</td><td role="cell" data-label="Reason">C uses valid SOSL IN NAME FIELDS with multiple RETURNING objects.</td>
 </tr>
-<tr role="row" id="note-full-question-review--16-october-2026-3" data-questions="202">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-full-question-review--16-october-2026-3" aria-label="Link to review note for question 202"><span aria-hidden="true">Q</span>202</a></td>
-<td role="cell" data-label="Why it is not scored">A validation rule already enforces the stated email requirement. Online variants disagree, without defining what extra validation must add.</td>
-<td role="cell" data-label="What is needed">Define local business/format checks versus external mailbox verification and the required save channels.</td>
+<tr role="row" id="note-corrected-42" data-questions="42">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-42">Q42</a></td><td role="cell" data-label="DOCX answer" class="source-key">A, B, D</td><td role="cell" data-label="Quiz answer" class="reviewed-key">A, B, E</td><td role="cell" data-label="Reason">Set the test PageReference with Test.setCurrentPage, populate its URL parameter map before constructing the controller, and call save().getUrl() to inspect navigation.</td>
 </tr>
-</tbody>
-</table></div>
-<p class="notice-table-empty" hidden>No matching notes in this table.</p>
-<a class="notice-section-top" href="#notice-overview">Back to overview <span aria-hidden="true">↑</span></a>
-</section><section class="notice-section corrected" aria-labelledby="incorrect-answer-keys" data-notice-section>
-<div class="notice-section-heading"><p class="notice-kicker">Changed keys</p><span class="notice-section-count">28 notes</span></div>
-<h2 id="incorrect-answer-keys">Incorrect answer keys</h2>
-<p>Only demonstrably wrong source keys are marked Corrected. Wording, explanation, or assumption repairs do not receive the badge when the source key remains accepted. Unresolved keys are excluded from scoring.</p>
-<div class="notice-table" role="region" tabindex="0" aria-label="Incorrect answer keys table"><table role="table">
-<thead role="rowgroup">
-<tr role="row">
-<th scope="col" role="columnheader">Question</th>
-<th scope="col" role="columnheader">Source key</th>
-<th scope="col" role="columnheader">Quiz key</th>
-<th scope="col" role="columnheader">Reason</th>
+<tr role="row" id="note-corrected-43" data-questions="43">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-43">Q43</a></td><td role="cell" data-label="DOCX answer" class="source-key">A</td><td role="cell" data-label="Quiz answer" class="reviewed-key">B</td><td role="cell" data-label="Reason">Missing Name causes a failed SaveResult. Database.insert(a, false) returns the error, but the code does not inspect it.</td>
 </tr>
-</thead>
-<tbody role="rowgroup">
-<tr role="row" id="note-incorrect-answer-keys-1" data-questions="16">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-1" aria-label="Link to review note for question 16"><span aria-hidden="true">Q</span>16</a></td>
-<td role="cell" data-label="Source key" class="source-key">A</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">B</td>
-<td role="cell" data-label="Reason">The insert does not run a before-update trigger. The create-only after-save flow changes 0 to 1 and issues an update; the before-update trigger changes 1 to 2.</td>
+<tr role="row" id="note-corrected-48" data-questions="48">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-48">Q48</a></td><td role="cell" data-label="DOCX answer" class="source-key">A, D, E</td><td role="cell" data-label="Quiz answer" class="reviewed-key">A, B, D</td><td role="cell" data-label="Reason">ltng:require avoids duplicate loads, respects dependency order within a tag, and can load independent sets in parallel using separate tags.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-2" data-questions="18">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-2" aria-label="Link to review note for question 18"><span aria-hidden="true">Q</span>18</a></td>
-<td role="cell" data-label="Source key" class="source-key">A,B,C</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">A,B,E</td>
-<td role="cell" data-label="Reason">Upload the SVG as a static resource, import its URL in JavaScript, expose that URL on the component instance, and bind the property from the template.</td>
+<tr role="row" id="note-corrected-55" data-questions="55">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-55">Q55</a></td><td role="cell" data-label="DOCX answer" class="source-key">D</td><td role="cell" data-label="Quiz answer" class="reviewed-key">A</td><td role="cell" data-label="Reason">standardController=&quot;Notice__c&quot; selects the custom object’s built-in controller, while extensions=&quot;myControllerExtension&quot; attaches the Apex extension class.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-3" data-questions="26">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-3" aria-label="Link to review note for question 26"><span aria-hidden="true">Q</span>26</a></td>
-<td role="cell" data-label="Source key" class="source-key">B</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">D</td>
-<td role="cell" data-label="Reason">With conversion validation enabled, a Lead validation rule can return an error when IsConverted is true and LeadSource is blank.</td>
+<tr role="row" id="note-corrected-58" data-questions="58">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-58">Q58</a></td><td role="cell" data-label="DOCX answer" class="source-key">B, C</td><td role="cell" data-label="Quiz answer" class="reviewed-key">A, B</td><td role="cell" data-label="Reason">The intended pair is Read/Write access on both the secondary and primary master-detail relationships.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-4" data-questions="35">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-4" aria-label="Link to review note for question 35"><span aria-hidden="true">Q</span>35</a></td>
-<td role="cell" data-label="Source key" class="source-key">A</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">C</td>
-<td role="cell" data-label="Reason">C uses valid SOSL IN NAME FIELDS with multiple RETURNING objects. For standard objects that scope includes Lead.Company and Contact.AccountName as well as their name fields.</td>
+<tr role="row" id="note-corrected-67" data-questions="67">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-67">Q67</a></td><td role="cell" data-label="DOCX answer" class="source-key">D</td><td role="cell" data-label="Quiz answer" class="reviewed-key">B</td><td role="cell" data-label="Reason">Only the first Account is inserted; the list is never inserted. Five existing records plus one new record gives six.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-5" data-questions="40">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-5" aria-label="Link to review note for question 40"><span aria-hidden="true">Q</span>40</a></td>
-<td role="cell" data-label="Source key" class="source-key">A,B</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">A,C</td>
-<td role="cell" data-label="Reason">A test data factory can insert deterministic pricing rows, and Test.loadData can insert them from a CSV static resource without depending on org data.</td>
+<tr role="row" id="note-corrected-74" data-questions="74">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-74">Q74</a></td><td role="cell" data-label="DOCX answer" class="source-key">B, D</td><td role="cell" data-label="Quiz answer" class="reviewed-key">A, B</td><td role="cell" data-label="Reason">A before-delete Apex trigger can call addError, and a before-delete record-triggered flow can use Custom Error to reject a non-Decommissioned Container deletion.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-6" data-questions="42">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-6" aria-label="Link to review note for question 42"><span aria-hidden="true">Q</span>42</a></td>
-<td role="cell" data-label="Source key" class="source-key">A,B,D</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">A,B,E</td>
-<td role="cell" data-label="Reason">Set the test PageReference with Test.setCurrentPage, populate its URL parameter map before constructing the controller, and call save().getUrl() to inspect navigation.</td>
+<tr role="row" id="note-corrected-78" data-questions="78">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-78">Q78</a></td><td role="cell" data-label="DOCX answer" class="source-key">D</td><td role="cell" data-label="Quiz answer" class="reviewed-key">A</td><td role="cell" data-label="Reason">Database.insert(tasks, false) allows ordinary Task row failures to be returned in SaveResult while valid Tasks can succeed without failing the entire operation.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-7" data-questions="43">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-7" aria-label="Link to review note for question 43"><span aria-hidden="true">Q</span>43</a></td>
-<td role="cell" data-label="Source key" class="source-key">A</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">B</td>
-<td role="cell" data-label="Reason">The Account is missing Name. Database.insert(a, false) returns an unsuccessful Database.SaveResult for that row instead of throwing a DmlException for the required-field error.</td>
+<tr role="row" id="note-corrected-79" data-questions="79">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-79">Q79</a></td><td role="cell" data-label="DOCX answer" class="source-key">A, C, E</td><td role="cell" data-label="Quiz answer" class="reviewed-key">C, D, E</td><td role="cell" data-label="Reason">Inline SOQL can be assigned to a single sObject, a List of sObjects, or an Integer for the special COUNT() form.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-8" data-questions="48">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-8" aria-label="Link to review note for question 48"><span aria-hidden="true">Q</span>48</a></td>
-<td role="cell" data-label="Source key" class="source-key">A,D,E</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">A,B,D</td>
-<td role="cell" data-label="Reason">ltng:require avoids duplicate loads, respects dependency order within a tag, and can load independent sets in parallel using separate tags.</td>
+<tr role="row" id="note-corrected-84" data-questions="84">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-84">Q84</a></td><td role="cell" data-label="DOCX answer" class="source-key">B</td><td role="cell" data-label="Quiz answer" class="reviewed-key">D</td><td role="cell" data-label="Reason">Test.setCreatedDate(recordId, datetime) can change CreatedDate on an eligible record created by the test.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-9" data-questions="55">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-9" aria-label="Link to review note for question 55"><span aria-hidden="true">Q</span>55</a></td>
-<td role="cell" data-label="Source key" class="source-key">D</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">A</td>
-<td role="cell" data-label="Reason">standardController="Notice__c" selects the custom object’s built-in controller, while extensions="myControllerExtension" attaches the Apex extension class.</td>
+<tr role="row" id="note-corrected-95" data-questions="95">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-95">Q95</a></td><td role="cell" data-label="DOCX answer" class="source-key">A, C, E</td><td role="cell" data-label="Quiz answer" class="reviewed-key">A, B, D</td><td role="cell" data-label="Reason">User/class/trigger tracing, 24-hour system-log retention, and cumulative log levels are the accurate statements; FINE includes DEBUG and coarser levels.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-10" data-questions="67">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-10" aria-label="Link to review note for question 67"><span aria-hidden="true">Q</span>67</a></td>
-<td role="cell" data-label="Source key" class="source-key">D</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">B</td>
-<td role="cell" data-label="Reason">Only insert myAccount performs DML. The do/while creates nine in-memory Accounts but never inserts their list, so five existing plus one new Account gives six.</td>
+<tr role="row" id="note-corrected-100" data-questions="100">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-100">Q100</a></td><td role="cell" data-label="DOCX answer" class="source-key">B</td><td role="cell" data-label="Quiz answer" class="reviewed-key">D</td><td role="cell" data-label="Reason">Bounded lazy loading with a transient collection avoids the view-state issue. StandardSetController cannot handle more than 10,000 records.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-11" data-questions="74">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-11" aria-label="Link to review note for question 74"><span aria-hidden="true">Q</span>74</a></td>
-<td role="cell" data-label="Source key" class="source-key">B,D</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">A,B</td>
-<td role="cell" data-label="Reason">A before-delete Apex trigger can call addError, and a before-delete record-triggered flow can use Custom Error to reject a non-Decommissioned Container deletion.</td>
+<tr role="row" id="note-corrected-105" data-questions="105">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-105">Q105</a></td><td role="cell" data-label="DOCX answer" class="source-key">D</td><td role="cell" data-label="Quiz answer" class="reviewed-key">A</td><td role="cell" data-label="Reason">A is static, annotated @InvocableMethod, accepts a list of wrapper inputs, and returns List&lt;List&lt;Recommendation&gt;&gt; as required by the Enhance element.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-12" data-questions="78">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-12" aria-label="Link to review note for question 78"><span aria-hidden="true">Q</span>78</a></td>
-<td role="cell" data-label="Source key" class="source-key">D</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">A</td>
-<td role="cell" data-label="Reason">Database.insert(tasks, false) allows ordinary Task row failures to be returned in SaveResult while valid Tasks can succeed without failing the entire operation.</td>
+<tr role="row" id="note-corrected-112" data-questions="112">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-112">Q112</a></td><td role="cell" data-label="DOCX answer" class="source-key">B</td><td role="cell" data-label="Quiz answer" class="reviewed-key">D</td><td role="cell" data-label="Reason">Expose an invocable Apex method that the screen flow calls to retrieve order numbers/dates and return them for display.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-13" data-questions="79">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-13" aria-label="Link to review note for question 79"><span aria-hidden="true">Q</span>79</a></td>
-<td role="cell" data-label="Source key" class="source-key">A,C,E</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">C,D,E</td>
-<td role="cell" data-label="Reason">Inline SOQL can be assigned to a single sObject, a List of sObjects, or an Integer for the special COUNT() form.</td>
+<tr role="row" id="note-corrected-113" data-questions="113">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-113">Q113</a></td><td role="cell" data-label="DOCX answer" class="source-key">B, C</td><td role="cell" data-label="Quiz answer" class="reviewed-key">B, D</td><td role="cell" data-label="Reason">Custom-event data belongs in detail, and a parent can listen directly on the child component’s host to receive an event dispatched using this.dispatchEvent().</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-14" data-questions="84">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-14" aria-label="Link to review note for question 84"><span aria-hidden="true">Q</span>84</a></td>
-<td role="cell" data-label="Source key" class="source-key">B</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">D</td>
-<td role="cell" data-label="Reason">Test.setCreatedDate(recordId, datetime) can change CreatedDate on an eligible record created by the test.</td>
+<tr role="row" id="note-corrected-114" data-questions="114">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-114">Q114</a></td><td role="cell" data-label="DOCX answer" class="source-key">D</td><td role="cell" data-label="Quiz answer" class="reviewed-key">B</td><td role="cell" data-label="Reason">The 151st separate insert exceeds the 150-DML-statement transaction limit, causing an uncatchable LimitException and rollback; zero Accounts remain committed.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-15" data-questions="95">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-15" aria-label="Link to review note for question 95"><span aria-hidden="true">Q</span>95</a></td>
-<td role="cell" data-label="Source key" class="source-key">A,C,E</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">A,B,D</td>
-<td role="cell" data-label="Reason">User/class/trigger tracing, 24-hour system-log retention, and cumulative log levels are the accurate statements; FINE includes DEBUG and coarser levels.</td>
+<tr role="row" id="note-corrected-117" data-questions="117">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-117">Q117</a></td><td role="cell" data-label="DOCX answer" class="source-key">A</td><td role="cell" data-label="Quiz answer" class="reviewed-key">B or C</td><td role="cell" data-label="Reason">For an AuraEnabled Apex entry point called from LWC, with sharing and inherited sharing both enforce the entry user’s record sharing.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-16" data-questions="105">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-16" aria-label="Link to review note for question 105"><span aria-hidden="true">Q</span>105</a></td>
-<td role="cell" data-label="Source key" class="source-key">D</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">A</td>
-<td role="cell" data-label="Reason">A is static, annotated @InvocableMethod, accepts a list of wrapper inputs, and returns <code>List&lt;List&lt;Recommendation&gt;&gt;</code> as required by the Enhance element.</td>
+<tr role="row" id="note-corrected-124" data-questions="124">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-124">Q124</a></td><td role="cell" data-label="DOCX answer" class="source-key">D</td><td role="cell" data-label="Quiz answer" class="reviewed-key">C</td><td role="cell" data-label="Reason">Use upsert orders Order_Number__c; to explicitly match the custom External ID rather than Salesforce Id.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-17" data-questions="112">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-17" aria-label="Link to review note for question 112"><span aria-hidden="true">Q</span>112</a></td>
-<td role="cell" data-label="Source key" class="source-key">B</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">D</td>
-<td role="cell" data-label="Reason">Expose an invocable Apex method that the screen flow calls to retrieve order numbers/dates and return them for display.</td>
+<tr role="row" id="note-corrected-128" data-questions="128">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-128">Q128</a></td><td role="cell" data-label="DOCX answer" class="source-key">A</td><td role="cell" data-label="Quiz answer" class="reviewed-key">C</td><td role="cell" data-label="Reason">Use an Aura component implementing lightning:actionOverride for a standard Edit override in Lightning Experience.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-18" data-questions="113">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-18" aria-label="Link to review note for question 113"><span aria-hidden="true">Q</span>113</a></td>
-<td role="cell" data-label="Source key" class="source-key">B,C</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">B,D</td>
-<td role="cell" data-label="Reason">Custom-event data belongs in detail, and a parent can listen directly on the child component’s host to receive an event dispatched using this.dispatchEvent().</td>
+<tr role="row" id="note-corrected-136" data-questions="136">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-136">Q136</a></td><td role="cell" data-label="DOCX answer" class="source-key">D</td><td role="cell" data-label="Quiz answer" class="reviewed-key">A</td><td role="cell" data-label="Reason">Use size=12 and mediumDeviceSize=4 on all three items: phones get full-width rows, while tablets and larger devices fit 4 + 4 + 4 into one 12-column row.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-19" data-questions="114">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-19" aria-label="Link to review note for question 114"><span aria-hidden="true">Q</span>114</a></td>
-<td role="cell" data-label="Source key" class="source-key">D</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">B</td>
-<td role="cell" data-label="Reason">The 151st separate insert exceeds the 150-DML-statement transaction limit, causing an uncatchable LimitException and rollback; zero Accounts remain committed.</td>
+<tr role="row" id="note-corrected-151" data-questions="151">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-151">Q151</a></td><td role="cell" data-label="DOCX answer" class="source-key">B, C, D</td><td role="cell" data-label="Quiz answer" class="reviewed-key">B, D, E</td><td role="cell" data-label="Reason">Build the Lightning web component action, grant the custom permission through a permission set, and configure the dynamic action and its visibility on the Lightning record page.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-20" data-questions="117">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-20" aria-label="Link to review note for question 117"><span aria-hidden="true">Q</span>117</a></td>
-<td role="cell" data-label="Source key" class="source-key">A</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">C</td>
-<td role="cell" data-label="Reason">with sharing explicitly fixes the class’s record-sharing declaration even when called from without sharing code.</td>
+<tr role="row" id="note-corrected-153" data-questions="153">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-153">Q153</a></td><td role="cell" data-label="DOCX answer" class="source-key">C</td><td role="cell" data-label="Quiz answer" class="reviewed-key">A</td><td role="cell" data-label="Reason">A schedule-triggered flow debug run starts with one record.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-21" data-questions="124">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-21" aria-label="Link to review note for question 124"><span aria-hidden="true">Q</span>124</a></td>
-<td role="cell" data-label="Source key" class="source-key">D</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">C</td>
-<td role="cell" data-label="Reason">Use upsert orders Order_Number__c; to explicitly match the custom External ID rather than Salesforce Id.</td>
+<tr role="row" id="note-corrected-167" data-questions="167">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-167">Q167</a></td><td role="cell" data-label="DOCX answer" class="source-key">A</td><td role="cell" data-label="Quiz answer" class="reviewed-key">B</td><td role="cell" data-label="Reason">renderAs=&quot;pdf&quot; on apex:page instructs Visualforce to generate PDF output.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-22" data-questions="128">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-22" aria-label="Link to review note for question 128"><span aria-hidden="true">Q</span>128</a></td>
-<td role="cell" data-label="Source key" class="source-key">A</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">C</td>
-<td role="cell" data-label="Reason">Use an Aura component implementing lightning:actionOverride for a standard Edit override in Lightning Experience.</td>
+<tr role="row" id="note-corrected-183" data-questions="183">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-183">Q183</a></td><td role="cell" data-label="DOCX answer" class="source-key">A</td><td role="cell" data-label="Quiz answer" class="reviewed-key">D</td><td role="cell" data-label="Reason">Process the Account collection in one helper call, query all relevant Assets together and update the collected changes once outside the Account loop.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-23" data-questions="136">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-23" aria-label="Link to review note for question 136"><span aria-hidden="true">Q</span>136</a></td>
-<td role="cell" data-label="Source key" class="source-key">D</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">A</td>
-<td role="cell" data-label="Reason">Use size=12 and mediumDeviceSize=4 on all three items: phones get full-width rows, while tablets and larger devices fit 4 + 4 + 4 into one 12-column row.</td>
+<tr role="row" id="note-corrected-188" data-questions="188">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-188">Q188</a></td><td role="cell" data-label="DOCX answer" class="source-key">C</td><td role="cell" data-label="Quiz answer" class="reviewed-key">B</td><td role="cell" data-label="Reason">Updating each Lead separately reaches the 150-DML-statement limit before the 10,000-row limit.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-24" data-questions="143">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-24" aria-label="Link to review note for question 143"><span aria-hidden="true">Q</span>143</a></td>
-<td role="cell" data-label="Source key" class="source-key">C</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">D</td>
-<td role="cell" data-label="Reason">Add a controller extension and define a save action that performs the additional checks and returns the next PageReference while retaining the Account standard controller.</td>
+<tr role="row" id="note-corrected-197" data-questions="197">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-197">Q197</a></td><td role="cell" data-label="DOCX answer" class="source-key">B, C</td><td role="cell" data-label="Quiz answer" class="reviewed-key">A, C</td><td role="cell" data-label="Reason">Anonymous Apex can call System.schedule to register a periodic Schedulable job and Database.executeBatch to start a Batch Apex job.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-25" data-questions="151">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-25" aria-label="Link to review note for question 151"><span aria-hidden="true">Q</span>151</a></td>
-<td role="cell" data-label="Source key" class="source-key">B,C,D</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">B,D,E</td>
-<td role="cell" data-label="Reason">Build the LWC record action, assign a custom permission through the appropriate permission set, and place/configure the dynamic action on the Account Lightning record page.</td>
-</tr>
-<tr role="row" id="note-incorrect-answer-keys-26" data-questions="167">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-26" aria-label="Link to review note for question 167"><span aria-hidden="true">Q</span>167</a></td>
-<td role="cell" data-label="Source key" class="source-key">A</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">B</td>
-<td role="cell" data-label="Reason">renderAs="pdf" on apex:page instructs Visualforce to generate PDF output.</td>
-</tr>
-<tr role="row" id="note-incorrect-answer-keys-27" data-questions="188">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-27" aria-label="Link to review note for question 188"><span aria-hidden="true">Q</span>188</a></td>
-<td role="cell" data-label="Source key" class="source-key">C</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">B</td>
-<td role="cell" data-label="Reason">One SOQL for-loop feeds an update per Lead. Assuming the rows are accessible and ordinary validation succeeds, the 151st update exceeds the 150-statement DML limit.</td>
-</tr>
-<tr role="row" id="note-incorrect-answer-keys-28" data-questions="197">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-28" aria-label="Link to review note for question 197"><span aria-hidden="true">Q</span>197</a></td>
-<td role="cell" data-label="Source key" class="source-key">B,C</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">A,C</td>
-<td role="cell" data-label="Reason">Anonymous Apex can call System.schedule to register a periodic Schedulable job and Database.executeBatch to start a Batch Apex job.</td>
-</tr>
-</tbody>
-</table></div>
-<p class="notice-table-empty" hidden>No matching notes in this table.</p>
-<a class="notice-section-top" href="#notice-overview">Back to overview <span aria-hidden="true">↑</span></a>
-</section><section class="notice-section repaired" aria-labelledby="wording-options-code-and-assumptions" data-notice-section>
-<div class="notice-section-heading"><p class="notice-kicker">Accepted keys</p><span class="notice-section-count">99 notes</span></div>
-<h2 id="wording-options-code-and-assumptions">Wording, options, code, and assumptions</h2>
-<p>These questions retain an accepted source key and have no Corrected badge. This table includes wording, code, assumptions, and explanation-only review notes. Changed option meanings can affect an older saved selection; revisit these items instead of relying only on remembered letters. Supplied constraints are study repairs, not recovered DOCX text.</p>
-<div class="notice-table" role="region" tabindex="0" aria-label="Wording, options, code, and assumptions table"><table role="table">
-<thead role="rowgroup">
-<tr role="row">
-<th scope="col" role="columnheader">Question</th>
-<th scope="col" role="columnheader">Accepted answer</th>
-<th scope="col" role="columnheader">Issue and review action</th>
-</tr>
-</thead>
-<tbody role="rowgroup">
-<tr role="row" id="note-wording-options-code-and-assumptions-1" data-questions="3">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-1" aria-label="Link to review note for question 3"><span aria-hidden="true">Q</span>3</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Specify LWC, because Aura setStorable is also a valid caching mechanism.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-2" data-questions="5">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-2" aria-label="Link to review note for question 5"><span aria-hidden="true">Q</span>5</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B,C</td>
-<td role="cell" data-label="Issue and review action">Specify RunLocalTests and org-wide coverage rather than 75% for every individual class.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-3" data-questions="7">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-3" aria-label="Link to review note for question 7"><span aria-hidden="true">Q</span>7</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Correct the OCR wording of the test execution choice.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-4" data-questions="8">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-4" aria-label="Link to review note for question 8"><span aria-hidden="true">Q</span>8</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Distinguish field-level security from object permissions and choose a supported import scenario.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-5" data-questions="11">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-5" aria-label="Link to review note for question 11"><span aria-hidden="true">Q</span>11</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,C</td>
-<td role="cell" data-label="Issue and review action">Restore the missing AccountId so the proposed bulk fix also links Opportunities to their Accounts.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-6" data-questions="15">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-6" aria-label="Link to review note for question 15"><span aria-hidden="true">Q</span>15</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Clarify that the roll-up is on Account and summarizes related Vendors.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-7" data-questions="19">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-7" aria-label="Link to review note for question 19"><span aria-hidden="true">Q</span>19</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Restore LastModifiedDate and switch; explain the placement of the per-record date comparison.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-8" data-questions="20">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-8" aria-label="Link to review note for question 20"><span aria-hidden="true">Q</span>20</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Replace unsupported unbounded FIELDS(ALL) in Apex with an explicit field list.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-9" data-questions="22">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-9" aria-label="Link to review note for question 22"><span aria-hidden="true">Q</span>22</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,B,D</td>
-<td role="cell" data-label="Issue and review action">Describe accessibility support without promising automatic compliance for custom code.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-10" data-questions="25">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-10" aria-label="Link to review note for question 25"><span aria-hidden="true">Q</span>25</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B,D</td>
-<td role="cell" data-label="Issue and review action">Correct savepoint API and narrow the question to partial success and explicit rollback. Describe partial success as row results, not an independent or guaranteed commit.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-11" data-questions="29">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-11" aria-label="Link to review note for question 29"><span aria-hidden="true">Q</span>29</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C,D</td>
-<td role="cell" data-label="Issue and review action">Correct Bulk APL to Bulk API.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-12" data-questions="30">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-12" aria-label="Link to review note for question 30"><span aria-hidden="true">Q</span>30</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Separate assignment of a text value from ownership routing, and put Assignment inside a before-save flow.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-13" data-questions="32">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-13" aria-label="Link to review note for question 32"><span aria-hidden="true">Q</span>32</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Restore the corrupted sendEvent() distractor so its explanation matches the displayed option.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-14" data-questions="33">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-14" aria-label="Link to review note for question 33"><span aria-hidden="true">Q</span>33</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Repair malformed Visualforce distractor markup without changing the pageMessages answer.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-15" data-questions="37">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-15" aria-label="Link to review note for question 37"><span aria-hidden="true">Q</span>37</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Restore executable Describe API syntax and specify that the question asks for the object Delete permission check.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-16" data-questions="39">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-16" aria-label="Link to review note for question 39"><span aria-hidden="true">Q</span>39</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Fix malformed SOQL closing bracket so the question tests result cardinality.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-17" data-questions="41">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-17" aria-label="Link to review note for question 41"><span aria-hidden="true">Q</span>41</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Ask explicitly about MVC responsibilities rather than suggesting MVC itself creates multitenant isolation.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-18" data-questions="45">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-18" aria-label="Link to review note for question 45"><span aria-hidden="true">Q</span>45</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,D</td>
-<td role="cell" data-label="Issue and review action">Correct External ID and SOQL spelling in the indexed-field choice.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-19" data-questions="49">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-19" aria-label="Link to review note for question 49"><span aria-hidden="true">Q</span>49</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Specify the Developer Console panel so alternative coverage views do not make the question ambiguous.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-20" data-questions="53">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-20" aria-label="Link to review note for question 53"><span aria-hidden="true">Q</span>53</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Explain why the smaller sandbox is the best fit without claiming Full sandboxes cannot contain development metadata.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-21" data-questions="54">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-21" aria-label="Link to review note for question 54"><span aria-hidden="true">Q</span>54</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Normalize recordSetVar and the malformed listButton distractor.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-22" data-questions="57">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-22" aria-label="Link to review note for question 57"><span aria-hidden="true">Q</span>57</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Restore WebServiceMock and distinguish interfaces for HTTP and SOAP mocks.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-23" data-questions="58">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-23" aria-label="Link to review note for question 58"><span aria-hidden="true">Q</span>58</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B,C</td>
-<td role="cell" data-label="Issue and review action">Junction access depends on both masters and both relationship sharing settings.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-24" data-questions="61">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-24" aria-label="Link to review note for question 61"><span aria-hidden="true">Q</span>61</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C,D</td>
-<td role="cell" data-label="Issue and review action">Specify record-save cycles and after-save Flow DML; merely sending email is different from saving EmailMessage records.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-25" data-questions="64">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-25" aria-label="Link to review note for question 64"><span aria-hidden="true">Q</span>64</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Option D originally said 201 Accounts; the reviewed option says 0 because the repeated insert fails and the uncaught transaction rolls back. The Account/caller assumptions are explicit. The letter remains D, so there is no Corrected badge.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-26" data-questions="66">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-26" aria-label="Link to review note for question 66"><span aria-hidden="true">Q</span>66</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Explain that deleting the price book does not satisfy the request for its ID.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-27" data-questions="68">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-27" aria-label="Link to review note for question 68"><span aria-hidden="true">Q</span>68</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Normalize the candidate identifier API name throughout the scenario.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-28" data-questions="72">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-28" aria-label="Link to review note for question 72"><span aria-hidden="true">Q</span>72</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A or B (select one)</td>
-<td role="cell" data-label="Issue and review action">A and B are case-only duplicate Apex choices. Either single choice is accepted. The printed B remains valid, so there is no Corrected badge. The validator assumptions and after-trigger addError explanation were clarified.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-29" data-questions="73">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-29" aria-label="Link to review note for question 73"><span aria-hidden="true">Q</span>73</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Replace circular scratch-org distractor explanations with the environment-design differences.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-30" data-questions="75">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-30" aria-label="Link to review note for question 75"><span aria-hidden="true">Q</span>75</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Make interactive debugging a specified sandbox capability, not universally more efficient than logs.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-31" data-questions="76">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-31" aria-label="Link to review note for question 76"><span aria-hidden="true">Q</span>76</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Restore lightning-flow as a meaningful LWC distractor and distinguish it from Aura syntax.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-32" data-questions="80">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-32" aria-label="Link to review note for question 80"><span aria-hidden="true">Q</span>80</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,B</td>
-<td role="cell" data-label="Issue and review action">State that the integration upserts against the external ID; an External ID flag alone does not turn inserts into updates. Remove OCR option markers and the joined words inSalesforce.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-33" data-questions="81">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-33" aria-label="Link to review note for question 81"><span aria-hidden="true">Q</span>81</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C,D</td>
-<td role="cell" data-label="Issue and review action">Restore valid Test.loadData spelling.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-34" data-questions="82">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-34" aria-label="Link to review note for question 82"><span aria-hidden="true">Q</span>82</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Recognize Flow custom errors as possible while explaining the simpler validation-rule fit.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-35" data-questions="83">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-35" aria-label="Link to review note for question 83"><span aria-hidden="true">Q</span>83</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Specify the current Salesforce command-line tool and avoid claiming legacy API toolkits cannot be used in CI.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-36" data-questions="87">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-36" aria-label="Link to review note for question 87"><span aria-hidden="true">Q</span>87</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Restore valid REST annotation spelling. Add the class and method visibility requirements for an Apex REST endpoint.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-37" data-questions="90">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-37" aria-label="Link to review note for question 90"><span aria-hidden="true">Q</span>90</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Distinguish unauthorized records from legitimately shared records, and sharing declarations from database modes.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-38" data-questions="91">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-38" aria-label="Link to review note for question 91"><span aria-hidden="true">Q</span>91</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Specify the server-side order of execution; browser validation can precede a server request.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-39" data-questions="92">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-39" aria-label="Link to review note for question 92"><span aria-hidden="true">Q</span>92</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B,C</td>
-<td role="cell" data-label="Issue and review action">Replace cascade-delete misconception with an explicit record deletion.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-40" data-questions="94">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-40" aria-label="Link to review note for question 94"><span aria-hidden="true">Q</span>94</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Narrow to reusable UI building blocks; Lightning can also be embedded in Classic through Visualforce.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-41" data-questions="96">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-41" aria-label="Link to review note for question 96"><span aria-hidden="true">Q</span>96</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Use custom objects for configurable master-detail reparenting.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-42" data-questions="98">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-42" aria-label="Link to review note for question 98"><span aria-hidden="true">Q</span>98</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Restore valid object/relationship API names and state the configured child relationship name. Correct the mistaken child-object name in the relationship-query explanation.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-43" data-questions="100">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-43" aria-label="Link to review note for question 100"><span aria-hidden="true">Q</span>100</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Keep the example within the 10,000-record StandardSetController ceiling.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-44" data-questions="101">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-44" aria-label="Link to review note for question 101"><span aria-hidden="true">Q</span>101</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,D</td>
-<td role="cell" data-label="Issue and review action">Specify the coverage rules for RunLocalTests.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-45" data-questions="103">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-45" aria-label="Link to review note for question 103"><span aria-hidden="true">Q</span>103</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Specify a point-and-click related-org deployment; CLI is also a supported deployment choice. Replace the fragmented deployment prompt with one coherent point-and-click requirement.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-46" data-questions="104">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-46" aria-label="Link to review note for question 104"><span aria-hidden="true">Q</span>104</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Explain the lack of a UI entry point rather than claiming triggers never run during user actions.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-47" data-questions="107">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-47" aria-label="Link to review note for question 107"><span aria-hidden="true">Q</span>107</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Restore upsert spelling and rename the method to match its update DML.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-48" data-questions="110">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-48" aria-label="Link to review note for question 110"><span aria-hidden="true">Q</span>110</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Restore the closing class brace that was swallowed by an OCR line comment.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-49" data-questions="111">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-49" aria-label="Link to review note for question 111"><span aria-hidden="true">Q</span>111</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,B</td>
-<td role="cell" data-label="Issue and review action">Require locations that provide information about both batch and future jobs.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-50" data-questions="115">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-50" aria-label="Link to review note for question 115"><span aria-hidden="true">Q</span>115</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Describe data isolation as a likely listed cause rather than diagnosing every sandbox/production test failure. Describe anonymous execution and isolated tests as different execution contexts.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-51" data-questions="118">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-51" aria-label="Link to review note for question 118"><span aria-hidden="true">Q</span>118</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Specify the configurable custom master-detail model for the native roll-up.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-52" data-questions="120">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-52" aria-label="Link to review note for question 120"><span aria-hidden="true">Q</span>120</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Specify a separate test class rather than older colocated test patterns. Distinguish colocated private-member access from access by the separate test class in this scenario.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-53" data-questions="121">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-53" aria-label="Link to review note for question 121"><span aria-hidden="true">Q</span>121</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Specify a custom web-standards component rather than a general validating form that Flow could also build. Acknowledge Flow can validate input; explain the explicit custom-component requirement.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-54" data-questions="123">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-54" aria-label="Link to review note for question 123"><span aria-hidden="true">Q</span>123</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Specify a custom Contact lookup; Opportunity has no general-purpose standard ContactId field for this design.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-55" data-questions="126">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-55" aria-label="Link to review note for question 126"><span aria-hidden="true">Q</span>126</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Scope @testSetup reuse to methods in one test class, not an entire multi-class suite.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-56" data-questions="127">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-56" aria-label="Link to review note for question 127"><span aria-hidden="true">Q</span>127</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Replace the absent code exhibit with the sufficient test scenario already described in the mock. Recover a matching Contact before-insert trigger variant online; retain the direct-helper-only test and unchanged key.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-57" data-questions="130">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-57" aria-label="Link to review note for question 130"><span aria-hidden="true">Q</span>130</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Supply the missing binding context explicitly instead of assuming an unseen controller exhibit. Recover the public field/no-getter controller context online instead of assuming a private field.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-58" data-questions="131">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-58" aria-label="Link to review note for question 131"><span aria-hidden="true">Q</span>131</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Treat method bodies as omitted signature examples rather than claiming comment-only non-void methods compile.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-59" data-questions="132">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-59" aria-label="Link to review note for question 132"><span aria-hidden="true">Q</span>132</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Specify custom objects for the configurable reparenting scenario. Ask for the relationship foundation; a relationship alone does not create calculation fields.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-60" data-questions="133">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-60" aria-label="Link to review note for question 133"><span aria-hidden="true">Q</span>133</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,D</td>
-<td role="cell" data-label="Issue and review action">Specify native Salesforce component frameworks rather than claiming only they can build responsive UIs.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-61" data-questions="135">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-61" aria-label="Link to review note for question 135"><span aria-hidden="true">Q</span>135</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Specify prompt, chainable processing so Queueable is preferred over valid future/batch alternatives.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-62" data-questions="137">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-62" aria-label="Link to review note for question 137"><span aria-hidden="true">Q</span>137</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">State the sharing assumptions needed for the expected count of 20. State permissions required by user-mode queries and avoid assuming all callers have identical sharing visibility. Make the SeeAllData/startTest distractor explanation match its actual option.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-63" data-questions="139">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-63" aria-label="Link to review note for question 139"><span aria-hidden="true">Q</span>139</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Restore readable choices and explicitly define a two-master junction.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-64" data-questions="144">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-64" aria-label="Link to review note for question 144"><span aria-hidden="true">Q</span>144</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Treat method bodies as omitted signature examples rather than claiming comment-only non-void methods compile.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-65" data-questions="146">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-65" aria-label="Link to review note for question 146"><span aria-hidden="true">Q</span>146</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Explain that Dev Hub is the feature, while production is one type of org that can host it.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-66" data-questions="147">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-66" aria-label="Link to review note for question 147"><span aria-hidden="true">Q</span>147</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Restore the cacheable annotation spelling so the correct choice compiles.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-67" data-questions="149">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-67" aria-label="Link to review note for question 149"><span aria-hidden="true">Q</span>149</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,D</td>
-<td role="cell" data-label="Issue and review action">Explicitly identify Ant as a still-functioning retired tool, not a current supported recommendation.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-68" data-questions="152">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-68" aria-label="Link to review note for question 152"><span aria-hidden="true">Q</span>152</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,D</td>
-<td role="cell" data-label="Issue and review action">Ask about standalone test execution; Metadata API deployments can run tests too.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-69" data-questions="153">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-69" aria-label="Link to review note for question 153"><span aria-hidden="true">Q</span>153</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Scope rollback to a selected rollback-mode debug run; schedule-triggered debug also processes one record.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-70" data-questions="154">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-70" aria-label="Link to review note for question 154"><span aria-hidden="true">Q</span>154</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Remove reference to an absent list and state the two existing roll-up fields needed for the ratio. Record that internet variants confirm the ratio topic but do not reliably recover the full missing three-field exhibit.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-71" data-questions="156">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-71" aria-label="Link to review note for question 156"><span aria-hidden="true">Q</span>156</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Identify Contact-triggered synchronization, not an application-only flow that would miss parent changes. Normalize junction API names and explain Flow as a maintainability choice rather than claiming Apex cannot work. Use one consistent junction object and Preferred_Locations__c API name throughout the entire prompt.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-72" data-questions="157">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-72" aria-label="Link to review note for question 157"><span aria-hidden="true">Q</span>157</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Do not confuse permission failures with maximum trigger-depth recursion.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-73" data-questions="159">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-73" aria-label="Link to review note for question 159"><span aria-hidden="true">Q</span>159</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Correct Function object to Junction object.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-74" data-questions="160">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-74" aria-label="Link to review note for question 160"><span aria-hidden="true">Q</span>160</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B,C</td>
-<td role="cell" data-label="Issue and review action">Correct Buddle to Bubble; the default phase has no event.setDefault method. Remove the suggestion that Emit is an Aura event phase.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-75" data-questions="162">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-75" aria-label="Link to review note for question 162"><span aria-hidden="true">Q</span>162</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">State the configured child relationship name rather than guessing it.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-76" data-questions="164">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-76" aria-label="Link to review note for question 164"><span aria-hidden="true">Q</span>164</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Restore valid Visualforce bindings; calling Apex methods with arguments is not valid page expression syntax.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-77" data-questions="165">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-77" aria-label="Link to review note for question 165"><span aria-hidden="true">Q</span>165</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Restore the rollback API distractor and explain that anonymous execution can be complex but is not a repeatable asserted test.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-78" data-questions="166">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-78" aria-label="Link to review note for question 166"><span aria-hidden="true">Q</span>166</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,B</td>
-<td role="cell" data-label="Issue and review action">Constrain to declarative solutions; a before-update trigger with addError is also valid when code is allowed.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-79" data-questions="168">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-79" aria-label="Link to review note for question 168"><span aria-hidden="true">Q</span>168</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Make custom-controller message handling explicit and use the formatted pageMessages component.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-80" data-questions="169">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-80" aria-label="Link to review note for question 169"><span aria-hidden="true">Q</span>169</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Correct Whatld to WhatId.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-81" data-questions="170">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-81" aria-label="Link to review note for question 170"><span aria-hidden="true">Q</span>170</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,B</td>
-<td role="cell" data-label="Issue and review action">Avoid claiming SOSL is universally faster than SOQL for all queries. State the search capability and standard synchronous row-ceiling comparison without a universal speed claim.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-82" data-questions="173">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-82" aria-label="Link to review note for question 173"><span aria-hidden="true">Q</span>173</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,C</td>
-<td role="cell" data-label="Issue and review action">State RunLocalTests for the coverage calculation. Clarify eligible combined coverage and the supported older testMethod alternative.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-83" data-questions="178">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-83" aria-label="Link to review note for question 178"><span aria-hidden="true">Q</span>178</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,D</td>
-<td role="cell" data-label="Issue and review action">Restore Log capturing in the debugging distractor.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-84" data-questions="179">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-84" aria-label="Link to review note for question 179"><span aria-hidden="true">Q</span>179</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Restore Indirect Lookup spelling.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-85" data-questions="180">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-85" aria-label="Link to review note for question 180"><span aria-hidden="true">Q</span>180</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Use a custom master-detail model rather than assuming unrestricted custom roll-ups on standard order products. Specify populated line dates so MAX cannot silently treat unknown availability as readiness.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-86" data-questions="181">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-86" aria-label="Link to review note for question 181"><span aria-hidden="true">Q</span>181</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Apply the same explicit custom master-detail assumptions to this duplicate scenario. Specify populated line dates so MAX cannot silently treat unknown availability as readiness.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-87" data-questions="184">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-87" aria-label="Link to review note for question 184"><span aria-hidden="true">Q</span>184</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Restore B/C from the actual source images. D has no source image and was replaced with an explicitly supplied no-DML distractor. The handler context is explicit; answer A is unchanged. Document conflicting online choice order; keep the inspected DOCX images and explicitly supplied D distractor.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-88" data-questions="185">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-88" aria-label="Link to review note for question 185"><span aria-hidden="true">Q</span>185</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Clarify mutable transaction state; an immutable static final constant would also preserve a fixed value. Explain instance-state scope without claiming every instance variable resets at each trigger invocation.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-89" data-questions="186">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-89" aria-label="Link to review note for question 186"><span aria-hidden="true">Q</span>186</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,C</td>
-<td role="cell" data-label="Issue and review action">State that the quick actions invoke Apex for the HTTP callout. Restore trigger wording and identify AccountId as the Opportunity field sent in the callout.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-90" data-questions="189">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-90" aria-label="Link to review note for question 189"><span aria-hidden="true">Q</span>189</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Specify legacy Apex system-mode query plus graceful field stripping; LDS can also query collections.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-91" data-questions="191">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-91" aria-label="Link to review note for question 191"><span aria-hidden="true">Q</span>191</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,C,E</td>
-<td role="cell" data-label="Issue and review action">Ask about asset categories, not everything LWC supports; third-party web components are supported.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-92" data-questions="193">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-92" aria-label="Link to review note for question 193"><span aria-hidden="true">Q</span>193</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Base the governor-limit result on returned, writable records rather than the total rows hidden anywhere in the org.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-93" data-questions="194">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-93" aria-label="Link to review note for question 194"><span aria-hidden="true">Q</span>194</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,D</td>
-<td role="cell" data-label="Issue and review action">Avoid promising automatic business-logic migration during releases.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-94" data-questions="195">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-94" aria-label="Link to review note for question 195"><span aria-hidden="true">Q</span>195</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Ask specifically for job-level status/progress and distinguish it from execution-level debug logs.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-95" data-questions="196">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-95" aria-label="Link to review note for question 196"><span aria-hidden="true">Q</span>196</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B,C</td>
-<td role="cell" data-label="Issue and review action">Restore executable LWC metadata identifiers. Remove OCR damage while keeping metadata-in-JavaScript and label-only options meaningfully wrong.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-96" data-questions="198">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-96" aria-label="Link to review note for question 198"><span aria-hidden="true">Q</span>198</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B,C</td>
-<td role="cell" data-label="Issue and review action">Restore the client/server controller-role question without presenting LWC as literal Visualforce MVC.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-97" data-questions="199">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-97" aria-label="Link to review note for question 199"><span aria-hidden="true">Q</span>199</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Remove unsupported leading wildcard and correct the casing explanation. Align the prompt with a supported prefix search rather than an arbitrary substring.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-98" data-questions="200">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-98" aria-label="Link to review note for question 200"><span aria-hidden="true">Q</span>200</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,C</td>
-<td role="cell" data-label="Issue and review action">Correct Unity to Unify in the trigger-consolidation choice.</td>
-</tr>
-<tr role="row" id="note-wording-options-code-and-assumptions-99" data-questions="204">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-options-code-and-assumptions-99" aria-label="Link to review note for question 204"><span aria-hidden="true">Q</span>204</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Correct lowercase l to capital I in IaaS.</td>
-</tr>
-</tbody>
-</table></div>
-<p class="notice-table-empty" hidden>No matching notes in this table.</p>
-<a class="notice-section-top" href="#notice-overview">Back to overview <span aria-hidden="true">↑</span></a>
-</section><section class="notice-section source" aria-labelledby="images-and-incomplete-source-content" data-notice-section>
-<div class="notice-section-heading"><p class="notice-kicker">Source notes</p></div>
-<h2 id="images-and-incomplete-source-content">Images and incomplete source content</h2>
-<ul>
-<li>All 16 embedded DOCX images were extracted and visually checked. Code transcriptions were compared with the screenshots.</li>
-<li><strong>Q184:</strong> source images provide A/B/C, but no D code image exists. B/C were transcribed from the actual images. D is a supplied replacement distractor, not recovered source content.</li>
-<li><strong>Q127 and Q130:</strong> matching online variants supplied the Contact-trigger and public-field/getter context. Playable wording is paraphrased and scoped; it is not claimed to be an extracted DOCX exhibit. <strong>Q154:</strong> online copies confirm the ratio topic but do not reliably recover the full three-field list, so the two stated roll-ups remain an explicit study repair. All three answer letters are unchanged.</li>
-<li><strong>Q72:</strong> A and B are equivalent case-insensitive Apex choices. The quiz accepts either one; selecting both is not required.</li>
-<li>Standard-object behavior was not assumed to match configurable custom master-detail behavior. Relevant repaired scenarios explicitly use custom objects.</li>
-<li>Repaired exhibits are stated in the playable content. The three separate unresolved question/key issues are listed above and remain unscored. For literal source wording/images, consult the DOCX.</li>
-</ul>
-<a class="notice-section-top" href="#notice-overview">Back to overview <span aria-hidden="true">↑</span></a>
-</section><section class="notice-section reference" aria-labelledby="explanation-and-version-caveats" data-notice-section>
-<div class="notice-section-heading"><p class="notice-kicker">Context &amp; references</p></div>
-<h2 id="explanation-and-version-caveats">Explanation and version caveats</h2>
-<ul>
-<li>Q16: an after-save flow that updates itself does not automatically stop on the next update. The repaired example is explicitly create-only and reaches 2.</li>
-<li>Q72: Apex identifiers are case-insensitive, and addError in an after trigger can reject the triggering DML. Either duplicate option remains accepted.</li>
-<li>Q9: OrgLimits is a real class, but Limits is the transaction governor-usage API.</li>
-<li>Q43/Q78/Q201: partial success returns row errors; it is not error-free execution or an independent commit outside the transaction.</li>
-<li>Q58/Q139: junction access depends on both masters and both relationship Sharing Settings.</li>
-<li>Q92: cascade-deleted children do not run their own delete triggers. The repaired choice asks about explicit DML deletion.</li>
-<li>Q100: StandardSetController has a 10,000-record ceiling. The repaired scenario is within that ceiling.</li>
-<li>Q102/Q117/Q189: API 67.0+ security defaults differ from legacy Apex. Q102 is now unscored because the source omitted the necessary version/caller context; Q117/Q189 retain explicit assumptions. Inherited sharing is not invalid for LWC entry points.</li>
-<li>Q113/Q122: distinguish a direct listener on a component host from ancestor bubbling and shadow-boundary propagation.</li>
-<li>Q5/Q101/Q173: ordinary org-wide coverage and RunSpecifiedTests per-component coverage are different rules.</li>
-<li>Q153: Flow debugging does not always roll back; rollback mode and flow type matter. Schedule-triggered debugging can run for one record.</li>
-<li>Q149: Ant still has legacy deployment capability but has been retired since Spring 2024.</li>
-<li>Q191: third-party web components are supported; their existence must not be used as an invalid distractor.</li>
-<li>Q199: SOSL supports middle/trailing wildcards, not the original leading wildcard. Lowercase keywords are not the defect in the flat-list distractor.</li>
-<li>Q157/Q200: static-Boolean recursion guards and claims about trigger ordering need care; different events are not multiple triggers on the same event.</li>
-</ul>
-<a class="notice-section-top" href="#notice-overview">Back to overview <span aria-hidden="true">↑</span></a>
-</section><section class="notice-section reference" aria-labelledby="official-references" data-notice-section>
-<div class="notice-section-heading"><p class="notice-kicker">Context &amp; references</p></div>
-<h2 id="official-references">Official references</h2>
-<ul>
-<li><a href="https://developer.salesforce.com/docs/platform/lwc/guide/apex-result-caching.html">Client-side Apex caching</a> supports the read-only cacheable/wire distinctions.</li>
-<li><a href="https://developer.salesforce.com/docs/platform/salesforce-soql-sosl/guide/sforce-api-calls-sosl-in.html">SOSL search groups</a> documents NAME FIELDS, including Lead.Company and Contact.AccountName.</li>
-<li><a href="https://developer.salesforce.com/docs/platform/salesforce-soql-sosl/guide/sforce-api-calls-sosl-find.html">SOSL FIND and wildcards</a> documents supported wildcard placement.</li>
-<li><a href="https://trailhead.salesforce.com/content/learn/modules/apex_database/apex_database_dml">Apex DML</a> explains explicit external-ID matching and partial-success results.</li>
-<li><a href="https://developer.salesforce.com/docs/platform/lightning-component-reference/guide/ltng-require.html">Aura require</a> and <a href="https://developer.salesforce.com/blogs/developer-relations/2015/05/loading-external-js-css-libraries-lightning-components">Aura library loading</a> document static-resource loading; the Aura guide also describes parallel independent tags.</li>
-<li><a href="https://help.salesforce.com/s/articleView?id=platform.flow_ref_elements_custom_error.htm&amp;language=en_US&amp;type=5">Custom Error</a> documents preventing record changes, including supported deletion errors.</li>
-<li><a href="https://help.salesforce.com/s/articleView?id=platform.relationships_considerations.htm&amp;language=en_US&amp;type=5">Object relationship considerations</a> documents junction sharing.</li>
-<li><a href="https://developer.salesforce.com/docs/platform/salesforce-pages-developers-guide/guide/pages-controller-sosc-access-data.html">Standard list controller</a> documents the 10,000-record maximum.</li>
-<li><a href="https://developer.salesforce.com/docs/platform/lwc/guide/apex-security">Secure Apex classes</a> documents current/legacy security defaults.</li>
-<li><a href="https://developer.salesforce.com/docs/platform/lwc/guide/events-propagation.html">LWC event propagation</a> documents listener placement and propagation flags.</li>
-<li><a href="https://developer.salesforce.com/docs/platform/salesforce-cli-reference/guide/cli_reference_project_deploy_start.html">Deployment test levels</a> distinguishes coverage calculations.</li>
-<li><a href="https://help.salesforce.com/s/articleView?id=sf.flow_considerations_troubleshooting.htm&amp;language=en_US&amp;type=5">Flow debugger considerations</a> documents rollback and single-record scheduled debug behavior.</li>
-<li><a href="https://help.salesforce.com/s/articleView?id=release-notes.rn_deployment_ant_migration_tool_eol.htm&amp;language=en_US&amp;release=248&amp;type=5">Ant retirement</a> identifies its unsupported legacy status.</li>
-<li><a href="https://developer.salesforce.com/docs/platform/lwc/guide/create-use-third-party-components.html">Third-party web components</a> documents supported LWC integration.</li>
-<li><a href="https://trailhead.salesforce.com/content/learn/modules/platform-developer-i-certification-prep-fundamentals-and-database-modeling/pd1-1-get-started">Platform Developer study guide</a> supports the four topic weights retained in the config.</li>
-</ul>
-<p>This was a document/documentation review, not execution of the Apex snippets in a Salesforce org. Version-sensitive answers state their assumptions.</p>
-<a class="notice-section-top" href="#notice-overview">Back to overview <span aria-hidden="true">↑</span></a>
-</section><section class="notice-section reference" aria-labelledby="internet-comparison-and-additional-references" data-notice-section>
-<div class="notice-section-heading"><p class="notice-kicker">Context &amp; references</p></div>
-<h2 id="internet-comparison-and-additional-references">Internet comparison and additional references</h2>
-<ul>
-<li><a href="https://www.freecram.net/question/Salesforce.PDI.v2022-03-30.q75/developer-created-this-apex-trigger-that-calls-myclass-.mystaticmethod-trigger-mytrigger-on-contact-befor">Q127 trigger variant</a> and <a href="https://quizlet.com/760295701/sf-developer-2022-flash-cards/">Q130 controller variant</a> supplied missing context. Bank answer letters are not technical authority.</li>
-<li><a href="https://www.freecram.net/question/Salesforce.PDI.v2025-12-04.q96/a-developer-created-these-three-rollup-summary-fields-in-the-custom-object-project__c-the-developer">Q154 ratio variant</a> does not establish the complete absent exhibit.</li>
-<li><a href="https://www.freecram.net/Salesforce.PDI.v2024-07-20.q115.pdf">Q183 complete helper variant</a> establishes one query per original helper call, but not the proposed Queueable internals. <a href="https://trailhead.salesforce.com/content/learn/modules/apex_triggers/apex_triggers_bulk">Bulk trigger guidance</a> supports collecting IDs and doing set-based queries/DML.</li>
-<li><a href="https://www.freecram.net/question/Salesforce.PDI.v2022-03-30.q75/the-following-apex-method-is-part-of-the-contactservice-class-that-is-called-from-a-trigger-public-static">Q184 variant</a> has different option order and does not prove the missing DOCX D. The inspected DOCX code and explicitly supplied replacement remain.</li>
-<li><a href="https://www.freecram.net/question/Salesforce.CRT-450.v2024-07-02.q97/universal-containers-wants-to-ensure-that-all-new-leads-created-in-the-system-have-a-valid-email-address">Q202 variant</a> and other copies give conflicting keys; none supplies the additional validation requirement.</li>
-<li><a href="https://developer.salesforce.com/docs/platform/lwc/guide/apex-security">Current Apex security</a> and <a href="https://developer.salesforce.com/blogs/2026/06/the-salesforce-developers-guide-to-the-summer-26-release">Summer 26 security changes</a> distinguish API-version defaults from the old question’s incomplete context.</li>
-</ul>
-<p>The full review was a source/documentation review, not a live Salesforce-org execution of every scenario. All local validation checks passed, including question metadata, scoring, equivalent answers, unscored exclusion, saved-answer regrading, and direct-file startup. Existing question IDs, choice order, progress storage keys, original DOCX files, and existing source snapshots were preserved.</p>
-<a class="notice-section-top" href="#notice-overview">Back to overview <span aria-hidden="true">↑</span></a>
+</tbody></table></div><p class="notice-table-empty" hidden>No matching questions in this section.</p>
 </section>
-      <footer class="notice-footer"><p>Ready to put these notes into practice?</p><a class="primary nav-control notice-return" href="index.html">Return to quiz <span aria-hidden="true">→</span></a></footer>
-    </main>
-  </div>
+<section class="notice-section repaired" aria-labelledby="wording-options-code-and-assumptions" data-notice-section>
+<h2 id="wording-options-code-and-assumptions">Repaired questions <span class="notice-section-count">43</span></h2>
+<p>Content was repaired or accepted alternatives were expanded. The original answer remains accepted.</p>
+<div class="notice-table" role="region" tabindex="0" aria-label="Repaired questions"><table role="table"><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Question</th><th scope="col" role="columnheader">What changed</th></tr></thead><tbody role="rowgroup">
+<tr role="row" id="note-repaired-7" data-questions="7">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-7">Q7</a></td><td role="cell" data-label="What changed">Correct the obvious OCR word oil to all in choice C; retain the original test scenario and option meanings.</td>
+</tr>
+<tr role="row" id="note-repaired-8" data-questions="8">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-8">Q8</a></td><td role="cell" data-label="What changed">The source CLI option does not limit permissions to object Read; its access restrictions can include field permissions.</td>
+</tr>
+<tr role="row" id="note-repaired-12" data-questions="12">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-12">Q12</a></td><td role="cell" data-label="What changed">Recovered the missing multi-tenant context; accepts either A or B.</td>
+</tr>
+<tr role="row" id="note-repaired-19" data-questions="19">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-19">Q19</a></td><td role="cell" data-label="What changed">Repair the damaged LastModifiedDate phrase and witch/switch typo only; retain the original iteration question and C key.</td>
+</tr>
+<tr role="row" id="note-repaired-29" data-questions="29">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-29">Q29</a></td><td role="cell" data-label="What changed">Correct Bulk APL to Bulk API only.</td>
+</tr>
+<tr role="row" id="note-repaired-37" data-questions="37">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-37">Q37</a></td><td role="cell" data-label="What changed">Correct only the comma-separated Schema.sObjectType.Account.isDeletable() expression in B.</td>
+</tr>
+<tr role="row" id="note-repaired-39" data-questions="39">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-39">Q39</a></td><td role="cell" data-label="What changed">Replace the malformed closing parenthesis with a SOQL closing bracket.</td>
+</tr>
+<tr role="row" id="note-repaired-45" data-questions="45">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-45">Q45</a></td><td role="cell" data-label="What changed">Correct External 1D to External ID and SOOL to SOQL; do not otherwise rewrite the indexing statement.</td>
+</tr>
+<tr role="row" id="note-repaired-49" data-questions="49">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-49">Q49</a></td><td role="cell" data-label="What changed">Accepts A or D: code coverage can be viewed in Developer Console or Setup after running tests.</td>
+</tr>
+<tr role="row" id="note-repaired-50" data-questions="50">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-50">Q50</a></td><td role="cell" data-label="What changed">Correct LinkException to LimitException and CelloutException to CalloutException; the uncatchable-governor-limit question and B key are unchanged.</td>
+</tr>
+<tr role="row" id="note-repaired-64" data-questions="64">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-64">Q64</a></td><td role="cell" data-label="What changed">Recovered the four numeric answer choices in the supplied published sequence: A = 200, B = 1, C = 201, D = 0.</td>
+</tr>
+<tr role="row" id="note-repaired-68" data-questions="68">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-68">Q68</a></td><td role="cell" data-label="What changed">Normalize the damaged candidate identifier and custom-object API names only; preserve the existing CSV-matching scenario and choices.</td>
+</tr>
+<tr role="row" id="note-repaired-72" data-questions="72">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-72">Q72</a></td><td role="cell" data-label="What changed">A and B are case-only duplicates in case-insensitive Apex.</td>
+</tr>
+<tr role="row" id="note-repaired-75" data-questions="75">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-75">Q75</a></td><td role="cell" data-label="What changed">Both execution logging and provisioned Apex Interactive Debugger stepping are valid troubleshooting methods.</td>
+</tr>
+<tr role="row" id="note-repaired-81" data-questions="81">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-81">Q81</a></td><td role="cell" data-label="What changed">Correct Test, loadData to Test.loadData only; retain the CSV/static-resource question and C,D key.</td>
+</tr>
+<tr role="row" id="note-repaired-87" data-questions="87">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-87">Q87</a></td><td role="cell" data-label="What changed">Remove the extra quote in RestResource and repair the AuraEnabled misspelling only; retain the REST-class annotation question and B key.</td>
+</tr>
+<tr role="row" id="note-repaired-94" data-questions="94">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-94">Q94</a></td><td role="cell" data-label="What changed">The original broad question allows reusable base components, component templates, and Classic embedding through Visualforce/Lightning Out.</td>
+</tr>
+<tr role="row" id="note-repaired-98" data-questions="98">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-98">Q98</a></td><td role="cell" data-label="What changed">Repair only damaged custom-object/relationship suffixes in the choices.</td>
+</tr>
+<tr role="row" id="note-repaired-103" data-questions="103">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-103">Q103</a></td><td role="cell" data-label="What changed">Accepts C or D: both change sets and Salesforce CLI can deploy the sandbox metadata to production.</td>
+</tr>
+<tr role="row" id="note-repaired-107" data-questions="107">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-107">Q107</a></td><td role="cell" data-label="What changed">Correct upset to upsert in the distractor only.</td>
+</tr>
+<tr role="row" id="note-repaired-127" data-questions="127">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-127">Q127</a></td><td role="cell" data-label="What changed">Retained the externally recovered before-insert Contact trigger that calls MyClass.myStaticMethod.</td>
+</tr>
+<tr role="row" id="note-repaired-130" data-questions="130">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-130">Q130</a></td><td role="cell" data-label="What changed">Recovered the omitted controller/page exhibit from a matching published question.</td>
+</tr>
+<tr role="row" id="note-repaired-137" data-questions="137">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-137">Q137</a></td><td role="cell" data-label="What changed">Moved with sharing before class in the AccountsController and AccountsController_Test declarations and added static to getAllAccounts(), matching @AuraEnabled and its existing class-level call.</td>
+</tr>
+<tr role="row" id="note-repaired-143" data-questions="143">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-143">Q143</a></td><td role="cell" data-label="What changed">Expanded accepted single-choice answers from printed C to A, C or D because the original Apex, Controller and extension options overlap.</td>
+</tr>
+<tr role="row" id="note-repaired-147" data-questions="147">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-147">Q147</a></td><td role="cell" data-label="What changed">Correct cacneable to cacheable only; the annotation question and A key are unchanged.</td>
+</tr>
+<tr role="row" id="note-repaired-154" data-questions="154">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-154">Q154</a></td><td role="cell" data-label="What changed">Recovered the three omitted roll-up field names from a matching published question: Total_Timesheets__c, Total_Approved_Timesheets__c and Total_Rejected_Timesheet__c.</td>
+</tr>
+<tr role="row" id="note-repaired-156" data-questions="156">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-156">Q156</a></td><td role="cell" data-label="What changed">Normalize damaged Application and Preferred Locations API names only.</td>
+</tr>
+<tr role="row" id="note-repaired-159" data-questions="159">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-159">Q159</a></td><td role="cell" data-label="What changed">Correct Function object to Junction object only; preserve the many-to-many reporting requirement.</td>
+</tr>
+<tr role="row" id="note-repaired-160" data-questions="160">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-160">Q160</a></td><td role="cell" data-label="What changed">Correct Buddle to Bubble only; preserve the Aura event-phase question.</td>
+</tr>
+<tr role="row" id="note-repaired-164" data-questions="164">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-164">Q164</a></td><td role="cell" data-label="What changed">Use the initial question options in the DOCX, not the later appended explanation that substituted invalid Apex method calls into Visualforce.</td>
+</tr>
+<tr role="row" id="note-repaired-169" data-questions="169">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-169">Q169</a></td><td role="cell" data-label="What changed">Correct Whatld to WhatId only; preserve the polymorphic lookup question.</td>
+</tr>
+<tr role="row" id="note-repaired-178" data-questions="178">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-178">Q178</a></td><td role="cell" data-label="What changed">Correct Leg capturing to Log capturing only; do not rewrite the MVC-comparison scenario.</td>
+</tr>
+<tr role="row" id="note-repaired-179" data-questions="179">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-179">Q179</a></td><td role="cell" data-label="What changed">Correct Indirect Lockup to Indirect Lookup only; preserve the external matching-key question.</td>
+</tr>
+<tr role="row" id="note-repaired-184" data-questions="184">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-184">Q184</a></td><td role="cell" data-label="What changed">Recovered missing option D from a published version with the same method and A/B/C option sequence.</td>
+</tr>
+<tr role="row" id="note-repaired-185" data-questions="185">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-185">Q185</a></td><td role="cell" data-label="What changed">Both static final and a private static helper field can preserve a transaction-scoped value across trigger executions.</td>
+</tr>
+<tr role="row" id="note-repaired-187" data-questions="187">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-187">Q187</a></td><td role="cell" data-label="What changed">The embedded code image omits the class keyword in the TestUtils declaration.</td>
+</tr>
+<tr role="row" id="note-repaired-189" data-questions="189">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-189">Q189</a></td><td role="cell" data-label="What changed">A sanitized Apex result using stripInaccessible and supported Lightning Data Service/UI API collection access can both omit unreadable commission data.</td>
+</tr>
+<tr role="row" id="note-repaired-192" data-questions="192">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-192">Q192</a></td><td role="cell" data-label="What changed">Correct lightning-input-failed to lightning-input-field only, matching the same security scenario in Q4.</td>
+</tr>
+<tr role="row" id="note-repaired-196" data-questions="196">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-196">Q196</a></td><td role="cell" data-label="What changed">Repair only the damaged LWC metadata identifiers and file spellings in the existing choices.</td>
+</tr>
+<tr role="row" id="note-repaired-198" data-questions="198">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-198">Q198</a></td><td role="cell" data-label="What changed">Restore the missing words part of in the controller-role prompt only; retain the source JavaScript/Apex teaching analogy and B,C key.</td>
+</tr>
+<tr role="row" id="note-repaired-199" data-questions="199">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-199">Q199</a></td><td role="cell" data-label="What changed">Removed only the first asterisk from the search literal in option C: FIND &#x27;*ACME*&#x27; becomes FIND &#x27;ACME*&#x27;.</td>
+</tr>
+<tr role="row" id="note-repaired-200" data-questions="200">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-200">Q200</a></td><td role="cell" data-label="What changed">Correct Unity to Unify only.</td>
+</tr>
+<tr role="row" id="note-repaired-204" data-questions="204">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-204">Q204</a></td><td role="cell" data-label="What changed">Correct lowercase l in laaS to capital I in IaaS only.</td>
+</tr>
+</tbody></table></div><p class="notice-table-empty" hidden>No matching questions in this section.</p>
+</section>
+<section class="notice-section ungraded" aria-labelledby="not-scored" data-notice-section>
+<h2 id="not-scored">Not scored <span class="notice-section-count">12</span></h2>
+<p>Excluded from scores and new mock exams. The DOCX answer is shown for reference only.</p>
+<div class="notice-table" role="region" tabindex="0" aria-label="Not scored"><table role="table"><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Question</th><th scope="col" role="columnheader">DOCX answer (unverified)</th><th scope="col" role="columnheader">Issue</th></tr></thead><tbody role="rowgroup">
+<tr role="row" id="note-ungraded-16" data-questions="16">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-16">Q16</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">A</td><td role="cell" data-label="Issue">Flow timing and recursion controls are missing, so the final count is uncertain.</td>
+</tr>
+<tr role="row" id="note-ungraded-25" data-questions="25">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-25">Q25</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">B, D</td><td role="cell" data-label="Issue">Several listed techniques are valid; the question does not establish a unique pair.</td>
+</tr>
+<tr role="row" id="note-ungraded-40" data-questions="40">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-40">Q40</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">A, B</td><td role="cell" data-label="Issue">Three listed approaches can provide test data, but the question requests two.</td>
+</tr>
+<tr role="row" id="note-ungraded-92" data-questions="92">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-92">Q92</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">B, C</td><td role="cell" data-label="Issue">Only one listed action is supported by the documented trigger rules; the question requests two.</td>
+</tr>
+<tr role="row" id="note-ungraded-96" data-questions="96">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-96">Q96</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">D</td><td role="cell" data-label="Issue">Allow Reparenting applies to a configurable custom relationship, unlike the stated standard Order/OrderItem relationship.</td>
+</tr>
+<tr role="row" id="note-ungraded-102" data-questions="102">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-102">Q102</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">C</td><td role="cell" data-label="Issue">The code exhibit and required sharing context are missing.</td>
+</tr>
+<tr role="row" id="note-ungraded-111" data-questions="111">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-111">Q111</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">A, B</td><td role="cell" data-label="Issue">Three locations can provide status information under the broad batch-or-future wording.</td>
+</tr>
+<tr role="row" id="note-ungraded-139" data-questions="139">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-139">Q139</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">B</td><td role="cell" data-label="Issue">Two answer choices are damaged; the original letter mapping cannot be verified.</td>
+</tr>
+<tr role="row" id="note-ungraded-152" data-questions="152">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-152">Q152</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">A, D</td><td role="cell" data-label="Issue">Three listed mechanisms can execute tests, but the question requests two.</td>
+</tr>
+<tr role="row" id="note-ungraded-166" data-questions="166">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-166">Q166</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">A, B</td><td role="cell" data-label="Issue">Three listed strategies can restrict edits, but the question requests two.</td>
+</tr>
+<tr role="row" id="note-ungraded-180" data-questions="180">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-180">Q180</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">D</td><td role="cell" data-label="Issue">The MAX calculation is clear, but the listed native roll-up is unsupported for the stated standard relationship.</td>
+</tr>
+<tr role="row" id="note-ungraded-181" data-questions="181">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-181">Q181</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">D</td><td role="cell" data-label="Issue">Same standard Order/OrderItem roll-up limitation as Q180.</td>
+</tr>
+</tbody></table></div><p class="notice-table-empty" hidden>No matching questions in this section.</p>
+</section>
+  </main>
   <div data-site-footer></div>
 </div>
 <script src="../quiz/js/ui/navigation.js" defer></script>

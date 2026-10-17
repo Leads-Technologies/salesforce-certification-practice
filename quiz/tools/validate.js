@@ -82,7 +82,10 @@ for (const folder of folders) {
     checkSchema(q, schema.$defs.question, label);
     assert.ok(Number.isInteger(q.id) && q.id > 0, `${label}: invalid Id`);
     assert.ok(sections.has(q.section) && focus.has(q.focus) && groups.has(q.group), `${label}: invalid study reference`);
-    for (const key of ["stem", "why", "notes"]) checkBlocks(q[key], `${label}.${key}`);
+    for (const key of ["stem", "why", "notes"]) {
+      if (key === "notes" && Array.isArray(q.notes) && !q.notes.length) continue;
+      checkBlocks(q[key], `${label}.${key}`);
+    }
     assert.ok(q.choices.length <= letters.length, `${label}: too many choices for letter labels`);
     q.choices.forEach((choice, i) => checkBlocks(choice, `${label}.choices[${i}]`));
     const answer = q.answer ? q.answer.split(",") : [];
@@ -103,8 +106,12 @@ for (const folder of folders) {
     }
     if (q.repaired) {
       assert.ok(q.source && q.printed, `${label}: repaired content needs source history`);
+      assert.ok(typeof q.repair === "string" && q.repair.trim().length > 10, `${label}: repaired content needs a specific repair summary`);
+      if (q.repairNotes?.length) checkBlocks(q.repairNotes, `${label}.repairNotes`);
+      const studyNotes = Array.isArray(q.notes) ? q.notes : [q.notes];
+      assert.ok(!studyNotes.some(note => typeof note === "string" && /^(Question repair:|Wording corrected:|Option [A-Z] corrected:|Field type corrected:|Recovered (context|option|variant):|Matching (variant|option-set variant):|Compared variant:)/.test(note)), `${label}: edit history belongs in Question changes, not Full explanation`);
       assert.ok(!q.corrected && !q.ungraded, `${label}: review states must be separate`);
-      assert.notDeepEqual([q.stem, q.choices], [q.source.stem, q.source.choices], `${label}: explanation-only edits are not Repaired`);
+      assert.ok(q.acceptAny || JSON.stringify([q.stem, q.choices]) !== JSON.stringify([q.source.stem, q.source.choices]), `${label}: explanation-only edits are not Repaired`);
     }
     if (q.source) assert.equal(q.printed, q.source.answer, `${label}: source key mismatch`);
     if (q.printed) {
@@ -293,9 +300,15 @@ for (const folder of folders) {
   cleared.run(`window.Quiz.start(${JSON.stringify(readerCfg)}, ${JSON.stringify(readerQuestions)})`);
   assert.equal(cleared.run("state.drafts[600].length"), 0, `${folder}: cleared draft stays cleared after reopening`);
   reader.run("jump(1); toggle('A'); toggle('B'); toggle('C')");
-  assert.ok(reader.app.innerHTML.includes("Remove 1 selection to check your answers."), `${folder}: too many choices explains how to proceed`);
-  assert.ok(action("check").disabled, `${folder}: too many choices cannot be checked`);
+  const optionDisabled = id => /\bdisabled\b/.test(reader.app.innerHTML.match(new RegExp(`<button\\b[^>]*data-pick="${id}"[^>]*>`))[0]);
+  assert.equal(reader.run("state.picked.join(',')"), 'A,B', `${folder}: multiple-choice selections stop at the requested maximum`);
+  assert.ok(optionDisabled('C') && optionDisabled('D') && !optionDisabled('A') && !optionDisabled('B'), `${folder}: only unselected options are disabled at the limit`);
+  assert.ok(!action("check").disabled && reader.app.innerHTML.includes('Deselect one to choose another.'), `${folder}: complete selection enables checking and explains how to replace an answer`);
+  reader.events.get('keydown')({key:'D',target:{closest:()=>null},preventDefault(){}});
+  assert.equal(reader.run('state.picked.length'), 2, `${folder}: keyboard shortcuts cannot bypass disabled options`);
   reader.run("toggle('B')");
+  assert.ok(!optionDisabled('C') && !optionDisabled('D'), `${folder}: deselecting re-enables the remaining options`);
+  reader.run("toggle('C')");
   assert.ok(reader.app.innerHTML.includes("Ready to check your answers."), `${folder}: exact selection is ready to check`);
   click("check");
   const multiLabels = reader.run("displayLetters(current(), ['A','C']).join(', ')");
@@ -316,7 +329,8 @@ for (const folder of folders) {
   reader.run("start('review:ungraded'); check()");
   assert.ok(reader.app.innerHTML.includes("Review only · no scored questions"), `${folder}: unscored-only set has reading guidance`);
   assert.ok(reader.app.innerHTML.includes("Review only · excluded from your score"), `${folder}: unscored feedback does not imply grading`);
-  assert.ok(!reader.app.innerHTML.includes('class="answer-heading"'), `${folder}: no answer is invented for an unresolved item`);
+  assert.ok(reader.app.innerHTML.includes('Original mock answer (unverified)') && !reader.app.innerHTML.includes('>The answer</h3>'), `${folder}: unresolved feedback distinguishes source references from verified answers`);
+  assert.equal(reader.run('current().answer.length'), 0, `${folder}: displaying a source reference does not create a grading key`);
   click("results");
   assert.equal(reader.run("state.view"), "summary", `${folder}: results is reachable during practice`);
   reader.run("start('all', 600)");
@@ -342,25 +356,69 @@ for (const folder of folders) {
   if (folder === "salesforce-certified-platform-developer") {
     const codePage = player(folder);
     codePage.context.window.matchMedia = () => ({ matches: true });
-    for (const id of [20, 127]) {
+    for (const id of [20, 193]) {
       codePage.run(`start('all', ${id}); state.picked = current().answer.slice(); check()`);
       assert.ok(codePage.app.innerHTML.includes('aria-label="Question code sample"'), `Q${id}: code remains in the reader`);
       assert.equal(codePage.effects.focused, ".explain", `Q${id}: explanation gets keyboard focus`);
       assert.equal(codePage.context.document.querySelector(".panel-body").scrollTop, 780, `Q${id}: feedback scrolls the reader`);
       assert.equal(codePage.effects.scrolled, null, `Q${id}: feedback does not scroll the main window or code ancestors`);
     }
-    console.log("PASS Q20 / Q127: desktop feedback scroll stays inside the question reader");
+    console.log("PASS Q20 / Q193: desktop feedback scroll stays inside the question reader");
   }
   for (const q of questions.filter(q => q.source)) {
     const key = q.acceptAny ? [q.answer.split(",")[0]] : q.answer.split(",");
-    page.run(`start("all"); jump(state.ids.indexOf(${q.id})); state.picked = ${JSON.stringify(key)}; check()`);
+    page.run(`start("all"); jump(state.ids.indexOf(${q.id})); retry()`);
+    assert.ok(!page.app.innerHTML.includes('class="more question-changes"'), `${folder} Q${q.id}: question changes appear only with feedback`);
+    assert.ok(!page.app.innerHTML.includes('class="repair-summary"'), `${folder} Q${q.id}: repair summary appears only with feedback`);
+    assert.ok(!page.app.innerHTML.includes('class="mock-answer-reference"'), `${folder} Q${q.id}: original mock answers remain hidden before feedback`);
+    page.run(`state.picked = ${JSON.stringify(key)}; check()`);
     assert.equal(page.app.innerHTML.includes("Graded here as"), Boolean(q.corrected), `${folder} Q${q.id}: answer-change message only for a wrong mock key`);
     const badge = `class="flag">${cfg.copy?.corrected || "Corrected answer"}</span>`;
     assert.equal(page.app.innerHTML.includes(badge), Boolean(q.corrected), `${folder} Q${q.id}: Corrected badge`);
     assert.equal(page.app.innerHTML.includes('class="flag repaired"'), Boolean(q.repaired), `${folder} Q${q.id}: Repaired badge`);
-    assert.ok(!page.app.innerHTML.includes("Earlier wording"), `${folder} Q${q.id}: earlier wording is not displayed`);
-    assert.ok(!page.app.innerHTML.includes('class="more source"'), `${folder} Q${q.id}: no source-history disclosure`);
+    assert.equal(page.app.innerHTML.includes('class="mock-answer-reference"'), Boolean(q.ungraded), `${folder} Q${q.id}: unresolved questions show the original mock answer separately`);
+    if (q.ungraded) {
+      assert.ok(page.app.innerHTML.includes('Original mock answer (unverified)') && page.app.innerHTML.includes(`Original key: ${q.printed.split(',').join(', ')}.`), `${folder} Q${q.id}: original letters are labelled unverified`);
+      for (const id of q.printed.split(',')) {
+        const original = q.source.choices[id.charCodeAt(0)-65];
+        assert.ok(page.app.innerHTML.includes(page.run(`inlineHtml(${JSON.stringify(original)})`)), `${folder} Q${q.id}: full original choice text is available`);
+      }
+      page.run(`state.mode = 'exam'; state.optionOrders[${q.id}] = byId.get(${q.id}).options.map(option => option.id).reverse()`);
+      const feedback = page.run(`explanationHtml(byId.get(${q.id}), 'ungraded')`);
+      const displayed = page.run(`window.Quiz.application.content.displayLetters(byId.get(${q.id}), byId.get(${q.id}).printed).join(', ')`);
+      assert.ok(feedback.includes(`Original key: ${q.printed.split(',').join(', ')}. Displayed here as: ${displayed}.`), `${folder} Q${q.id}: saved exam feedback maps original answers to displayed letters`);
+      assert.ok(!feedback.includes('>The answer</h3>') && feedback.includes('excluded from grading'), `${folder} Q${q.id}: a reference key never becomes a verified answer`);
+      page.run("state.mode = 'practice'");
+    }
+    const hasChanges = Boolean(q.repaired || (q.repair && q.review?.recovery));
+    assert.equal(page.app.innerHTML.includes('<details class="more question-changes"><summary>Question changes</summary>'), hasChanges, `${folder} Q${q.id}: verified or partial recovery includes one collapsed Question changes section`);
+    if (hasChanges) {
+      const changes = page.app.innerHTML.match(/<details class="more question-changes">([\s\S]*?)<\/details>/)[1];
+      assert.ok(!changes.includes('Text changes') && !changes.includes('class="change-legend"') && changes.includes('<h3>Reason for the change</h3>') && !changes.includes('Original question (before repair)') && !changes.includes('class="original-question"') && changes.includes(page.run(`inlineHtml(${JSON.stringify(q.repair)})`)) && !changes.includes('<details'), `${folder} Q${q.id}: one clean disclosure groups comparisons and reason without redundant headings, legend or a duplicate original question`);
+      assert.equal(changes.includes('<h3>Review notes &amp; sources</h3>'), Boolean(q.repairNotes?.length), `${folder} Q${q.id}: recovery notes have their own footer only when present`);
+      assert.ok(changes.indexOf('<h3>Reason for the change</h3>') < changes.indexOf('class="question-comparison"'), `${folder} Q${q.id}: the reason appears before the change summary and comparisons`);
+      const fullNotes = page.app.innerHTML.match(/<details class="more"><summary>[^<]*<\/summary>([\s\S]*?)<\/details>/)?.[1] || "";
+      assert.ok(!fullNotes.includes('Question repair:') && !fullNotes.includes(page.run(`inlineHtml(${JSON.stringify(q.repair)})`)), `${folder} Q${q.id}: Full explanation does not repeat the repair summary`);
+      for (const note of q.repairNotes || []) {
+        assert.ok(changes.includes(page.run(`inlineHtml(${JSON.stringify(note)})`)) && !fullNotes.includes(page.run(`inlineHtml(${JSON.stringify(note)})`)), `${folder} Q${q.id}: recovery references stay in Question changes`);
+      }
+      page.run(`state.mode = "exam"; state.optionOrders[${q.id}] = byId.get(${q.id}).options.map(option => option.id).reverse()`);
+      const examFeedback = page.run(`explanationHtml(byId.get(${q.id}), 'correct')`);
+      assert.ok(examFeedback.includes(page.run(`inlineHtml(${JSON.stringify(q.repair)})`)) && examFeedback.includes('Original → displayed:'), `${folder} Q${q.id}: exam repair summary preserves original references with a letter key`);
+      page.run('state.mode = "practice"');
+    }
   }
+  const escapedRepair = page.run(`explanationHtml(normalizeQuestion({...window.QUIZ_QUESTIONS.find(q => q.repaired), repair:'Replaced <img src=x onerror=alert(1)> markup.'}), 'correct')`);
+  assert.ok(escapedRepair.includes('Replaced &lt;img') && !escapedRepair.includes('<img'), `${folder}: repair summaries escape imported markup`);
+  const mockFixture = {...questions[0], ungraded:true, answer:'A', printed:undefined, repaired:false, repair:undefined, review:undefined,
+    choices:['Other option', 'Recovered current option'],
+    source:{stem:['Original question'], choices:['Other option', {code:['if (left < right) {', '    update originalRecords;', '}']}], answer:'B'}};
+  assert.equal(page.run(`normalizeQuestion(${JSON.stringify(mockFixture)}).printed.join(',')`), 'B', `${folder}: original-key fallback uses source history rather than the grading key`);
+  const referenceCode = page.run(`explanationHtml(normalizeQuestion(${JSON.stringify(mockFixture)}), 'ungraded')`);
+  assert.ok(referenceCode.includes('Original key: B.') && referenceCode.includes('left &lt; right') && referenceCode.includes('update originalRecords;') && !referenceCode.includes('>The answer</h3>'), `${folder}: full original code is escaped and independent of current choice wording and grading`);
+  const noMockKey = {...mockFixture, source:undefined, printed:undefined};
+  const absentReference = page.run(`explanationHtml(normalizeQuestion(${JSON.stringify(noMockKey)}), 'ungraded')`);
+  assert.ok(absentReference.includes('No answer key was supplied in the mock.') && !absentReference.includes('class="answer-line"'), `${folder}: missing source keys are explicit without borrowing a grading answer`);
   assert.equal(page.run(`normalizeQuestion({...window.QUIZ_QUESTIONS[0], corrected:true, printed:window.QUIZ_QUESTIONS[0].answer}).corrected`), undefined, `${folder}: player suppresses an unchanged-key flag`);
   assert.equal(page.run(`normalizeQuestion({...window.QUIZ_QUESTIONS[0], corrected:true, printed:'B', answer:'A,B', acceptAny:true, type:'single'}).corrected`), undefined, `${folder}: an accepted printed answer is not wrong`);
   assert.equal(page.run(`normalizeQuestion({...window.QUIZ_QUESTIONS[0], repaired:true, ungraded:true}).repaired`), undefined, `${folder}: unresolved repair stays Not scored`);
@@ -415,6 +473,9 @@ for (const folder of folders) {
   assert.ok(page.app.innerHTML.includes("Progress could not be saved"));
   console.log(`PASS ${folder}: ${questions.length} questions, ${questions.filter(q=>q.corrected).length} corrected, ${questions.filter(q=>q.repaired).length} repaired, ${questions.filter(q=>q.ungraded).length} ungraded; schema, metadata, grading, file startup, review counts, filters, badges, saved review resume and regrading`);
   console.log("PASS UX: exact multi count, draft/resume persistence, scroll/focus retention, native keyboard actions, final summary, mobile navigator defaults, safe reference links, unscored reading");
+  require("./validate-changes.js")(player, folder);
+  require("./validate-source-review.js")(player, folder);
+  require("./validate-option-review.js")(player, folder);
   require("./validate-shuffle.js")(player, folder, cfg);
   require("./validate-exam.js")(player, folder, cfg);
   total += questions.length;

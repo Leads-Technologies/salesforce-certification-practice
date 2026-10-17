@@ -86,6 +86,22 @@ body.notice-page { background: #f3f6f8; }
 .notice-footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 24px; padding: 20px 4px; }
 .notice-footer p { margin: 0; color: var(--muted); font-size: 13px; }
 
+/* Keep the current notice focused on the three review states. */
+.notice-compact .notice-hero, .notice-compact .notice-section, .notice-compact .notice-tools { border-radius: 12px; box-shadow: none; }
+.notice-compact .notice-hero { padding: 26px; }
+.notice-compact .notice-intro { max-width: 75ch; margin-bottom: 14px; }
+.notice-compact .notice-summary { margin-top: 18px; }
+.notice-compact .notice-stat { padding: 14px 16px; }
+.notice-compact .notice-stat strong { margin: 8px 0 0; font-size: 28px; }
+.notice-compact .notice-about { margin-top: 18px; }
+.notice-compact .notice-tools { padding: 14px 18px; gap: 6px; }
+.notice-compact .notice-section { padding: 24px 26px; }
+.notice-compact .notice-section h2 { margin-bottom: 8px; font-size: 23px; }
+.notice-compact .notice-section h2 .notice-section-count { font-family: var(--sans); margin-left: 8px; }
+.notice-compact .notice-section > p { margin-bottom: 12px; color: var(--muted); font-size: 13px; }
+.notice-compact .notice-table { margin-top: 12px; }
+.notice-compact .notice-table td { line-height: 1.65; }
+
 @media (max-width: 1000px) {
   .notice-layout { grid-template-columns: 180px minmax(0, 1fr); gap: 20px; }
   .notice-hero { padding: 26px; }
@@ -107,6 +123,8 @@ body.notice-page { background: #f3f6f8; }
   .notice-tools { padding: 22px 24px; }
 }
 @media (max-width: 600px) {
+  .notice-compact .notice-hero, .notice-compact .notice-section { padding: 20px 18px; }
+  .notice-compact .notice-stat strong { grid-row: 1; margin: 0; }
   .notice-shell { padding-bottom: 24px; }
   .notice-hero, .notice-section { padding: 22px 18px; border-radius: 14px; }
   .notice-intro { font-size: 14px; }
@@ -138,6 +156,7 @@ body.notice-page { background: #f3f6f8; }
   .notice-footer { flex-direction: column; align-items: stretch; text-align: center; padding-inline: 12px; }
 }
 @media print {
+  .notice-compact .notice-hero, .notice-compact .notice-section { padding: 0; }
   body.notice-page { background: white; }
   .notice-header, .notice-contents, .notice-tools, .notice-skip, .notice-section-top, .notice-footer { display: none !important; }
   .notice-shell { width: 100%; padding: 0; }

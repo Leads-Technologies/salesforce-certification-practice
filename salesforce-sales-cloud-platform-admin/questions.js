@@ -3,7 +3,7 @@ window.QUIZ_QUESTIONS = [
     "id": 1,
     "section": "service",
     "stem": [
-      "The CTO of AW Computing has defined a new policy for cases to improve customer satisfaction. All cases submitted with a Case Reason of Installation must be acknowledged immediately through email and assigned to the appropriate agents. Any cases that are still in the New status after 4 hours must be escalated to support management. A Platform Administrator has implemented auto-response rules and initial case assignment rules.",
+      "The CTO of AW Computing has defined a new policy for cases to improve customer satisfaction. All cases submitted with a Case Reason of Installation must be acknowledged immediately through email and assigned to the appropriate agents. Any cases that are still in the New status after 4 hours must be escalated to support management. A Platform Administrator has implemented auto-response rules.",
       {
         "ask": "Which additional case management tool is necessary to meet this requirement?"
       }
@@ -17,13 +17,15 @@ window.QUIZ_QUESTIONS = [
     "answer": "C",
     "focus": "must",
     "group": "service",
-    "why": "Escalation rules act when a case meets criteria for a specified age, and can notify managers or reassign ownership.",
+    "why": "Escalation Rules supply the missing age-based escalation after four hours. Initial agent routing still needs appropriate assignment configuration; auto-response rules cover the immediate acknowledgement.",
     "wrong": {
       "A": "Support processes determine available case statuses; they do not run age-based actions.",
       "B": "A formula calculates a value but does not send notifications or reassign cases.",
       "D": "Entitlements define support eligibility and SLA milestones; this request needs a case-age escalation."
     },
-    "notes": "Distinguish initial assignment, immediate customer acknowledgement, and delayed escalation. Auto-response rules cover the acknowledgement; escalation rules cover the four-hour threshold. Configure rule criteria, business hours, and actions.",
+    "notes": [
+      "Distinguish initial assignment, immediate customer acknowledgement, and delayed escalation. Auto-response rules cover the acknowledgement; escalation rules cover the four-hour threshold. Configure rule criteria, business hours, and actions."
+    ],
     "source": {
       "stem": [
         "The CTO of AW Computing has defined a new policy for cases to improve customer satisfaction. All cases submitted with a Case Reason of Installation must be acknowledged immediately through email and assigned to the appropriate agents. Any cases that are still in the New status after 4 hours must be escalated to support management. A Platform Administrator has implemented auto-response rules.",
@@ -40,7 +42,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "C"
     },
     "printed": "C",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: State that initial assignment is configured; escalation is the remaining missing tool. Original wording and choices are retained; the source key remains accepted. Escalation Rules supply the missing age-based escalation after four hours. Initial agent routing still needs appropriate assignment configuration; auto-response rules cover the immediate acknowledgement.",
+      "references": []
+    }
   },
   {
     "id": 2,
@@ -53,7 +60,7 @@ window.QUIZ_QUESTIONS = [
     ],
     "choices": [
       "A junction object is required to support the lookup.",
-      "Roll-up summary fields on Project summarize Work Items through this master-detail relationship.",
+      "Roll-up summary fields exist on the master object.",
       "The lookup field in all the records contains a value.",
       "The lookup field is required for saving records."
     ],
@@ -66,7 +73,9 @@ window.QUIZ_QUESTIONS = [
       "C": "Populated relationship fields are not a blocker to master-detail-to-lookup conversion.",
       "D": "A required lookup can exist; requiredness is not the roll-up dependency described here."
     },
-    "notes": "Master-detail enables native roll-ups on the master. Lookup allows more independent ownership and sharing. Conversion changes those relationship semantics, so review roll-ups, sharing, and deletion behavior before applying it.",
+    "notes": [
+      "Master-detail enables native roll-ups on the master. Lookup allows more independent ownership and sharing. Conversion changes those relationship semantics, so review roll-ups, sharing, and deletion behavior before applying it."
+    ],
     "source": {
       "stem": [
         "A Platform Administrator at Ursa Major Solar has been asked to change the Work Item and Project custom object relationship from a master-detail to a lookup.",
@@ -83,7 +92,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "B"
     },
     "printed": "B",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Specify roll-ups dependent on the relationship being converted, rather than any unrelated master roll-up. Original wording and choices are retained; the source key remains accepted. Roll-up summary fields depend on the master-detail relationship, so remove those dependencies before converting it to lookup.",
+      "references": []
+    }
   },
   {
     "id": 3,
@@ -108,7 +122,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Entry criteria determine whether a record enters the process, not its sequence of approvers.",
       "D": "Approval actions execute outcomes such as field updates; they do not define the approver chain."
     },
-    "notes": "Separate process entry criteria from step criteria. A record must first qualify for the process, then meet each step’s criteria and route to its assigned approver."
+    "notes": [
+      "Separate process entry criteria from step criteria. A record must first qualify for the process, then meet each step’s criteria and route to its assigned approver."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Approval steps specify the approvers and the sequence and criteria that control movement through an approval process.",
+      "references": []
+    }
   },
   {
     "id": 4,
@@ -133,15 +155,23 @@ window.QUIZ_QUESTIONS = [
       "C": "Final approval actions run after successful approval.",
       "D": "Initial submission actions run when the request is first submitted."
     },
-    "notes": "Enable submitter recall when appropriate and configure recall behavior explicitly. Record unlocking after recall is distinct from final approval or final rejection settings."
+    "notes": [
+      "Enable submitter recall when appropriate and configure recall behavior explicitly. Record unlocking after recall is distinct from final approval or final rejection settings."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Recall actions run when an allowed submitter withdraws an approval request; recall can unlock the record.",
+      "references": []
+    }
   },
   {
     "id": 5,
     "section": "agentforce",
     "stem": [
-      "Cloud Kicks wants Agentforce to execute a custom business operation selected in response to the customer's current conversation.",
+      "Cloud Kicks wants Agentforce to adapt its behavior based on real-time customer input.",
       {
-        "ask": "Which feature supplies that executable capability?"
+        "ask": "Which feature directly enables this capability?"
       }
     ],
     "choices": [
@@ -153,13 +183,15 @@ window.QUIZ_QUESTIONS = [
     "answer": "B",
     "focus": "high",
     "group": "agent-actions",
-    "why": "Custom actions give an agent executable capabilities it can select in response to the current conversation.",
+    "why": "Custom actions give the agent executable operations it can select in response to customer input. The reasoning engine selects the action; an action alone is not the entire adaptive reasoning system.",
     "wrong": {
       "A": "Data Cloud supplies unified data and grounding; it does not by itself perform the requested business action.",
       "C": "A screen flow needs an interactive screen and is not the direct agent-action mechanism.",
       "D": "Tableau analyzes and visualizes data rather than executing conversational agent tasks."
     },
-    "notes": "The reasoning engine decides what to do; actions perform the work. Custom actions can invoke supported flows, Apex, or other services. Use autolaunched flows without screens for flow-backed agent actions.",
+    "notes": [
+      "The reasoning engine decides what to do; actions perform the work. Custom actions can invoke supported flows, Apex, or other services. Use autolaunched flows without screens for flow-backed agent actions."
+    ],
     "source": {
       "stem": [
         "Cloud Kicks wants Agentforce to adapt its behavior based on real-time customer input.",
@@ -176,7 +208,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "B"
     },
     "printed": "B",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Ask about executing a custom business operation rather than attributing all adaptive reasoning to custom actions. Original wording and choices are retained; the source key remains accepted. Custom actions give the agent executable operations it can select in response to customer input. The reasoning engine selects the action; an action alone is not the entire adaptive reasoning system.",
+      "references": []
+    }
   },
   {
     "id": 6,
@@ -202,15 +239,22 @@ window.QUIZ_QUESTIONS = [
       "B": "Introducing advanced analytics and building everything from scratch does not meet the quickest-start requirement.",
       "D": "Manual dashboard creation ignores the available prebuilt starting point."
     },
-    "notes": "Treat AppExchange packages as a starting point, not a guarantee of a perfect fit. Review package permissions, source reports, installed components, and compatibility in a sandbox."
+    "notes": [
+      "Treat AppExchange packages as a starting point, not a guarantee of a perfect fit. Review package permissions, source reports, installed components, and compatibility in a sandbox."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "The Salesforce Labs CRM Dashboards package offers ready-made CRM reporting and dashboards that can be adapted quickly.",
+      "references": []
+    }
   },
   {
     "id": 7,
     "section": "agentforce",
     "stem": [
-      "An agent cannot complete its scoped task because a required input is missing. The input can be provided by the user, and no configured escalation or technical-failure condition applies.",
       {
-        "ask": "What should the agent do next?"
+        "ask": "What is the next step an agent performs when the tasks within an agentic loop are all unsatisfactory?"
       }
     ],
     "choices": [
@@ -219,18 +263,14 @@ window.QUIZ_QUESTIONS = [
       "Routes to a live agent",
       "Asks for additional information"
     ],
-    "answer": "D",
+    "answer": "",
     "focus": "high",
     "group": "agent-prompts",
-    "why": "Asking for missing information lets an agent clarify the request when its attempted tasks cannot produce a satisfactory result.",
-    "wrong": {
-      "A": "Returning an inadequate result with caveats does not resolve the missing information.",
-      "B": "An error is appropriate for a technical failure, not the default conversational clarification step.",
-      "C": "Human escalation requires an applicable handoff policy; it is not automatically the next step in every loop."
-    },
+    "why": "Not scored. The generic unsuccessful-loop state does not identify a clarification versus escalation policy. Both asking for information and handing off can be reasonable, so a specific fallback cannot be verified from the supplied task.",
+    "wrong": {},
     "notes": [
       "An agentic loop observes results and adjusts its next action. Clarification is suitable when needed inputs or intent are unclear; configured handoff and failure policies still govern real deployments.",
-      "The original question overgeneralized unsuccessful loops. Clarification fits this explicitly missing-input case; configured handoff, retry limits, and safe failure messages apply in other cases. Reference: https://www.salesforce.com/agentforce/guide/"
+      "Clarification fits a missing-input case; configured handoff, retry limits, and safe failure messages apply in other cases. Reference: https://www.salesforce.com/agentforce/guide/"
     ],
     "source": {
       "stem": [
@@ -247,13 +287,51 @@ window.QUIZ_QUESTIONS = [
       "answer": "D"
     },
     "printed": "D",
-    "repaired": true
+    "ungraded": true,
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "unresolved",
+      "reason": "The generic unsuccessful-loop state does not identify a clarification versus escalation policy. Both asking for information and handing off can be reasonable, so a specific fallback cannot be verified from the supplied task.",
+      "references": [
+        "https://www.salesforce.com/agentforce/guide/",
+        "https://myportal.utt.edu.tt/ICS/icsfs/fca0bfa7-ef0f-4e94-85d4-1278f0500519.pdf?target=81a5d832-c550-4e99-822d-6311f045a84b",
+        "https://www.freecram.com/discussions/Salesforce/exam-plat-admn-201-topic-5-question-32-discussion-p1249972.html",
+        "https://www.salesforce.com/ap/agentforce/what-is-agentic-ai/"
+      ],
+      "recovery": {
+        "date": "2026-10-17",
+        "status": "unresolved",
+        "queries": [
+          "Salesforce agentic loop unsatisfactory result asks additional information"
+        ],
+        "candidates": [
+          "https://myportal.utt.edu.tt/ICS/icsfs/fca0bfa7-ef0f-4e94-85d4-1278f0500519.pdf?target=81a5d832-c550-4e99-822d-6311f045a84b",
+          "https://www.freecram.com/discussions/Salesforce/exam-plat-admn-201-topic-5-question-32-discussion-p1249972.html"
+        ],
+        "assessment": "The generic unsuccessful-loop state does not identify a clarification versus escalation policy. Both asking for information and handing off can be reasonable, so a specific fallback cannot be verified from the supplied task."
+      },
+      "reassessment": {
+        "date": "2026-10-17",
+        "previousState": "not-scored",
+        "decision": "still-unresolved",
+        "reason": "The generic unsuccessful-loop state does not identify a clarification versus escalation policy. Both asking for information and handing off can be reasonable, so a specific fallback cannot be verified from the supplied task."
+      },
+      "optionAudit": {
+        "date": "2026-10-17",
+        "status": "matched",
+        "comparedChoiceCount": 4,
+        "assessment": "The matching FreeCram question contains all four options in the same order and selects D. No omitted option or fallback policy was found; clarification versus human escalation remains dependent on why the loop failed.",
+        "references": [
+          "https://www.freecram.com/discussions/Salesforce/exam-plat-admn-201-topic-5-question-32-discussion-p1249972.html"
+        ]
+      }
+    }
   },
   {
     "id": 8,
     "section": "data",
     "stem": [
-      "An administrator mistakenly inserted new records into an object supported by Mass Delete Records. The import did not update existing records, and its new record IDs or reliable selection criteria are available.",
+      "A Platform Administrator at Ursa Major Solar imported records into an object by mistake.",
       {
         "ask": "Which two tools should the administrator use to undo this import?"
       },
@@ -271,7 +349,7 @@ window.QUIZ_QUESTIONS = [
     "type": "multi",
     "focus": "must",
     "group": "data",
-    "why": "Data Loader can delete imported records by ID, and Mass Delete Records can remove supported records matching criteria.",
+    "why": "Data Loader and Mass Delete Records are the listed deletion tools for reversing an unintended insertion. This is not a universal rollback: supported object types, captured IDs and whether the import updated existing records must be checked.",
     "wrong": {
       "A": "Weekly Data Export creates a backup; it does not undo an import.",
       "C": "Data Import Wizard creates or updates records and has no general rollback or delete operation."
@@ -299,7 +377,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "B,D"
     },
     "printed": "B,D",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Limit the undo-import question to new records on a Mass Delete-supported object; updates need a pre-import backup. Original wording and choices are retained; the source key remains accepted. Data Loader and Mass Delete Records are the listed deletion tools for reversing an unintended insertion. This is not a universal rollback: supported object types, captured IDs and whether the import updated existing records must be checked.",
+      "references": []
+    }
   },
   {
     "id": 9,
@@ -318,7 +401,6 @@ window.QUIZ_QUESTIONS = [
     ],
     "answer": "B",
     "printed": "A",
-    "corrected": true,
     "focus": "must",
     "group": "users",
     "why": "A user referenced by a case assignment rule can be blocked from deactivation until the routing dependency is removed.",
@@ -345,6 +427,15 @@ window.QUIZ_QUESTIONS = [
         "The user is part of an Account team."
       ],
       "answer": "A"
+    },
+    "corrected": true,
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "key-correction",
+      "reason": "A user referenced by a case assignment rule can be blocked from deactivation until the routing dependency is removed.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=000383178&language=en_US&type=1"
+      ]
     }
   },
   {
@@ -364,7 +455,6 @@ window.QUIZ_QUESTIONS = [
     ],
     "answer": "D",
     "printed": "C",
-    "corrected": true,
     "focus": "high",
     "group": "agent-actions",
     "why": "Distinct, descriptive action names using related verbs can help the reasoning engine differentiate similar retrieval actions.",
@@ -391,6 +481,15 @@ window.QUIZ_QUESTIONS = [
         "Use additional related verbs, such as Find, Retrieve, or Identify."
       ],
       "answer": "C"
+    },
+    "corrected": true,
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "key-correction",
+      "reason": "Distinct, descriptive action names using related verbs can help the reasoning engine differentiate similar retrieval actions.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=005134944&language=en_US&type=1"
+      ]
     }
   },
   {
@@ -406,18 +505,20 @@ window.QUIZ_QUESTIONS = [
       "'Use this to update shipping information. It's used for any changes to a customer's address in the system.'",
       "'This action updates the customer's shipping address. It is to be used when a user wants to change their address. Only use this when a customer does not have an active order in the system.'",
       "'This action allows for the changing of a shipping address, and the goal is to make sure the address is current and accurate.'",
-      "This action updates a customer's shipping address. Use it when the user explicitly requests an address change. Validate authorization and the new address before updating the customer record."
+      "'Updates the shipping address for a customer order. The goal of the action is to modify the address on a customer's record. The agent should only use this action when the user explicitly requests to change their address.'"
     ],
     "answer": "D",
     "focus": "high",
     "group": "agent-actions",
-    "why": "D describes the action’s effect and explicitly says when the agent should use it: when the customer requests an address change.",
+    "why": "D gives the clearest invocation condition: use the action when the customer explicitly requests an address change. Its order-versus-customer wording is inconsistent and should be clarified against the actual implementation; do not invent an active-order restriction.",
     "wrong": {
       "A": "The wording is vague and repeats shipping/address changes without a clear invocation condition.",
       "B": "It introduces an active-order restriction that the scenario never specifies.",
       "C": "It describes a general goal without stating the user intent that should trigger execution."
     },
-    "notes": "Good instructions describe purpose, affected records, invocation conditions, and relevant constraints in plain language. Enforce authorization and business restrictions in the underlying action, not merely in conversational instructions.",
+    "notes": [
+      "Good instructions describe purpose, affected records, invocation conditions, and relevant constraints in plain language. Enforce authorization and business restrictions in the underlying action, not merely in conversational instructions."
+    ],
     "source": {
       "stem": [
         "A Platform Administrator is building an agent to help an ecommerce support team. The agent needs to call an action, named updateShippingAddress, that modifies a customer's shipping address in the system.",
@@ -434,7 +535,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "D"
     },
     "printed": "D",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Make the action instructions consistently describe the customer address instead of switching to an order address. Original wording and choices are retained; the source key remains accepted. D gives the clearest invocation condition: use the action when the customer explicitly requests an address change. Its order-versus-customer wording is inconsistent and should be clarified against the actual implementation; do not invent an active-order restriction.",
+      "references": []
+    }
   },
   {
     "id": 12,
@@ -460,7 +566,15 @@ window.QUIZ_QUESTIONS = [
       "C": "A combination chart changes the visualization, not the viewer’s filter controls.",
       "D": "A bucket categorizes report values and is not the requested dashboard-level selector."
     },
-    "notes": "Map each dashboard filter to compatible fields in its source reports. A filter narrows displayed data; it does not grant access to records the running user cannot see."
+    "notes": [
+      "Map each dashboard filter to compatible fields in its source reports. A filter narrows displayed data; it does not grant access to records the running user cannot see."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Dashboard filters let viewers narrow compatible dashboard widgets by case origin, status, or owner.",
+      "references": []
+    }
   },
   {
     "id": 13,
@@ -485,7 +599,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Approval is not reserved for a special queue owner.",
       "D": "Queues are available only for supported objects and processes, not because user approval is unsupported."
     },
-    "notes": "Queue membership distributes the work without creating one mandatory approval per member. Verify object support and queue notification settings; email notifications are not the same as approval authority."
+    "notes": [
+      "Queue membership distributes the work without creating one mandatory approval per member. Verify object support and queue notification settings; email notifications are not the same as approval authority."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "When a supported approval step is assigned to a queue, an eligible queue member can act for that queue.",
+      "references": []
+    }
   },
   {
     "id": 14,
@@ -511,13 +633,20 @@ window.QUIZ_QUESTIONS = [
       "C": "An email action supplies a communication button, not a recurring reminder.",
       "D": "A process email alert does not provide the requested recurring task records."
     },
-    "notes": "Create tasks with owners, due dates, related accounts, and recurrence. Reports and dashboards can summarize completion only when reps record the check-ins consistently."
+    "notes": [
+      "Create tasks with owners, due dates, related accounts, and recurrence. Reports and dashboards can summarize completion only when reps record the check-ins consistently."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Recurring tasks can create a regular Monday reminder for each rep’s account check-in.",
+      "references": []
+    }
   },
   {
     "id": 15,
     "section": "analytics",
     "stem": [
-      "Assume the administrator owns the dashboard and has the required folder-management permissions.",
       "A Platform Administrator at Cloud Kicks needs to temporarily remove one dashboard from a shared folder with several dashboards to make some required changes.",
       {
         "ask": "How should the administrator achieve this?"
@@ -538,7 +667,9 @@ window.QUIZ_QUESTIONS = [
       "C": "Dashboard folder sharing is not removed by changing an unrelated permission-set assignment.",
       "D": "A private group does not make a dashboard private unless the relevant folder sharing is changed."
     },
-    "notes": "Folder permissions control access to saved reports and dashboards. Moving a dashboard does not change the record-level permissions behind its source data.",
+    "notes": [
+      "Folder permissions control access to saved reports and dashboards. Moving a dashboard does not change the record-level permissions behind its source data."
+    ],
     "source": {
       "stem": [
         "A Platform Administrator at Cloud Kicks needs to temporarily remove one dashboard from a shared folder with several dashboards to make some required changes.",
@@ -555,7 +686,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "B"
     },
     "printed": "B",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: State folder-management access and ownership assumptions for moving the dashboard. Original wording and choices are retained; the source key remains accepted. Moving the dashboard to a private folder removes that individual dashboard from the shared folder without affecting its neighbors.",
+      "references": []
+    }
   },
   {
     "id": 16,
@@ -581,7 +717,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Account teams share account responsibilities and do not identify each opportunity’s decision makers.",
       "C": "Generic opportunity fields do not provide the standard multiple-contact role model."
     },
-    "notes": "Use contact roles for customer stakeholders and opportunity teams for internal selling collaborators. The primary-contact flag and role values serve different purposes."
+    "notes": [
+      "Use contact roles for customer stakeholders and opportunity teams for internal selling collaborators. The primary-contact flag and role values serve different purposes."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Opportunity contact roles identify the external people involved in a deal and their roles, including the primary contact.",
+      "references": []
+    }
   },
   {
     "id": 17,
@@ -599,7 +743,7 @@ window.QUIZ_QUESTIONS = [
       "Permissions for the detail record are set independently of the master.",
       "Roll-up summaries are supported in master-detail relationships.",
       "The master object can be a standard or custom object.",
-      "Detail records inherit ownership from their master; they have no independently assignable owner."
+      "The owner field on the detail records is the owner of the master record."
     ],
     "answer": "C,D,E",
     "type": "multi",
@@ -610,7 +754,9 @@ window.QUIZ_QUESTIONS = [
       "A": "A custom object normally supports up to two master-detail relationship fields, not five.",
       "B": "Detail record access is controlled through the master rather than independent sharing ownership."
     },
-    "notes": "Create the relationship field on the detail object. Master deletion normally cascades to details. A standard object can be a master, but cannot be the detail side of a custom master-detail relationship.",
+    "notes": [
+      "Create the relationship field on the detail object. Master deletion normally cascades to details. A standard object can be a master, but cannot be the detail side of a custom master-detail relationship."
+    ],
     "source": {
       "stem": [
         {
@@ -630,7 +776,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "C,D,E"
     },
     "printed": "C,D,E",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Describe inherited detail ownership without implying a separately editable detail Owner field. Original wording and choices are retained; the source key remains accepted. Master-detail supports roll-up summaries, permits standard or custom masters, and makes detail ownership follow the master.",
+      "references": []
+    }
   },
   {
     "id": 18,
@@ -656,7 +807,15 @@ window.QUIZ_QUESTIONS = [
       "B": "A daily digest is a periodic email summary rather than the requested combined in-app feed.",
       "C": "A feed shows updates, but streams explicitly collect several selected feeds."
     },
-    "notes": "A stream does not bypass group membership or record access. Users see only updates they are authorized to access, even when several feeds are combined."
+    "notes": [
+      "A stream does not bypass group membership or record access. Users see only updates they are authorized to access, even when several feeds are combined."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A Chatter stream combines selected feeds so users can follow updates from several groups, records, or people in one place.",
+      "references": []
+    }
   },
   {
     "id": 19,
@@ -682,7 +841,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Apex sharing adds unnecessary development when a declarative sharing rule meets the requirement.",
       "D": "Manual sharing is record-by-record and is harder to maintain for an entire team."
     },
-    "notes": "Start with restrictive organization-wide defaults and open access using the appropriate sharing mechanism. Account sharing can include related-record access; object permissions must still allow reading those objects."
+    "notes": [
+      "Start with restrictive organization-wide defaults and open access using the appropriate sharing mechanism. Account sharing can include related-record access; object permissions must still allow reading those objects."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "An owner-based account sharing rule can share sales-rep accounts with their public group and specify related opportunity access.",
+      "references": []
+    }
   },
   {
     "id": 20,
@@ -708,14 +875,22 @@ window.QUIZ_QUESTIONS = [
       "C": "Big Deal Alerts notify people about threshold conditions rather than guide each stage.",
       "D": "List views organize records but do not show stage-specific guidance on an opportunity."
     },
-    "notes": "Path is configured for an object, record type, and picklist. It guides users; validation rules are still needed when progression or required data must be enforced."
+    "notes": [
+      "Path is configured for an object, record type, and picklist. It guides users; validation rules are still needed when progression or required data must be enforced."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Opportunity Path shows the current stage along with stage-specific key fields and guidance for success.",
+      "references": []
+    }
   },
   {
     "id": 21,
     "section": "automation",
     "stem": [
       {
-        "ask": "In an approval process, which feature allows a user to temporarily assign their approval responsibilities to another user while they are unavailable?"
+        "ask": "In an approval process, which feature allows a user to temporarily assign their approval responsibilities to another user for a predefined time period?"
       }
     ],
     "choices": [
@@ -733,7 +908,9 @@ window.QUIZ_QUESTIONS = [
       "B": "A queue distributes work among members rather than temporarily delegates one user’s responsibility.",
       "D": "A manager is an approver-routing choice, not the delegation setting."
     },
-    "notes": "Wording corrected: the source implies an automatically dated delegation period. A delegated approver is the substitute approver; set and remove that delegation according to the leave period and permit delegation in the approval configuration.",
+    "notes": [
+      "A delegated approver is the substitute approver; set and remove that delegation according to the leave period and permit delegation in the approval configuration."
+    ],
     "printed": "C",
     "source": {
       "stem": [
@@ -749,7 +926,12 @@ window.QUIZ_QUESTIONS = [
       ],
       "answer": "C"
     },
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Wording corrected: the source implies an automatically dated delegation period. A delegated approver is the substitute approver; set and remove that delegation according to the leave period and permit delegation in the approval configuration. Original wording and choices are retained; the source key remains accepted. A delegated approver can handle approval requests for another user when delegation is enabled for the applicable step.",
+      "references": []
+    }
   },
   {
     "id": 22,
@@ -774,7 +956,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Report filters select report data and do not mark recent list-view changes.",
       "D": "Path explains the current stage rather than highlighting recent changes across deals."
     },
-    "notes": "This is a visual productivity feature. It is different from field history tracking, which stores an audit history, and from pipeline forecasting."
+    "notes": [
+      "This is a visual productivity feature. It is different from field history tracking, which stores an audit history, and from pipeline forecasting."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Deal Change Highlights make recent opportunity changes visible in supported opportunity list and Kanban views.",
+      "references": []
+    }
   },
   {
     "id": 23,
@@ -793,7 +983,6 @@ window.QUIZ_QUESTIONS = [
     ],
     "answer": "A",
     "printed": "B",
-    "corrected": true,
     "focus": "high",
     "group": "experience",
     "why": "For an Opportunity, Log a Call is an activity action shown in the Activities component rather than the highlights panel.",
@@ -820,6 +1009,15 @@ window.QUIZ_QUESTIONS = [
         "The custom Log a Call permission has been disabled at the org level in Setup."
       ],
       "answer": "B"
+    },
+    "corrected": true,
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "key-correction",
+      "reason": "For an Opportunity, Log a Call is an activity action shown in the Activities component rather than the highlights panel.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=xcloud.lex_enable_existing_features.htm&language=en_US&type=5"
+      ]
     }
   },
   {
@@ -846,7 +1044,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Field history tracks selected record-field changes, not general configuration changes.",
       "D": "Feed tracking publishes selected record changes to Chatter and is not the setup audit log."
     },
-    "notes": "Distinguish configuration auditing from business-record auditing. Review the audit trail promptly and export it when longer-term retention or investigation is needed."
+    "notes": [
+      "Distinguish configuration auditing from business-record auditing. Review the audit trail promptly and export it when longer-term retention or investigation is needed."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Setup Audit Trail records administrative configuration changes, including which administrator made a change.",
+      "references": []
+    }
   },
   {
     "id": 25,
@@ -872,7 +1078,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Quick Text and email templates supply reusable content but do not perform the full update sequence.",
       "D": "An autolaunched flow can automate work, but macros are the listed tool for a repeatable agent console action sequence."
     },
-    "notes": "Check console support and the actions the macro can use. Macro behavior differs between activity composer configurations; test the workflow in the actual service console."
+    "notes": [
+      "Check console support and the actions the macro can use. Macro behavior differs between activity composer configurations; test the workflow in the actual service console."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Macros can guide and execute repetitive console actions, including supported quick actions used to update cases and send email.",
+      "references": []
+    }
   },
   {
     "id": 26,
@@ -917,7 +1131,15 @@ window.QUIZ_QUESTIONS = [
       ],
       "answer": "D"
     },
-    "printed": "D"
+    "printed": "D",
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Deactivating the agent interrupts ongoing conversations. Subsequent messages receive the system error response; the existing panel can remain open until the user closes it.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=ai.agent_versions_commit.htm&language=en_US&type=5"
+      ]
+    }
   },
   {
     "id": 27,
@@ -942,13 +1164,21 @@ window.QUIZ_QUESTIONS = [
       "B": "Conversion is not limited to open activities.",
       "D": "Campaign membership is associated with the converted contact; it is not copied to every resulting record as stated."
     },
-    "notes": "Review activity access and custom lead-field mappings as part of conversion. Existing-account/contact choices and conversion options affect the resulting records."
+    "notes": [
+      "Review activity access and custom lead-field mappings as part of conversion. Existing-account/contact choices and conversion options affect the resulting records."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Lead conversion associates the lead’s activities with the resulting account, contact, and applicable opportunity records.",
+      "references": []
+    }
   },
   {
     "id": 28,
     "section": "service",
     "stem": [
-      "Universal Containers (UC) customers have provided feedback that their support cases are not being responded to quickly enough. UC wants to send all unclaimed queue-owned cases that have been open for more than 2 hours to an urgent Case queue and alert the support manager.",
+      "Universal Containers (UC) customers have provided feedback that their support cases are not being responded to quickly enough. UC wants to send all unassigned cases that have been open for more than 2 hours to an urgent Case queue and alert the support manager.",
       {
         "ask": "Which feature should a Platform Administrator configure to meet this requirement?"
       }
@@ -968,7 +1198,9 @@ window.QUIZ_QUESTIONS = [
       "B": "Refreshing a dashboard updates a display without routing the underlying cases.",
       "D": "Assignment rules route cases but do not provide the described age-based escalation by themselves."
     },
-    "notes": "Use the case age condition and matching criteria carefully. Assignment answers who should initially own work; escalation answers what should happen if work waits too long.",
+    "notes": [
+      "Use the case age condition and matching criteria carefully. Assignment answers who should initially own work; escalation answers what should happen if work waits too long."
+    ],
     "source": {
       "stem": [
         "Universal Containers (UC) customers have provided feedback that their support cases are not being responded to quickly enough. UC wants to send all unassigned cases that have been open for more than 2 hours to an urgent Case queue and alert the support manager.",
@@ -985,7 +1217,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "C"
     },
     "printed": "C",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Use unclaimed queue-owned cases rather than implying a Case can have no Owner. Original wording and choices are retained; the source key remains accepted. Case escalation rules can identify unassigned cases older than two hours, reassign them, and notify the support manager.",
+      "references": []
+    }
   },
   {
     "id": 29,
@@ -999,7 +1236,7 @@ window.QUIZ_QUESTIONS = [
     "choices": [
       "The username was not configured in the format of an email address.",
       "The email address and username must be unique across all Salesforce orgs.",
-      "The username is already used in another org in the applicable Salesforce production or sandbox username namespace.",
+      "The username must be unique across all Salesforce orgs.",
       "The username has a restricted domain name within it."
     ],
     "answer": "C",
@@ -1011,7 +1248,9 @@ window.QUIZ_QUESTIONS = [
       "B": "User email addresses can be reused; the username is the globally unique login identifier.",
       "D": "A domain restriction is different from the duplicate-username problem."
     },
-    "notes": "A username resembles an email address but need not be the user’s actual email. Production and sandbox username namespaces have their own rules; do not assume one org’s user list is the entire uniqueness check.",
+    "notes": [
+      "A username resembles an email address but need not be the user’s actual email. Production and sandbox username namespaces have their own rules; do not assume one org’s user list is the entire uniqueness check."
+    ],
     "source": {
       "stem": [
         "A Platform Administrator at Cloud Kicks is trying to set up a new user but receives an error about a duplicate username when trying to save the user record.",
@@ -1028,7 +1267,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "C"
     },
     "printed": "C",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Qualify username uniqueness by the applicable production or sandbox namespace. Original wording and choices are retained; the source key remains accepted. A Salesforce username must be globally unique across the applicable Salesforce environment, not just within the current org.",
+      "references": []
+    }
   },
   {
     "id": 30,
@@ -1054,7 +1298,15 @@ window.QUIZ_QUESTIONS = [
       "B": "A filter limits which opportunity rows are included but does not deduplicate accounts.",
       "D": "Grouping organizes rows; Unique Count explicitly provides the distinct-value measure."
     },
-    "notes": "Use an account identifier or appropriate account column to avoid merging different accounts that share a name. Row count and unique account count answer different business questions."
+    "notes": [
+      "Use an account identifier or appropriate account column to avoid merging different accounts that share a name. Row count and unique account count answer different business questions."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Unique Count counts distinct account values so several opportunities for one account do not inflate the account total.",
+      "references": []
+    }
   },
   {
     "id": 31,
@@ -1080,7 +1332,15 @@ window.QUIZ_QUESTIONS = [
       "B": "A screen flow guides a process rather than defines console navigation.",
       "D": "Omni-Channel routes work; it does not create the Lightning console app."
     },
-    "notes": "Use App Manager for app navigation, branding, utility items, and user assignment. Use Lightning App Builder for the pages displayed inside the app."
+    "notes": [
+      "Use App Manager for app navigation, branding, utility items, and user assignment. Use Lightning App Builder for the pages displayed inside the app."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "App Manager creates and configures Lightning apps, including apps that use console navigation.",
+      "references": []
+    }
   },
   {
     "id": 32,
@@ -1106,13 +1366,21 @@ window.QUIZ_QUESTIONS = [
       "C": "Sibling roles do not automatically inherit each other’s records through the hierarchy.",
       "D": "Manual sharing handles individual records and does not scale as a role-to-role policy."
     },
-    "notes": "A shared manager can inherit both teams’ access while the teams remain isolated from each other. Sharing rules open access; they never remove access granted elsewhere."
+    "notes": [
+      "A shared manager can inherit both teams’ access while the teams remain isolated from each other. Sharing rules open access; they never remove access granted elsewhere."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Owner-based sharing can share records owned by users in team A’s role with users in team B’s role.",
+      "references": []
+    }
   },
   {
     "id": 33,
     "section": "security",
     "stem": [
-      "Service reps in a call center do not have assigned desks. They sit at any available desk and use the computer on that desk to access Salesforce. A Platform Administrator has been asked to streamline the login process so the reps do not receive repeated identity-verification challenges when they log in from a different computer on the trusted office network.",
+      "Service reps in a call center do not have assigned desks. They sit at any available desk and use the computer on that desk to access Salesforce. A Platform Administrator has been asked to streamline the login process so the reps do not have to authenticate each time they log in at a different computer.",
       {
         "ask": "Which function should the administrator use to implement this request?"
       }
@@ -1126,13 +1394,16 @@ window.QUIZ_QUESTIONS = [
     "answer": "B",
     "focus": "high",
     "group": "users",
-    "why": "Trusted network IP ranges reduce repeated identity-verification challenges when users connect from the organization’s trusted network.",
+    "why": "B. Trust the call center’s network IP ranges to reduce repeated identity-verification challenges when representatives switch computers.",
     "wrong": {
-      "A": "A different profile does not specifically designate a network as trusted.",
-      "C": "MFA verifies identity and does not itself eliminate verification prompts across computers.",
-      "D": "A generic permission set is not the setting for trusted network ranges."
+      "A": "A profile does not mark the call center network as trusted.",
+      "C": "MFA adds identity assurance; it is not the trusted-network setting requested here.",
+      "D": "A permission set does not configure organization trusted IP ranges."
     },
-    "notes": "Wording corrected: trusted network ranges reduce identity-verification challenges, not normal authentication or required MFA. Profile login IP ranges are a different control that can block access outside an allowed network.",
+    "notes": [
+      "Trusted IP ranges do not remove the need for a normal login or override required MFA. The mock uses authenticate loosely for the extra verification challenge on a new computer.",
+      "Reference: https://help.salesforce.com/s/articleView?id=000386441&language=en_US&type=1"
+    ],
     "printed": "B",
     "source": {
       "stem": [
@@ -1149,7 +1420,30 @@ window.QUIZ_QUESTIONS = [
       ],
       "answer": "B"
     },
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Scoring restored: Trusted IP Ranges is the best listed response to repeated new-computer identity checks in a shared call center. The earlier review treated authenticate as a promise to remove every login factor instead of the verification challenge described by the scenario.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=000386441&language=en_US&type=1"
+      ],
+      "recovery": {
+        "date": "2026-10-17",
+        "status": "resolved",
+        "queries": [
+          "\"do not have assigned desks\" \"verify\" Salesforce"
+        ],
+        "candidates": [],
+        "assessment": "Scoring restored: Trusted IP Ranges is the best listed response to repeated new-computer identity checks in a shared call center. The earlier review treated authenticate as a promise to remove every login factor instead of the verification challenge described by the scenario."
+      },
+      "reassessment": {
+        "date": "2026-10-17",
+        "previousState": "not-scored",
+        "decision": "scoring-restored",
+        "reason": "Scoring restored: Trusted IP Ranges is the best listed response to repeated new-computer identity checks in a shared call center. The earlier review treated authenticate as a promise to remove every login factor instead of the verification challenge described by the scenario."
+      }
+    },
+    "type": "single"
   },
   {
     "id": 34,
@@ -1157,7 +1451,7 @@ window.QUIZ_QUESTIONS = [
     "stem": [
       "A user at Northern Trail Outfitters is having trouble logging in to Salesforce. The user's login history shows that this person has attempted to log in multiple times and has been locked out of the organization.",
       {
-        "ask": "Which two user-record actions are available to help recover access after failed-password lockout? Select available actions, not a mandatory two-step sequence."
+        "ask": "Which two steps should a Platform Administrator take to help the user log in to Salesforce?"
       },
       {
         "ask": "Choose 2 answers"
@@ -1178,7 +1472,9 @@ window.QUIZ_QUESTIONS = [
       "A": "An administrator cannot solve the lockout by first logging in as the locked-out user.",
       "D": "Weakening organization-wide password policy is unnecessary and affects unrelated users."
     },
-    "notes": "Check Login History before choosing a fix. Locked-out, frozen, inactive, expired-password, and IP-restricted users require different remedies. An unlock does not change the password.",
+    "notes": [
+      "Check Login History before choosing a fix. Locked-out, frozen, inactive, expired-password, and IP-restricted users require different remedies. An unlock does not change the password."
+    ],
     "source": {
       "stem": [
         "A user at Northern Trail Outfitters is having trouble logging in to Salesforce. The user's login history shows that this person has attempted to log in multiple times and has been locked out of the organization.",
@@ -1198,13 +1494,18 @@ window.QUIZ_QUESTIONS = [
       "answer": "B,C"
     },
     "printed": "B,C",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Ask for available recovery actions rather than suggesting both unlock and password reset are always necessary. Original wording and choices are retained; the source key remains accepted. The User record offers Unlock and Reset Password. Either may be appropriate; a password reset can also unlock a user, so both are not necessarily required.",
+      "references": []
+    }
   },
   {
     "id": 35,
     "section": "experience",
     "stem": [
-      "Ursa Major Solar wants mobile users to see Top Opportunities in a Pinned Report card on their mobile landing experience. Users can be guided through choosing the report.",
+      "Ursa Major Solar wants to roll out the Salesforce mobile app, and the first information it wants its users to see is the Top Opportunities report.",
       {
         "ask": "What should a Platform Administrator configure to achieve this?"
       }
@@ -1212,13 +1513,13 @@ window.QUIZ_QUESTIONS = [
     "choices": [
       "Add the Reports tab to the Salesforce mobile app.",
       "Enable Today for the Salesforce mobile app.",
-      "Enable Mobile Home and have users select Top Opportunities in its Pinned Report card.",
+      "Enable Mobile Home for the Salesforce mobile app.",
       "Add the Dashboards tab to the Salesforce mobile app."
     ],
     "answer": "C",
     "focus": "high",
     "group": "experience",
-    "why": "Mobile Home can present a pinned report so the user can see the chosen report from their mobile landing experience.",
+    "why": "Mobile Home supports a Pinned Report card for the Top Opportunities report. Enabling it is the listed starting point; the report must also be pinned and the mobile navigation configured.",
     "wrong": {
       "A": "Adding Reports makes reports available in navigation but does not create the personalized report card.",
       "B": "Today is not the Mobile Home pinned-report configuration.",
@@ -1244,7 +1545,14 @@ window.QUIZ_QUESTIONS = [
       "answer": "C"
     },
     "printed": "C",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Explain that Mobile Home must be enabled and the report pinned; enabling it alone does not choose a report. Original wording and choices are retained; the source key remains accepted. Mobile Home supports a Pinned Report card for the Top Opportunities report. Enabling it is the listed starting point; the report must also be pinned and the mobile navigation configured.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=sf.salesforce_app_mobile_home.htm&language=en_US&type=5"
+      ]
+    }
   },
   {
     "id": 36,
@@ -1270,13 +1578,21 @@ window.QUIZ_QUESTIONS = [
       "B": "A dashboard displays pipeline metrics but is not the interactive record board.",
       "D": "A normal list view provides rows; switching it to Kanban provides the requested board behavior."
     },
-    "notes": "Kanban changes still respect permissions, required fields, and validation rules. Users cannot bypass stage restrictions simply by dragging a card."
+    "notes": [
+      "Kanban changes still respect permissions, required fields, and validation rules. Users cannot bypass stage restrictions simply by dragging a card."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Kanban displays opportunities as cards grouped by stage and supports moving eligible records between columns.",
+      "references": []
+    }
   },
   {
     "id": 37,
     "section": "automation",
     "stem": [
-      "Northern Trail Outfitters (NTO) wants to ensure new Contacts are validated before they can be saved. If a user selects that the LeadSource picklist value is Other, NTO also wants users to populate a custom text field called Source__c.",
+      "Northern Trail Outfitters (NTO) wants to ensure new Contacts are validated before they can be saved. If a user selects that the LeadSource picklist value is Other, NTO also wants to populate a custom text field called Source__c.",
       {
         "ask": "Which validation rule should a Platform Administrator configure to meet this requirement?"
       }
@@ -1298,13 +1614,15 @@ window.QUIZ_QUESTIONS = [
     "answer": "C",
     "focus": "must",
     "group": "validation",
-    "why": "ISPICKVAL tests a picklist value and ISBLANK tests the text field; AND blocks a save only when both conditions are true.",
+    "why": "C rejects the save when LeadSource is Other and Source__c is blank. It requires the user to populate Source__c; a validation rule cannot fill the field automatically.",
     "wrong": {
       "A": "Comparing a picklist directly to a string is not the supported formula pattern.",
       "B": "The negated conditions do not express “Other selected and Source__c blank.”",
       "D": "The negations invert the requirement, and the parentheses shown are invalid."
     },
-    "notes": "Wording corrected: the validation rule requires users to enter Source__c; it does not automatically populate that field. The invalid state is LeadSource = Other and Source__c blank.",
+    "notes": [
+      "The validation rule requires users to enter Source__c; it does not automatically populate that field. The invalid state is LeadSource = Other and Source__c blank."
+    ],
     "printed": "C",
     "source": {
       "stem": [
@@ -1329,7 +1647,12 @@ window.QUIZ_QUESTIONS = [
       ],
       "answer": "C"
     },
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Wording corrected: the validation rule requires users to enter Source__c; it does not automatically populate that field. The invalid state is LeadSource = Other and Source__c blank. Original wording and choices are retained; the source key remains accepted. C rejects the save when LeadSource is Other and Source__c is blank. It requires the user to populate Source__c; a validation rule cannot fill the field automatically.",
+      "references": []
+    }
   },
   {
     "id": 38,
@@ -1355,7 +1678,15 @@ window.QUIZ_QUESTIONS = [
       "B": "A broad setup search is not the specific license inventory page.",
       "D": "User Management Settings controls behavior, not the purchased-license totals."
     },
-    "notes": "Separate user licenses, feature licenses, and permission-set licenses. A permission set grants supported permissions but cannot supply capabilities excluded by the user’s license."
+    "notes": [
+      "Separate user licenses, feature licenses, and permission-set licenses. A permission set grants supported permissions but cannot supply capabilities excluded by the user’s license."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Company Information shows purchased and available user licenses in the User Licenses related list.",
+      "references": []
+    }
   },
   {
     "id": 39,
@@ -1381,13 +1712,20 @@ window.QUIZ_QUESTIONS = [
       "C": "Big Deal Alerts apply to large-deal thresholds, not routine update cadence.",
       "D": "Scheduled reports distribute information and do not provide the same purpose-built update reminder workflow."
     },
-    "notes": "This is a feature-specific legacy-style question. In a live org, also consider current sales-productivity capabilities and flow-based reminders; verify availability in that edition and interface."
+    "notes": [
+      "This is a feature-specific legacy-style question. In a live org, also consider current sales-productivity capabilities and flow-based reminders; verify availability in that edition and interface."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Opportunity Update Reminders are the listed sales-management feature for prompting regular opportunity updates.",
+      "references": []
+    }
   },
   {
     "id": 40,
     "section": "service",
     "stem": [
-      "Assume the existing profiles already provide the app/object permissions, and the purchased support entitlement is assigned through the Service Cloud User checkbox.",
       "Cloud Kicks has been seeing exponential growth and will be hiring an additional 10 sales reps and 15 support reps to its teams. The support team will need access to the Service Console to manage cases. A Platform Administrator will be assigning the users to existing custom sales and support profiles.",
       {
         "ask": "How should the administrator ensure the support reps have the appropriate access to the console?"
@@ -1428,7 +1766,14 @@ window.QUIZ_QUESTIONS = [
       "answer": "A"
     },
     "printed": "A",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Retain the feature-license answer while avoiding an absolute claim that Platform licenses can never have console add-ons. Original wording and choices are retained; the source key remains accepted. The Service Cloud User feature license is the listed user-level entitlement relevant to the service-console scenario.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=service.console2_assign_service_feature_license.htm&language=en_US"
+      ]
+    }
   },
   {
     "id": 41,
@@ -1457,33 +1802,43 @@ window.QUIZ_QUESTIONS = [
       "B": "An email alert sends email rather than a structured outbound integration message.",
       "C": "A quick action starts an interaction but does not implement the approval chain or outbound integration by itself."
     },
-    "notes": "Classic outbound messages use a defined SOAP payload and delivery mechanism; they are not arbitrary REST callouts. Modern implementations can combine Flow, approvals, and supported integration actions."
+    "notes": [
+      "Classic outbound messages use a defined SOAP payload and delivery mechanism; they are not arbitrary REST callouts. Modern implementations can combine Flow, approvals, and supported integration actions."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "An approval process supplies the human review and an outbound message can send the approved record information to an external endpoint.",
+      "references": []
+    }
   },
   {
     "id": 42,
     "section": "agentforce",
     "stem": [
-      "Customer data is fragmented across systems. The proposed Agentforce design explicitly requires a unified customer profile for grounding.",
+      "A Platform Administrator needs to enable Agentforce for the service team.",
       {
-        "ask": "Which listed platform should the administrator configure to unify those customer data sources?"
+        "ask": "What is the most critical prerequisite for ensuring the Service Agents have a complete and accurate view of their customers?"
       }
     ],
     "choices": [
       "Activate Email-to-Case for the agent.",
       "Configure a new Service Console layout.",
-      "Data Cloud (Data 360)",
+      "Verify Data Cloud is implemented.",
       "Create new user profiles for the agent."
     ],
     "answer": "C",
     "focus": "high",
     "group": "agent-trust",
-    "why": "Of the listed choices, Data Cloud addresses unified customer data and grounding for a complete customer view.",
+    "why": "Data Cloud is the listed feature relevant to unifying customer information for grounding. Its implementation is not a universal Agentforce activation prerequisite; the applicable data sources and feature requirements still matter.",
     "wrong": {
       "A": "Email-to-Case creates service records but does not unify all customer information.",
       "B": "A console layout arranges the UI rather than integrates customer data.",
       "D": "New profiles alone cannot make fragmented customer data complete or accurate."
     },
-    "notes": "Do not memorize “Data Cloud is mandatory for every Agentforce use case.” Requirements vary by feature and grounding source. This question emphasizes a complete customer data view rather than a universal activation prerequisite.",
+    "notes": [
+      "Data Cloud requirements vary by feature and grounding source. A complete customer data view is distinct from a universal activation prerequisite."
+    ],
     "source": {
       "stem": [
         "A Platform Administrator needs to enable Agentforce for the service team.",
@@ -1500,7 +1855,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "C"
     },
     "printed": "C",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Remove the claim that Data Cloud is a universal Agentforce activation prerequisite. Original wording and choices are retained; the source key remains accepted. Data Cloud is the listed feature relevant to unifying customer information for grounding. Its implementation is not a universal Agentforce activation prerequisite; the applicable data sources and feature requirements still matter.",
+      "references": []
+    }
   },
   {
     "id": 43,
@@ -1526,7 +1886,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Field visibility does not resolve a missing or inactive approval recipient.",
       "D": "Adding a delegate without checking the routing configuration does not fix every inactive-approver error."
     },
-    "notes": "Read the exact approval error and inspect the next step’s routing. Delegated approval is useful only when the configured process permits it and the designated substitute is valid."
+    "notes": [
+      "Read the exact approval error and inspect the next step’s routing. Delegated approval is useful only when the configured process permits it and the designated substitute is valid."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "An inactive or missing next approver can prevent an approval request from advancing to its next step.",
+      "references": []
+    }
   },
   {
     "id": 44,
@@ -1552,7 +1920,15 @@ window.QUIZ_QUESTIONS = [
       "C": "A formula cannot send the notification by itself.",
       "D": "Omni-Channel Supervisor monitors routing and workload but is not the specified timed notification rule."
     },
-    "notes": "Define what “awaiting a response” means in case criteria. A timer alone cannot tell whether a meaningful agent response occurred unless the relevant status or fields are maintained."
+    "notes": [
+      "Define what “awaiting a response” means in case criteria. A timer alone cannot tell whether a meaningful agent response occurred unless the relevant status or fields are maintained."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "An escalation rule can monitor case age and send the manager a notification when the two-hour condition is met.",
+      "references": []
+    }
   },
   {
     "id": 45,
@@ -1578,7 +1954,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Roles govern record visibility, not login hours and IP restrictions.",
       "D": "Permission sets do not define profile login-hour or login-IP restrictions."
     },
-    "notes": "Trusted network IP ranges reduce identity-verification challenges; profile login IP ranges restrict access. Those are different mechanisms with different security effects."
+    "notes": [
+      "Trusted network IP ranges reduce identity-verification challenges; profile login IP ranges restrict access. Those are different mechanisms with different security effects."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Profile login hours and login IP ranges restrict when and from which networks a user can log in.",
+      "references": []
+    }
   },
   {
     "id": 46,
@@ -1603,7 +1987,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Static document generation alone does not require an adaptive agent.",
       "D": "A task with no decisions gains little from an agentic reasoning loop."
     },
-    "notes": "An agent still needs explicit scope, grounded data, permissions, and executable actions. Use deterministic automation for rules that must always produce a fixed outcome."
+    "notes": [
+      "An agent still needs explicit scope, grounded data, permissions, and executable actions. Use deterministic automation for rules that must always produce a fixed outcome."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Agentforce fits multi-step work where the reasoning engine must choose actions and adapt to changing conversational context.",
+      "references": []
+    }
   },
   {
     "id": 47,
@@ -1629,7 +2021,15 @@ window.QUIZ_QUESTIONS = [
       "B": "A Lightning Community alone is a site experience, not the required mortgage process.",
       "C": "Lightning Data enriches data and does not supply the guided process."
     },
-    "notes": "The source uses older AppExchange category names. Evaluate the actual package capabilities, costs, supported edition, and flow dependencies before assuming a template fits the deadline and budget."
+    "notes": [
+      "The source uses older AppExchange category names. Evaluate the actual package capabilities, costs, supported edition, and flow dependencies before assuming a template fits the deadline and budget."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Flow solutions can provide prebuilt process templates or components suited to assembling the guided calculation-and-lead workflow quickly.",
+      "references": []
+    }
   },
   {
     "id": 48,
@@ -1655,7 +2055,15 @@ window.QUIZ_QUESTIONS = [
       "B": "A dashboard visualizes the pipeline rather than provides the same direct record-board edits.",
       "C": "Opening console tabs does not create the requested filtered pipeline view."
     },
-    "notes": "Set Close Date criteria on the list and then switch to Kanban. Record access, stage validation, and field requirements continue to apply."
+    "notes": [
+      "Set Close Date criteria on the list and then switch to Kanban. Record access, stage validation, and field requirements continue to apply."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A filtered Opportunity list view in Kanban offers an interactive view of deals closing in the next ninety days.",
+      "references": []
+    }
   },
   {
     "id": 49,
@@ -1684,7 +2092,15 @@ window.QUIZ_QUESTIONS = [
       "A": "A validation rule checks data but cannot create a missing target field or conversion mapping.",
       "D": "Making the Lead field required does not determine where its value goes on conversion."
     },
-    "notes": "Custom lead-field mappings are separate from page layouts and requiredness. Check compatible field types, lengths, and picklist values so conversion can populate the target successfully."
+    "notes": [
+      "Custom lead-field mappings are separate from page layouts and requiredness. Check compatible field types, lengths, and picklist values so conversion can populate the target successfully."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Create a compatible target custom field on Contact, then map the custom Lead field to it for conversion.",
+      "references": []
+    }
   },
   {
     "id": 50,
@@ -1710,7 +2126,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Separate dashboards do not automatically solve the data-access context problem.",
       "D": "Folder access controls who can open the dashboard, not which opportunity rows its running user can access."
     },
-    "notes": "This intentionally exposes aggregate results using another user’s visibility. Choose that user carefully and review confidential metrics. A dynamic dashboard instead uses each viewer’s own record access."
+    "notes": [
+      "This intentionally exposes aggregate results using another user’s visibility. Choose that user carefully and review confidential metrics. A dynamic dashboard instead uses each viewer’s own record access."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A fixed running user with broad opportunity access can display an aggregate enterprise-wide dashboard without changing viewers’ record sharing.",
+      "references": []
+    }
   },
   {
     "id": 51,
@@ -1736,7 +2160,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Record-type assignment does not directly provide the requested per-component visibility rule.",
       "D": "Sharing governs record access; it does not conditionally place a Lightning component on the page."
     },
-    "notes": "Grant a custom permission through the client-services permission set and filter the component on that permission. Hiding a component is not a substitute for securing sensitive records and fields."
+    "notes": [
+      "Grant a custom permission through the client-services permission set and filter the component on that permission. Hiding a component is not a substitute for securing sensitive records and fields."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Lightning component visibility rules can conditionally show the related list based on supported user criteria such as a custom permission.",
+      "references": []
+    }
   },
   {
     "id": 52,
@@ -1765,7 +2197,15 @@ window.QUIZ_QUESTIONS = [
       "A": "Quotes document commercial proposals; they are not the main revenue forecasting engine.",
       "C": "A list view displays selected opportunities without implementing the forecasting feature."
     },
-    "notes": "Reliable forecasts depend on accurate amounts, close dates, stages, forecast categories, and the forecast hierarchy. Forecast configuration does not repair poor opportunity data automatically."
+    "notes": [
+      "Reliable forecasts depend on accurate amounts, close dates, stages, forecast categories, and the forecast hierarchy. Forecast configuration does not repair poor opportunity data automatically."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Forecasting projects revenue, while opportunity stages supply pipeline progression and forecast-related classification.",
+      "references": []
+    }
   },
   {
     "id": 53,
@@ -1793,7 +2233,15 @@ window.QUIZ_QUESTIONS = [
       "B": "The product ID description omits the stated eighteen-character format.",
       "C": "The descriptions are too vague to guide reliable collection of the required inputs."
     },
-    "notes": "Specify meaning, format, source, and conditional requirements for each input. The action must still validate the ID, allowed reason codes, authorization, and business rules before changing data."
+    "notes": [
+      "Specify meaning, format, source, and conditional requirements for each input. The action must still validate the ID, allowed reason codes, authorization, and business rules before changing data."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "D states the input formats, where productId comes from, and when reasonCode is required, giving the agent actionable input guidance.",
+      "references": []
+    }
   },
   {
     "id": 54,
@@ -1819,7 +2267,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Changing shared profile login hours can affect other users.",
       "D": "Profile IP restrictions target networks and can affect colleagues using the same profile."
     },
-    "notes": "Freeze and deactivate are different. Freezing does not free a user license; deactivation does. Freezing is useful while investigating dependencies that prevent immediate deactivation."
+    "notes": [
+      "Freeze and deactivate are different. Freezing does not free a user license; deactivation does. Freezing is useful while investigating dependencies that prevent immediate deactivation."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Freezing blocks the user from logging in while preserving the active user and license assignment for temporary leave.",
+      "references": []
+    }
   },
   {
     "id": 55,
@@ -1827,7 +2283,7 @@ window.QUIZ_QUESTIONS = [
     "stem": [
       "A Platform Administrator for Cloud Kicks needs to ensure that only the financial records belonging to each individual user are visible on the report in order to meet scope of the data privacy requirements.",
       {
-        "ask": "Which organization-wide sharing baseline should the administrator start with, before auditing hierarchy access, additional sharing, and elevated permissions?"
+        "ask": "How should the administrator achieve this?"
       }
     ],
     "choices": [
@@ -1839,13 +2295,15 @@ window.QUIZ_QUESTIONS = [
     "answer": "B",
     "focus": "high",
     "group": "security",
-    "why": "Private organization-wide defaults provide a restrictive record-access baseline for the financial object.",
+    "why": "Private organization-wide defaults provide the restrictive baseline among these choices. Meeting an absolute owner-only privacy requirement also requires auditing hierarchy, sharing and elevated access.",
     "wrong": {
       "A": "Public Read/Write exposes records broadly and violates the privacy goal.",
       "C": "A report filter can be changed and does not secure the underlying records.",
       "D": "Sharing mechanisms generally grant access; Apex sharing is not a way to subtract existing access."
     },
-    "notes": "Private defaults alone do not guarantee owner-only visibility for every user: hierarchy, sharing, teams, and elevated permissions can still grant access. Audit those paths against the actual privacy requirement.",
+    "notes": [
+      "Private defaults alone do not guarantee owner-only visibility for every user: hierarchy, sharing, teams, and elevated permissions can still grant access. Audit those paths against the actual privacy requirement."
+    ],
     "source": {
       "stem": [
         "A Platform Administrator for Cloud Kicks needs to ensure that only the financial records belonging to each individual user are visible on the report in order to meet scope of the data privacy requirements.",
@@ -1862,7 +2320,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "B"
     },
     "printed": "B",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Ask for the restrictive record-access baseline rather than promising Private sharing alone means owner-only reporting. Original wording and choices are retained; the source key remains accepted. Private organization-wide defaults provide the restrictive baseline among these choices. Meeting an absolute owner-only privacy requirement also requires auditing hierarchy, sharing and elevated access.",
+      "references": []
+    }
   },
   {
     "id": 56,
@@ -1879,7 +2342,7 @@ window.QUIZ_QUESTIONS = [
       "Permissions for the detail record are set independently of the master.",
       "The master object can be a standard or custom object.",
       "Roll-up summaries are supported in master-detail relationships.",
-      "Detail records inherit ownership from their master; they have no independently assignable owner.",
+      "The owner field on the detail records is the owner of the master record.",
       "Each object can have up to five master-detail relationships."
     ],
     "answer": "B,C,D",
@@ -1891,7 +2354,9 @@ window.QUIZ_QUESTIONS = [
       "A": "Detail record access is controlled through its master rather than independent ownership-based sharing.",
       "E": "The normal limit is two master-detail relationship fields on a custom object, not five."
     },
-    "notes": "This repeats Question 17 with the choices reordered. Relearn the relationship behavior rather than memorizing the letters: the correct letters change while the underlying concepts do not.",
+    "notes": [
+      "This repeats Question 17 with the choices reordered. Relearn the relationship behavior rather than memorizing the letters: the correct letters change while the underlying concepts do not."
+    ],
     "source": {
       "stem": [
         {
@@ -1911,7 +2376,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "B,C,D"
     },
     "printed": "B,C,D",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Describe inherited detail ownership without implying a separately editable detail Owner field. Original wording and choices are retained; the source key remains accepted. The three valid characteristics are a standard or custom master, native roll-up summaries, and detail ownership inherited from the master.",
+      "references": []
+    }
   },
   {
     "id": 57,
@@ -1937,7 +2407,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Email-to-Case creates cases; it does not define Gold, Silver, or Bronze support eligibility.",
       "D": "Assignment rules choose owners and do not represent contracted support terms."
     },
-    "notes": "An entitlement represents support eligibility; an entitlement process and milestones measure delivery obligations. Determine whether the entitlement belongs on the account, contact, asset, or service contract for the organization’s design."
+    "notes": [
+      "An entitlement represents support eligibility; an entitlement process and milestones measure delivery obligations. Determine whether the entitlement belongs on the account, contact, asset, or service contract for the organization’s design."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A flow can assign the appropriate entitlement so a customer’s agreed support tier is applied consistently.",
+      "references": []
+    }
   },
   {
     "id": 58,
@@ -1952,7 +2430,7 @@ window.QUIZ_QUESTIONS = [
     ],
     "choices": [
       "Auto updates will be made to Visualforce references to prevent data loss.",
-      "If the conversion causes data loss, list views based on the field can be deleted.",
+      "Any list view based on the custom field is deleted.",
       "There will be no data loss with use of a global value set.",
       "Assignment and escalation rules may be affected."
     ],
@@ -1960,14 +2438,14 @@ window.QUIZ_QUESTIONS = [
     "type": "multi",
     "focus": "familiar",
     "group": "model",
-    "why": "Text-to-Picklist conversion can cause data loss; if data is lost, dependent list views can be deleted and assignment or escalation rules can be affected.",
+    "why": "B and D. If the conversion loses data, affected field-based list views can be deleted and assignment/escalation rules can be affected.",
     "wrong": {
-      "A": "Visualforce references are not universally rewritten automatically during field conversion.",
-      "C": "A global value set is not a guarantee that every conversion and dependent feature is safe."
+      "A": "Salesforce does not automatically rewrite Visualforce references to guarantee a lossless conversion.",
+      "C": "Using a global value set does not guarantee that the conversion preserves all existing values."
     },
     "notes": [
-      "Back up data and inspect field-conversion warnings. The list-view and rule effects are conditional on the conversion and data-loss scenario, not a promise that every conversion deletes all views.",
-      "Salesforce: https://help.salesforce.com/s/articleView?id=platform.notes_on_changing_custom_field_types.htm&language=en_US"
+      "B describes a conditional risk, not a promise that every conversion deletes list views. Salesforce documents the list-view and rule effects when data is lost. Back up and review dependencies before conversion.",
+      "Reference: https://help.salesforce.com/s/articleView?id=platform.notes_on_changing_custom_field_types.htm&language=en_US&type=5"
     ],
     "source": {
       "stem": [
@@ -1987,7 +2465,34 @@ window.QUIZ_QUESTIONS = [
       "answer": "B,D"
     },
     "printed": "B,D",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Scoring restored: B and D identify the documented risks of a Text-to-Picklist conversion that loses data. The question asks for data-loss considerations; the missing if-data-is-lost qualifier belongs in the explanation rather than making both risks unscorable.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=platform.notes_on_changing_custom_field_types.htm&language=en_US",
+        "https://help.salesforce.com/s/articleView?id=platform.notes_on_changing_custom_field_types.htm&language=en_US&type=5",
+        "https://www.freecram.com/discussions/Salesforce/exam-adm-201-topic-4-question-34-discussion-p1149653.html"
+      ],
+      "recovery": {
+        "date": "2026-10-17",
+        "status": "resolved",
+        "queries": [
+          "Salesforce Text Picklist field type list view deleted"
+        ],
+        "candidates": [
+          "https://www.freecram.com/discussions/Salesforce/exam-adm-201-topic-4-question-34-discussion-p1149653.html"
+        ],
+        "assessment": "Scoring restored: B and D identify the documented risks of a Text-to-Picklist conversion that loses data. The question asks for data-loss considerations; the missing if-data-is-lost qualifier belongs in the explanation rather than making both risks unscorable."
+      },
+      "reassessment": {
+        "date": "2026-10-17",
+        "previousState": "not-scored",
+        "decision": "scoring-restored",
+        "reason": "Scoring restored: B and D identify the documented risks of a Text-to-Picklist conversion that loses data. The question asks for data-loss considerations; the missing if-data-is-lost qualifier belongs in the explanation rather than making both risks unscorable."
+      }
+    },
+    "choose": 2
   },
   {
     "id": 59,
@@ -2001,23 +2506,20 @@ window.QUIZ_QUESTIONS = [
       }
     ],
     "choices": [
-      "Individual record field text color",
+      "App header color",
       "Record background color",
       "Loading page logo",
       "Header background color"
     ],
-    "answer": "C,D",
+    "answer": "",
     "type": "multi",
     "focus": "familiar",
     "group": "experience",
-    "why": "The loading-page logo and header background color are supported standard Salesforce mobile branding customizations.",
-    "wrong": {
-      "A": "Per-field text colors on individual record pages are not a standard mobile branding setting.",
-      "B": "Record background color is not the standard mobile branding setting requested."
-    },
+    "why": "Not scored. App header color and Header background color are duplicate/overlapping choices. Together with the loading logo, the source gives no unique Choose 2 pair. Do not invent a new distractor.",
+    "wrong": {},
     "notes": [
-      "Option A corrected: the source offered two overlapping names for header color. Replacing one with an unsupported per-field text-color setting leaves C and D as a clear two-answer question.",
-      "Salesforce: https://help.salesforce.com/s/articleView?id=salesforce_app_customize_branding.htm&language=en_US&type=0"
+      "Salesforce: https://help.salesforce.com/s/articleView?id=salesforce_app_customize_branding.htm&language=en_US&type=0",
+      "Reference: https://help.salesforce.com/s/articleView?id=xcloud.salesforce_app_customize_branding.htm&language=en_US&type=5"
     ],
     "printed": "C,D",
     "source": {
@@ -2037,7 +2539,48 @@ window.QUIZ_QUESTIONS = [
       ],
       "answer": "C,D"
     },
-    "repaired": true
+    "ungraded": true,
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "unresolved",
+      "reason": "App header color and Header background color are duplicate/overlapping choices. Together with the loading logo, the source gives no unique Choose 2 pair. Do not invent a new distractor.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=salesforce_app_customize_branding.htm&language=en_US&type=0",
+        "https://help.salesforce.com/s/articleView?id=xcloud.salesforce_app_customize_branding.htm&language=en_US&type=5",
+        "https://www.p2pexams.com/free-questions/free-salesforce-plat-admn-201-exam-questions-by-howell.pdf",
+        "https://www.freecram.com/discussions/Salesforce/exam-plat-admn-201-topic-6-question-148-discussion-p1254104.html",
+        "https://www.examtopics.com/discussions/salesforce/view/348248-exam-adm-201-topic-2-question-204-discussion/"
+      ],
+      "recovery": {
+        "date": "2026-10-17",
+        "status": "unresolved",
+        "queries": [
+          "Salesforce mobile branding app header color header background color"
+        ],
+        "candidates": [
+          "https://www.p2pexams.com/free-questions/free-salesforce-plat-admn-201-exam-questions-by-howell.pdf",
+          "https://www.freecram.com/discussions/Salesforce/exam-plat-admn-201-topic-6-question-148-discussion-p1254104.html",
+          "https://www.examtopics.com/discussions/salesforce/view/348248-exam-adm-201-topic-2-question-204-discussion/"
+        ],
+        "assessment": "App header color and Header background color are duplicate/overlapping choices. Together with the loading logo, the source gives no unique Choose 2 pair. Do not invent a new distractor."
+      },
+      "reassessment": {
+        "date": "2026-10-17",
+        "previousState": "not-scored",
+        "decision": "still-unresolved",
+        "reason": "App header color and Header background color are duplicate/overlapping choices. Together with the loading logo, the source gives no unique Choose 2 pair. Do not invent a new distractor."
+      },
+      "optionAudit": {
+        "date": "2026-10-17",
+        "status": "variant",
+        "comparedChoiceCount": 4,
+        "assessment": "A same-order FreeCram copy repeats App header color and Header background color. Another published variant uses Popups header color as the distractor instead. That distinct variant is not proof that the DOCX option was truncated, so the original choices are retained.",
+        "references": [
+          "https://www.freecram.com/discussions/Salesforce/exam-plat-admn-201-topic-6-question-148-discussion-p1254104.html",
+          "https://www.examtopics.com/discussions/salesforce/view/348248-exam-adm-201-topic-2-question-204-discussion/"
+        ]
+      }
+    }
   },
   {
     "id": 60,
@@ -2045,7 +2588,7 @@ window.QUIZ_QUESTIONS = [
     "stem": [
       "A sales rep has a list of 300 accounts with contacts that they want to load at one time.",
       {
-        "ask": "Which built-in guided import tool is the simplest fit for these supported Account and Contact records?"
+        "ask": "Which tool should a Platform Administrator utilize to import the records to Salesforce?"
       }
     ],
     "choices": [
@@ -2057,13 +2600,15 @@ window.QUIZ_QUESTIONS = [
     "answer": "B",
     "focus": "high",
     "group": "data",
-    "why": "Data Import Wizard supports a guided import of accounts and contacts and easily accommodates a three-hundred-record file.",
+    "why": "Data Import Wizard is the simplest standard choice for a small supported Account/Contact import. Data Loader and dataloader.io can also import; they are more involved for this straightforward task.",
     "wrong": {
       "A": "Manual entry is slow and unnecessarily error-prone for three hundred accounts and contacts.",
-      "C": "Dataloader.io is not the built-in guided import wizard requested by this scenario.",
-      "D": "Data Loader can perform imports, but the guided wizard is the simpler fit here."
+      "C": "Dataloader.io can import these records, but adds an external-tool workflow for a small supported import.",
+      "D": "Data Loader can import these records; the wizard is the simpler fit for this small file."
     },
-    "notes": "The alternatives are not all incapable of importing. Choose the simplest appropriate supported tool. Check matching rules, field mapping, ownership, and duplicate handling before importing.",
+    "notes": [
+      "The alternatives are not all incapable of importing. Choose the simplest appropriate supported tool. Check matching rules, field mapping, ownership, and duplicate handling before importing."
+    ],
     "source": {
       "stem": [
         "A sales rep has a list of 300 accounts with contacts that they want to load at one time.",
@@ -2080,7 +2625,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "B"
     },
     "printed": "B",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Specify a built-in guided import so other capable tools are not dismissed as incapable. Original wording and choices are retained; the source key remains accepted. Data Import Wizard is the simplest standard choice for a small supported Account/Contact import. Data Loader and dataloader.io can also import; they are more involved for this straightforward task.",
+      "references": []
+    }
   },
   {
     "id": 61,
@@ -2106,13 +2656,20 @@ window.QUIZ_QUESTIONS = [
       "C": "Removing fields permanently does not make the page context-sensitive.",
       "D": "Deleting components is a static simplification, not dynamic visibility."
     },
-    "notes": "Keep essential information visible by default and hide irrelevant components conditionally. Visibility is a presentation rule; use object permissions, sharing, and field-level security for actual data protection."
+    "notes": [
+      "Keep essential information visible by default and hide irrelevant components conditionally. Visibility is a presentation rule; use object permissions, sharing, and field-level security for actual data protection."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Component visibility filters show components only when their configured record, user, or context criteria are met.",
+      "references": []
+    }
   },
   {
     "id": 62,
     "section": "automation",
     "stem": [
-      "Use a classic approval configuration for this record review; Flow Orchestration is outside the chosen design. Assume the criteria can be implemented within the process's step and routing limits.",
       "A Platform Administrator at Cloud Kicks received a request from the head of sales operations to create a process in which opportunities must be validated by specific team leaders based on a mix of criteria. When the administrator analysed the list of criteria, they found that there were 30 potential sets of criteria that would identify the proper person to route the request to.",
       {
         "ask": "How should the administrator fulfill this request?"
@@ -2133,7 +2690,9 @@ window.QUIZ_QUESTIONS = [
       "C": "Flow Orchestration may support complex processes, but the stated approval requirement can use approval criteria and steps.",
       "D": "A screen flow that collects criteria does not by itself define the required approval chain."
     },
-    "notes": "Review classic approval limits and branching requirements before implementing thirty criteria sets. A long list of conditions does not automatically require code or make one particular architecture appropriate for every org.",
+    "notes": [
+      "Review classic approval limits and branching requirements before implementing thirty criteria sets. A long list of conditions does not automatically require code or make one particular architecture appropriate for every org."
+    ],
     "source": {
       "stem": [
         "A Platform Administrator at Cloud Kicks received a request from the head of sales operations to create a process in which opportunities must be validated by specific team leaders based on a mix of criteria. When the administrator analysed the list of criteria, they found that there were 30 potential sets of criteria that would identify the proper person to route the request to.",
@@ -2150,7 +2709,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "B"
     },
     "printed": "B",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Scope the architecture choice to a classic approval process within its supported limits. Original wording and choices are retained; the source key remains accepted. An approval process can use entry and step criteria to select the appropriate approver for different business conditions.",
+      "references": []
+    }
   },
   {
     "id": 63,
@@ -2176,7 +2740,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Business hours are administered centrally rather than separately invented by each rep.",
       "C": "Temporary schedules do not provide a maintainable ongoing configuration for both teams."
     },
-    "notes": "Business hours specify a time zone and working intervals; holidays are configured separately. Associate the correct schedule with the relevant support or entitlement process."
+    "notes": [
+      "Business hours specify a time zone and working intervals; holidays are configured separately. Associate the correct schedule with the relevant support or entitlement process."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Separate business-hours records model support schedules in the appropriate time zones.",
+      "references": []
+    }
   },
   {
     "id": 64,
@@ -2221,7 +2793,15 @@ window.QUIZ_QUESTIONS = [
       ],
       "answer": "C"
     },
-    "printed": "C"
+    "printed": "C",
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Mass Transfer Records provides an administrator workflow for transferring supported account records and related opportunities.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=admin_transfer.htm&language=en_US&type=5"
+      ]
+    }
   },
   {
     "id": 65,
@@ -2247,7 +2827,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Email logs are not the primary diagnostic for field-update logic.",
       "D": "Debug logs can help, but the native Flow Debug tool is the direct first step offered here."
     },
-    "notes": "Use representative input records and an appropriate debug context. Rollback/debug options and execution behavior vary by flow type; an isolated successful run does not prove the invoking process supplies the right inputs."
+    "notes": [
+      "Use representative input records and an appropriate debug context. Rollback/debug options and execution behavior vary by flow type; an isolated successful run does not prove the invoking process supplies the right inputs."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Flow Builder’s Debug tool runs a flow with test inputs and shows the path and variable values that explain the failure.",
+      "references": []
+    }
   },
   {
     "id": 66,
@@ -2273,7 +2861,15 @@ window.QUIZ_QUESTIONS = [
       "C": "A filter includes or excludes rows rather than maps values into groups.",
       "D": "A chart visualizes data after categorization; it does not define the bucket mapping."
     },
-    "notes": "Buckets belong to a report and are useful for ad hoc categories. Use a real field or formula when the classification must drive automation, integrations, or consistent cross-report business rules."
+    "notes": [
+      "Buckets belong to a report and are useful for ad hoc categories. Use a real field or formula when the classification must drive automation, integrations, or consistent cross-report business rules."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A bucket column groups several existing field values into report-specific categories without changing stored records.",
+      "references": []
+    }
   },
   {
     "id": 67,
@@ -2299,7 +2895,15 @@ window.QUIZ_QUESTIONS = [
       "C": "A sales process selects available stages; it does not itself define Path key-field guidance.",
       "D": "Dynamic Forms can conditionally display fields, but Path Key Fields is the direct stage-guidance feature."
     },
-    "notes": "Use key fields for concise stage-specific emphasis and Guidance for Success for instructions. Path does not make a field universally required or prevent users from bypassing guidance."
+    "notes": [
+      "Use key fields for concise stage-specific emphasis and Guidance for Success for instructions. Path does not make a field universally required or prevent users from bypassing guidance."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Path key fields surface the most important fields for the selected opportunity stage.",
+      "references": []
+    }
   },
   {
     "id": 68,
@@ -2327,7 +2931,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Customers are not a type of enhancement package or professional service offered for installation.",
       "C": "A community is not the listed marketplace solution category in this question."
     },
-    "notes": "Assess publisher reputation, security review, installation permissions, support model, and cost. A consultant listing is a service offering; a component listing is deployable functionality."
+    "notes": [
+      "Assess publisher reputation, security review, installation permissions, support model, and cost. A consultant listing is a service offering; a component listing is deployable functionality."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "AppExchange offers reusable components and partner consulting services that can extend an organization’s capabilities.",
+      "references": []
+    }
   },
   {
     "id": 69,
@@ -2353,13 +2965,21 @@ window.QUIZ_QUESTIONS = [
       "B": "Making Stage read-only prevents intended edits rather than allows valid Closed Won transitions.",
       "D": "Reversing the picklist dependency still does not enforce the stated blank-value requirement."
     },
-    "notes": "Write the rule to be true only for an invalid record. Decide whether the rule should apply to all Closed Won edits or only a transition, using ISCHANGED and PRIORVALUE when appropriate."
+    "notes": [
+      "Write the rule to be true only for an invalid record. Decide whether the rule should apply to all Closed Won edits or only a transition, using ISCHANGED and PRIORVALUE when appropriate."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A validation rule can reject Closed Won when Lead Source is blank.",
+      "references": []
+    }
   },
   {
     "id": 70,
     "section": "automation",
     "stem": [
-      "A Platform Administrator at Cloud Kicks has a request from the finance team that all won opportunities over a certain value must be checked for accuracy before the deal can be considered fully closed. The assigned finance team member, as well as the sellers' manager, both must sign off on the deal, with the manager doing so first. Then, the finance team member must sign off, for a total of two required sign-offs per opportunity.",
+      "A Platform Administrator at Cloud Kicks has a request from the finance team that all won opportunities over a certain value must be checked for accuracy before the deal can be considered fully closed. The assigned finance team member, as well as the sellers' manager, both must sign off on the deal, with the manager doing so first. Then, the finance team member must sign off, for a total of up to three sign-offs per opportunity.",
       {
         "ask": "How should the administrator address this request?"
       }
@@ -2373,13 +2993,13 @@ window.QUIZ_QUESTIONS = [
     "answer": "D",
     "focus": "high",
     "group": "approvals",
-    "why": "Ordered approval steps can require the manager’s decision before the finance reviewer’s decision.",
+    "why": "An approval process with ordered steps supports the manager-first, finance-next requirement. The source mentions up to three sign-offs while naming two reviewers; that inconsistency does not change the required approval feature.",
     "wrong": {
       "A": "A screen flow alone does not supply the persistent multi-reviewer approval chain.",
       "B": "A custom component adds development without providing the standard approval engine automatically.",
       "C": "Sending emails does not enforce approval sequence or record the required decisions."
     },
-    "notes": "Wording corrected: the source named a manager and a finance reviewer but also said up to three sign-offs. The repaired question consistently requires those two sequential approvals.",
+    "notes": [],
     "printed": "D",
     "source": {
       "stem": [
@@ -2396,7 +3016,12 @@ window.QUIZ_QUESTIONS = [
       ],
       "answer": "D"
     },
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Wording corrected: the source named a manager and a finance reviewer but also said up to three sign-offs. The repaired question consistently requires those two sequential approvals. Original wording and choices are retained; the source key remains accepted. An approval process with ordered steps supports the manager-first, finance-next requirement. The source mentions up to three sign-offs while naming two reviewers; that inconsistency does not change the required approval feature.",
+      "references": []
+    }
   },
   {
     "id": 71,
@@ -2409,20 +3034,23 @@ window.QUIZ_QUESTIONS = [
     ],
     "choices": [
       "Write the instructions generically to allow the agent maximum flexibility in its reasoning.",
-      "Include a few representative user questions and clear instructions that define the topic's scope.",
+      "Include an extended list of example user questions so the agent can learn from patterns.",
       "Keep instructions as minimal as possible to reduce agent latency.",
       "Add business-specific language rather than plain language."
     ],
-    "answer": "B",
+    "answer": "C",
     "focus": "familiar",
     "group": "agent-prompts",
-    "why": "Representative examples and clear scope help the reasoning engine recognize when the topic applies.",
+    "why": "C. Keep topic instructions focused and concise. This is the closest listed match to Salesforce’s recommendation to start with minimal topic instructions.",
     "wrong": {
-      "A": "Vague generic instructions give the agent too little operational guidance.",
-      "C": "Minimal length alone is not a goal if it removes necessary instructions.",
-      "D": "Unexplained business jargon can make interpretation less reliable."
+      "A": "Instructions should describe the topic’s scope and expected behavior rather than maximize unrestricted reasoning.",
+      "B": "A long example-question list adds unnecessary context; use targeted examples only where appropriate.",
+      "D": "Use clear natural language and explain necessary business terms rather than replacing it with jargon."
     },
-    "notes": "Option B corrected: the source recommended an “extended list,” which could encourage excessive prompt length. Use a few representative examples, explicit boundaries, plain language, and realistic tests.",
+    "notes": [
+      "Minimal means sufficient and focused, not omitting needed guidance. Validate the agent’s behavior and refine instructions; latency is one consideration alongside clarity and reliability.",
+      "Reference: https://developer.salesforce.com/blogs/2025/01/how-to-write-effective-natural-language-instructions-for-agentforce"
+    ],
     "printed": "B",
     "source": {
       "stem": [
@@ -2439,7 +3067,35 @@ window.QUIZ_QUESTIONS = [
       ],
       "answer": "B"
     },
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "key-correction",
+      "reason": "Scoring restored with corrected key C. Minimal, clear topic instructions are supported by Salesforce guidance. The original extended-example-list recommendation is not the best listed practice; the earlier review overlooked C.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=005134944&language=en_US&type=1",
+        "https://www.p2pexams.com/free-questions/salesforce-plat-admn-201-mock-exam-by-crawford.pdf",
+        "https://developer.salesforce.com/blogs/2025/01/how-to-write-effective-natural-language-instructions-for-agentforce"
+      ],
+      "recovery": {
+        "date": "2026-10-17",
+        "status": "resolved",
+        "queries": [
+          "Salesforce topic instructions extended example list"
+        ],
+        "candidates": [
+          "https://www.p2pexams.com/free-questions/salesforce-plat-admn-201-mock-exam-by-crawford.pdf"
+        ],
+        "assessment": "Scoring restored with corrected key C. Minimal, clear topic instructions are supported by Salesforce guidance. The original extended-example-list recommendation is not the best listed practice; the earlier review overlooked C."
+      },
+      "reassessment": {
+        "date": "2026-10-17",
+        "previousState": "not-scored",
+        "decision": "key-corrected",
+        "reason": "Scoring restored with corrected key C. Minimal, clear topic instructions are supported by Salesforce guidance. The original extended-example-list recommendation is not the best listed practice; the earlier review overlooked C."
+      }
+    },
+    "type": "single",
+    "corrected": true
   },
   {
     "id": 72,
@@ -2468,7 +3124,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Sharing sets are an external-user access mechanism, not the standard internal collaborative-sales solution.",
       "D": "Profiles grant object permissions but do not select which privately owned opportunity records a peer can see."
     },
-    "notes": "Object access is required before record sharing helps. The role hierarchy generally opens access upward; use sharing rules or teams for lateral collaboration rather than assuming all role members share all records."
+    "notes": [
+      "Object access is required before record sharing helps. The role hierarchy generally opens access upward; use sharing rules or teams for lateral collaboration rather than assuming all role members share all records."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Sharing rules and the role hierarchy can open record access above a Private organization-wide default.",
+      "references": []
+    }
   },
   {
     "id": 73,
@@ -2494,7 +3158,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Dedicated widgets for every team are less flexible than selecting the team on one dashboard.",
       "D": "Cross filters select report records through related-record conditions rather than act as dashboard team selectors."
     },
-    "notes": "Use the case team field consistently across source reports and map the dashboard filter to compatible report fields. Filters narrow what the running user can already access."
+    "notes": [
+      "Use the case team field consistently across source reports and map the dashboard filter to compatible report fields. Filters narrow what the running user can already access."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Dashboard filters let one dashboard display records for the selected customer-support team.",
+      "references": []
+    }
   },
   {
     "id": 74,
@@ -2520,7 +3192,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Assignment rules perform routing without this case-age escalation mechanism.",
       "D": "Validation rules prevent invalid saves rather than automatically change ownership later."
     },
-    "notes": "This repeats the age-based escalation pattern in Questions 1, 28, 44, and 80. Learn the tool distinction instead of treating each time threshold as a new feature."
+    "notes": [
+      "This repeats the age-based escalation pattern in Questions 1, 28, 44, and 80. Learn the tool distinction instead of treating each time threshold as a new feature."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Escalation rules can reassign a case when its age and criteria meet the seven-day threshold.",
+      "references": []
+    }
   },
   {
     "id": 75,
@@ -2565,7 +3245,15 @@ window.QUIZ_QUESTIONS = [
       ],
       "answer": "B"
     },
-    "printed": "B"
+    "printed": "B",
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Prompt-injection risks are relevant when checking whether source content or instructions attempt to redirect the agent away from its intended task.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=005134880&language=en_US&type=1"
+      ]
+    }
   },
   {
     "id": 76,
@@ -2578,20 +3266,18 @@ window.QUIZ_QUESTIONS = [
     ],
     "choices": [
       "Set the Opportunity Filter for Primary as True.",
-      "Filter on Order Owner using a supported current-user owner filter or owner-is-current-user formula.",
+      "Filter by Opportunity Owner equals $USER.",
       "Set Organization Wide Defaults of Order object to Private.",
       "Save the report in a private folder for the user."
     ],
-    "answer": "B",
+    "answer": "",
     "focus": "high",
     "group": "analytics",
-    "why": "Filtering by the current user’s Order ownership returns their own orders without removing the team’s existing cross-user access.",
-    "wrong": {
-      "A": "A primary-opportunity filter does not identify the current order owner.",
-      "C": "Changing organization-wide defaults would remove desired cross-user visibility rather than just personalize this report.",
-      "D": "A private report folder restricts access to the saved report, not which order rows it returns."
-    },
-    "notes": "Option B corrected: the source filtered Opportunity Owner and assumed a universal $USER report-filter value. Use the report type’s supported current-user ownership scope or a suitable formula comparing order ownership to the current user.",
+    "why": "Not scored. The request concerns Order ownership, but the only owner-filter option explicitly names Opportunity Owner and an unestablished $USER expression. This object mismatch is an answer defect, not a missing implementation detail.",
+    "wrong": {},
+    "notes": [
+      "Use the report type’s supported current-user ownership scope or a suitable formula comparing order ownership to the current user."
+    ],
     "printed": "B",
     "source": {
       "stem": [
@@ -2608,7 +3294,41 @@ window.QUIZ_QUESTIONS = [
       ],
       "answer": "B"
     },
-    "repaired": true
+    "ungraded": true,
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "unresolved",
+      "reason": "The request concerns Order ownership, but the only owner-filter option explicitly names Opportunity Owner and an unestablished $USER expression. This object mismatch is an answer defect, not a missing implementation detail.",
+      "references": [
+        "https://www.actual4test.com/discussions/Salesforce/exam-plat-admn-201-topic-7-question-3-discussion-p1278966.html"
+      ],
+      "recovery": {
+        "date": "2026-10-17",
+        "status": "unresolved",
+        "queries": [
+          "Salesforce Orders owner $USER Opportunity Owner filter"
+        ],
+        "candidates": [
+          "https://www.actual4test.com/discussions/Salesforce/exam-plat-admn-201-topic-7-question-3-discussion-p1278966.html"
+        ],
+        "assessment": "The request concerns Order ownership, but the only owner-filter option explicitly names Opportunity Owner and an unestablished $USER expression. This object mismatch is an answer defect, not a missing implementation detail."
+      },
+      "reassessment": {
+        "date": "2026-10-17",
+        "previousState": "not-scored",
+        "decision": "still-unresolved",
+        "reason": "The request concerns Order ownership, but the only owner-filter option explicitly names Opportunity Owner and an unestablished $USER expression. This object mismatch is an answer defect, not a missing implementation detail."
+      },
+      "optionAudit": {
+        "date": "2026-10-17",
+        "status": "matched",
+        "comparedChoiceCount": 4,
+        "assessment": "The matching Actual4test version repeats all four choices, including Opportunity Owner equals $USER, while the question still asks about orders. No Order-owner report filter option was recovered; the object mismatch is present online too.",
+        "references": [
+          "https://www.actual4test.com/discussions/Salesforce/exam-plat-admn-201-topic-7-question-3-discussion-p1278966.html"
+        ]
+      }
+    }
   },
   {
     "id": 77,
@@ -2635,7 +3355,7 @@ window.QUIZ_QUESTIONS = [
       "C": "A visibility rule can reduce component load but is not itself an analysis tool."
     },
     "notes": [
-      "Option D corrected: the source called the tool “Lightning App Builder Analytics.” The actual command is Analyze, providing Performance Analysis for the record page.",
+      "The Analyze command provides Performance Analysis for the record page.",
       "Salesforce: https://help.salesforce.com/s/articleView?id=platform.lightning_page_performance.htm&language=en_US&type=5"
     ],
     "printed": "D",
@@ -2654,7 +3374,25 @@ window.QUIZ_QUESTIONS = [
       ],
       "answer": "D"
     },
-    "repaired": true
+    "repaired": true,
+    "repair": "Correct only the misnamed Lightning App Builder Analytics label to Performance Analysis (Analyze) in Lightning App Builder; retain the original scenario, other choices and D key.",
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "minimal-repair",
+      "reason": "Correct only the misnamed Lightning App Builder Analytics label to Performance Analysis (Analyze) in Lightning App Builder; retain the original scenario, other choices and D key.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=platform.lightning_page_performance.htm&language=en_US&type=5"
+      ],
+      "reassessment": {
+        "date": "2026-10-17",
+        "previousState": "repaired",
+        "decision": "retained",
+        "reason": "The Analyze feature-name repair preserves the page-performance diagnosis; D remains the direct cause-analysis tool."
+      }
+    },
+    "repairNotes": [
+      "Reference: https://help.salesforce.com/s/articleView?id=platform.lightning_page_performance.htm&language=en_US&type=5"
+    ]
   },
   {
     "id": 78,
@@ -2679,7 +3417,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Specialized abbreviations require context and can introduce ambiguity.",
       "C": "High-level theory does not define the concrete troubleshooting output requested."
     },
-    "notes": "Specify the audience, task, relevant context, safety boundaries, and expected output format. Test realistic inputs; plain wording does not eliminate the need for grounded, accurate technical content."
+    "notes": [
+      "Specify the audience, task, relevant context, safety boundaries, and expected output format. Test realistic inputs; plain wording does not eliminate the need for grounded, accurate technical content."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Clear, concise natural-language instructions help an agent produce the requested step-by-step troubleshooting response.",
+      "references": []
+    }
   },
   {
     "id": 79,
@@ -2705,7 +3451,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Existing values are not automatically deleted in an Auto Number-to-Text conversion.",
       "D": "The existing values are preserved rather than regenerated into a different numbering scheme."
     },
-    "notes": "After conversion, future values are no longer automatically assigned by that field’s old numbering sequence. Back up data and review dependencies before changing any field type."
+    "notes": [
+      "After conversion, future values are no longer automatically assigned by that field’s old numbering sequence. Back up data and review dependencies before changing any field type."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Converting an Auto Number field to Text preserves existing field values.",
+      "references": []
+    }
   },
   {
     "id": 80,
@@ -2731,7 +3485,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Omni-Channel distributes available work based on routing configuration rather than this age rule alone.",
       "C": "Auto-response rules acknowledge customers without performing delayed ownership escalation."
     },
-    "notes": "This is another version of the escalation-versus-assignment pattern. Business hours determine how elapsed escalation time is interpreted when configured."
+    "notes": [
+      "This is another version of the escalation-versus-assignment pattern. Business hours determine how elapsed escalation time is interpreted when configured."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Escalation rules can move aged cases to a Tier 2 owner or queue.",
+      "references": []
+    }
   },
   {
     "id": 81,
@@ -2757,13 +3519,21 @@ window.QUIZ_QUESTIONS = [
       "C": "An autolaunched no-trigger flow needs another caller or scheduling mechanism.",
       "D": "“Automation event triggered flow” is not the schedule-triggered type required here."
     },
-    "notes": "Choose trigger type from what initiates the work. A scheduled flow still needs the correct query scope and aggregation/update design; scheduling alone does not calculate related-case totals."
+    "notes": [
+      "Choose trigger type from what initiates the work. A scheduled flow still needs the correct query scope and aggregation/update design; scheduling alone does not calculate related-case totals."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A schedule-triggered flow can run at a specified recurring time, including once a week.",
+      "references": []
+    }
   },
   {
     "id": 82,
     "section": "automation",
     "stem": [
-      "Marketing users at Cloud Kicks have been completing the Lead Source field inconsistently, with values like Web, Website, and Online. To ensure data quality, a Platform Administrator needs to standardize these records. The cleanup must scan existing records unattended on a nightly schedule.",
+      "Marketing users at Cloud Kicks have been completing the Lead Source field inconsistently, with values like Web, Website, and Online. To ensure data quality, a Platform Administrator needs to standardize these records.",
       {
         "ask": "Which Flow should the administrator use to clean up these inconsistent Lead Source values?"
       }
@@ -2783,7 +3553,9 @@ window.QUIZ_QUESTIONS = [
       "B": "A record-triggered flow only helps existing inconsistent records when a qualifying record event occurs.",
       "D": "A screen flow requires user interaction rather than unattended bulk cleanup."
     },
-    "notes": "For a one-time cleanup, an appropriate data-update tool may also be simpler. Prevent recurrence with controlled field values, validation, or well-designed before-save normalization.",
+    "notes": [
+      "For a one-time cleanup, an appropriate data-update tool may also be simpler. Prevent recurrence with controlled field values, validation, or well-designed before-save normalization."
+    ],
     "source": {
       "stem": [
         "Marketing users at Cloud Kicks have been completing the Lead Source field inconsistently, with values like Web, Website, and Online. To ensure data quality, a Platform Administrator needs to standardize these records.",
@@ -2800,7 +3572,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "C"
     },
     "printed": "C",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Make the scheduled, unattended existing-record cleanup requirement explicit. Original wording and choices are retained; the source key remains accepted. A schedule-triggered flow can clean existing records in batches without waiting for each record to be edited.",
+      "references": []
+    }
   },
   {
     "id": 83,
@@ -2826,7 +3603,15 @@ window.QUIZ_QUESTIONS = [
       "C": "A public group is visible and does not meet the confidentiality requirement.",
       "D": "Private Chatter Channel is not the standard group visibility type offered here."
     },
-    "notes": "Distinguish discoverability from access to posts. Group confidentiality does not replace record sharing and field-level security for records discussed or linked in the group."
+    "notes": [
+      "Distinguish discoverability from access to posts. Group confidentiality does not replace record sharing and field-level security for records discussed or linked in the group."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "An unlisted Chatter group hides the group’s existence and content from non-members, subject to administrator capabilities.",
+      "references": []
+    }
   },
   {
     "id": 84,
@@ -2852,7 +3637,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Adding a related list displays supported relationships but does not enable the capability.",
       "D": "Task permissions cannot replace the custom object’s Allow Activities setting."
     },
-    "notes": "An activity-enabled object can be selected in supported activity relationships. Users also need the appropriate activity and target-record permissions and a suitable page layout to see the related information."
+    "notes": [
+      "An activity-enabled object can be selected in supported activity relationships. Users also need the appropriate activity and target-record permissions and a suitable page layout to see the related information."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Enable Allow Activities on the Course custom object so tasks and events can relate to its records.",
+      "references": []
+    }
   },
   {
     "id": 85,
@@ -2878,7 +3671,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Flow Orchestration coordinates stages of work and is unnecessary for this direct related-record update.",
       "D": "A quick action requires a user interaction and does not implement the automatic trigger by itself."
     },
-    "notes": "Detect the transition to Closed Won and avoid updating the triggering record repeatedly. Query only the intended sibling opportunities, consider bulk operations, and review whether automatically losing every other deal is really the approved business rule."
+    "notes": [
+      "Detect the transition to Closed Won and avoid updating the triggering record repeatedly. Query only the intended sibling opportunities, consider bulk operations, and review whether automatically losing every other deal is really the approved business rule."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "An after-save record-triggered flow can find and update other open opportunities on the same account.",
+      "references": []
+    }
   },
   {
     "id": 86,
@@ -2904,7 +3705,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Record types do not have an independent universal field-required setting.",
       "C": "An approval process does not enforce presence on every invoice save."
     },
-    "notes": "Page-layout requiredness applies to that layout. Field-definition requiredness and validation rules enforce broader data-integrity requirements; use them carefully for integration and historical data."
+    "notes": [
+      "Page-layout requiredness applies to that layout. Field-definition requiredness and validation rules enforce broader data-integrity requirements; use them carefully for integration and historical data."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Making the custom field required at the field definition enforces a value across supported entry channels, including imports and APIs.",
+      "references": []
+    }
   },
   {
     "id": 87,
@@ -2930,7 +3739,15 @@ window.QUIZ_QUESTIONS = [
       "B": "A master-detail relationship would normally delete details when the account master is deleted.",
       "D": "Reversing master-detail also models the relationship in the wrong direction."
     },
-    "notes": "Review the lookup’s deletion setting. Choose behavior that permits the shipment to remain when the referenced account is deleted, and ensure the relationship need not stay required."
+    "notes": [
+      "Review the lookup’s deletion setting. Choose behavior that permits the shipment to remain when the referenced account is deleted, and ensure the relationship need not stay required."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A lookup on Shipment pointing to Account associates shipments with accounts without the default cascade-delete dependency of master-detail.",
+      "references": []
+    }
   },
   {
     "id": 88,
@@ -2956,7 +3773,15 @@ window.QUIZ_QUESTIONS = [
       "C": "“Any type of customer inquiry” is broad and does not set a clear invocation condition.",
       "D": "Creating a record does not itself solve the customer’s issue; describing background code adds little guidance."
     },
-    "notes": "Explain when an action should run and what business outcome it produces. Do not promise issue resolution merely because the action creates a case record."
+    "notes": [
+      "Explain when an action should run and what business outcome it produces. Do not promise issue resolution merely because the action creates a case record."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "B clearly states the action’s effect, goal, and customer intent that should cause the agent to create a Case.",
+      "references": []
+    }
   },
   {
     "id": 89,
@@ -2982,7 +3807,15 @@ window.QUIZ_QUESTIONS = [
       "B": "A Home page does not place the guided screen on the case record itself.",
       "D": "A component filter controls visibility rather than supplies the flow-hosting page."
     },
-    "notes": "Activate the flow and assign the Lightning page appropriately. Pass recordId through an input variable when the flow needs the current case; validate user permissions and flow access."
+    "notes": [
+      "Activate the flow and assign the Lightning page appropriately. Pass recordId through an input variable when the flow needs the current case; validate user permissions and flow access."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A Flow component on the case Lightning record page can display and run the screen flow in record context.",
+      "references": []
+    }
   },
   {
     "id": 90,
@@ -3008,7 +3841,15 @@ window.QUIZ_QUESTIONS = [
       "C": "An AppExchange product is unnecessary for the first diagnostic step.",
       "D": "Administrators should never ask users to share their passwords."
     },
-    "notes": "Use the approved Login As capability and reproduce the exact operation. Check validation rules, field permissions, record access, and automation differences rather than assuming the error is only a profile problem."
+    "notes": [
+      "Use the approved Login As capability and reproduce the exact operation. Check validation rules, field permissions, record access, and automation differences rather than assuming the error is only a profile problem."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Login As reproduces the problem under the affected user’s permissions and context.",
+      "references": []
+    }
   },
   {
     "id": 91,
@@ -3034,7 +3875,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Adding a component to a page does not enable Lightning access for a user.",
       "C": "Activating a Lightning page does not replace the user permission."
     },
-    "notes": "A minimum-access profile intentionally grants little. Add only the required permissions through suitable permission sets, and confirm the user’s license supports the intended application features."
+    "notes": [
+      "A minimum-access profile intentionally grants little. Add only the required permissions through suitable permission sets, and confirm the user’s license supports the intended application features."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "The Lightning Experience User permission enables eligible users to access Lightning Experience.",
+      "references": []
+    }
   },
   {
     "id": 92,
@@ -3060,7 +3909,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Activating in production first risks affecting live users and integrations.",
       "D": "Waiting for automatic enforcement forfeits the opportunity to investigate and remediate in advance."
     },
-    "notes": "“Critical Update” is older terminology for release-update management. Review enforcement dates, prerequisites, test runs, and behavior changes for the actual release rather than treating updates as optional indefinitely."
+    "notes": [
+      "“Critical Update” is older terminology for release-update management. Review enforcement dates, prerequisites, test runs, and behavior changes for the actual release rather than treating updates as optional indefinitely."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Test and activate a release update in a sandbox before enabling it in production.",
+      "references": []
+    }
   },
   {
     "id": 93,
@@ -3086,7 +3943,15 @@ window.QUIZ_QUESTIONS = [
       "C": "A screen flow can submit a record but does not replace the process’s qualification rules.",
       "D": "A validation rule controls saves and is not the process entry-criteria setting."
     },
-    "notes": "Process entry criteria and approval-step criteria serve different purposes. Restrict eligible submitters and review automatic submission separately from defining record eligibility."
+    "notes": [
+      "Process entry criteria and approval-step criteria serve different purposes. Restrict eligible submitters and review automatic submission separately from defining record eligibility."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Entry criteria determine which records qualify to enter an approval process.",
+      "references": []
+    }
   },
   {
     "id": 94,
@@ -3094,8 +3959,7 @@ window.QUIZ_QUESTIONS = [
     "stem": [
       {
         "ask": "A sales manager receives a URL to a Dashboard folder containing several dashboards. However, when the sales manager clicks on the URL, a message appears stating, 'We couldn't find the record you're trying to access.' What is the reason for this?"
-      },
-      "Choices C and D overlap: a private folder is one reason folder access is missing. Either single selection is accepted."
+      }
     ],
     "choices": [
       "The sales manager does not have the correct permission set.",
@@ -3113,8 +3977,7 @@ window.QUIZ_QUESTIONS = [
     },
     "notes": [
       "Check folder sharing and report/dashboard permissions independently. Folder access lets a user open the saved artifact; source data visibility depends on the dashboard’s running-user context.",
-      "This error is not a complete diagnosis by itself. Check that the folder still exists, its sharing, and the user's reporting permissions. The printed D remains accepted, so no Corrected badge applies.",
-      "Matching option-set variant: https://www.actual4test.com/discussions/Salesforce/exam-plat-admn-201-topic-5-question-40-discussion-p1240389.html"
+      "This error is not a complete diagnosis by itself. Check that the folder still exists, its sharing, and the user's reporting permissions."
     ],
     "source": {
       "stem": [
@@ -3132,19 +3995,39 @@ window.QUIZ_QUESTIONS = [
     },
     "printed": "D",
     "acceptAny": true,
-    "repaired": true
+    "type": "single",
+    "choose": 1,
+    "repaired": true,
+    "repair": "A private dashboard folder and missing folder View access overlap as explanations. Accept either one; preserve the original question and all choices rather than adding an answer-revealing note to the stem.",
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "accepted-alternatives",
+      "reason": "A private dashboard folder and missing folder View access overlap as explanations. Accept either one; preserve the original question and all choices rather than adding an answer-revealing note to the stem.",
+      "references": [
+        "https://www.actual4test.com/discussions/Salesforce/exam-plat-admn-201-topic-5-question-40-discussion-p1240389.html"
+      ],
+      "reassessment": {
+        "date": "2026-10-17",
+        "previousState": "repaired",
+        "decision": "retained",
+        "reason": "Private folder and missing View access remain overlapping valid single-choice causes; accepting C or D avoids penalizing the duplicate meanings."
+      }
+    },
+    "repairNotes": [
+      "Reference: https://www.actual4test.com/discussions/Salesforce/exam-plat-admn-201-topic-5-question-40-discussion-p1240389.html"
+    ]
   },
   {
     "id": 95,
     "section": "automation",
     "stem": [
-      "A configured record-triggered flow is expected to create records in production, but none appear. Its trigger and intended entry conditions have already been defined.",
+      "A Platform Administrator at Cloud Kicks has a flow in production that is supposed to create new records. However, no new records are being created.",
       {
-        "ask": "Which basic flow-version state should the administrator check before debugging the execution logic?"
+        "ask": "What is causing the issue?"
       }
     ],
     "choices": [
-      "Confirm that the intended flow version is active.",
+      "The flow is inactive.",
       "The flow URL is deactivated.",
       "The flow is Read Only.",
       "The flow trigger is missing."
@@ -3152,13 +4035,16 @@ window.QUIZ_QUESTIONS = [
     "answer": "A",
     "focus": "high",
     "group": "flows",
-    "why": "A defined record-triggered flow must have the intended active version before it runs automatically for qualifying events. This is an initial check, not proof of the incident's cause.",
+    "why": "A. An inactive flow is the best listed reason a deployed automation is not creating the expected records. Verify and activate the intended production version.",
     "wrong": {
-      "B": "A flow URL is a launch mechanism for certain flows, not a universal active/inactive switch.",
-      "C": "Read Only is not the relevant activation state for a flow.",
-      "D": "Some flows are called by another process, so lacking a native trigger does not universally prevent execution."
+      "B": "A deactivated flow URL is not a general production flow status or the activation setting.",
+      "C": "Read Only is not a flow activation state.",
+      "D": "Flows have different launch mechanisms; missing a generic flow trigger is not the standard deployment/activation diagnosis offered in A."
     },
-    "notes": "Activation is an important first check, not proof of the cause in every incident. Then inspect entry conditions, caller configuration, input values, fault paths, and execution logs.",
+    "notes": [
+      "The symptom alone is not a complete production diagnosis. After confirming activation, check the launch mechanism, entry criteria, permissions and fault logs. Those checks do not make A an invalid mock answer.",
+      "Reference: https://help.salesforce.com/s/articleView?id=ls_activate_flow.htm&language=en_US&type=5"
+    ],
     "source": {
       "stem": [
         "A Platform Administrator at Cloud Kicks has a flow in production that is supposed to create new records. However, no new records are being created.",
@@ -3175,13 +4061,39 @@ window.QUIZ_QUESTIONS = [
       "answer": "A"
     },
     "printed": "A",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Scoring restored: checking whether the deployed flow is inactive is the best listed diagnosis. The earlier review demanded proof that excluded every possible runtime cause, which this knowledge question does not require.",
+      "references": [
+        "https://www.freecram.net/question/Salesforce.ADM-201.v2023-11-02.q102/an-administrator-at-cloud-kicks-has-a-flow-in-production-that-is-supposed-to-create-new-records-however",
+        "https://help.salesforce.com/s/articleView?id=ls_activate_flow.htm&language=en_US&type=5"
+      ],
+      "recovery": {
+        "date": "2026-10-17",
+        "status": "resolved",
+        "queries": [
+          "\"flow in production\" \"no new records are being created\""
+        ],
+        "candidates": [
+          "https://www.freecram.net/question/Salesforce.ADM-201.v2023-11-02.q102/an-administrator-at-cloud-kicks-has-a-flow-in-production-that-is-supposed-to-create-new-records-however"
+        ],
+        "assessment": "Scoring restored: checking whether the deployed flow is inactive is the best listed diagnosis. The earlier review demanded proof that excluded every possible runtime cause, which this knowledge question does not require."
+      },
+      "reassessment": {
+        "date": "2026-10-17",
+        "previousState": "not-scored",
+        "decision": "scoring-restored",
+        "reason": "Scoring restored: checking whether the deployed flow is inactive is the best listed diagnosis. The earlier review demanded proof that excluded every possible runtime cause, which this knowledge question does not require."
+      }
+    },
+    "type": "single"
   },
   {
     "id": 96,
     "section": "data",
     "stem": [
-      "Sales and marketing need different picklist choices on their assigned data-entry layouts. This presentation requirement permits either a shared field with record types or separate fields on separate layouts; it does not require one common stored field.",
+      "Cloud Kicks needs to be able to show different picklist values for sales and marketing users.",
       {
         "ask": "Which two options meet this requirement?"
       },
@@ -3204,7 +4116,9 @@ window.QUIZ_QUESTIONS = [
       "A": "Permission sets alone do not define record-type-specific picklist values.",
       "B": "Two profiles using the same record type and same picklist do not by themselves create different allowed value sets."
     },
-    "notes": "C is the conventional single-field design. D uses two different fields, so it is a workaround rather than per-user value filtering on one field; page-layout field visibility is not field-level security.",
+    "notes": [
+      "C is the conventional single-field design. D uses two different fields, so it is a workaround rather than per-user value filtering on one field; page-layout field visibility is not field-level security."
+    ],
     "source": {
       "stem": [
         "Cloud Kicks needs to be able to show different picklist values for sales and marketing users.",
@@ -3224,7 +4138,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "C,D"
     },
     "printed": "C,D",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Explicitly permit the two-field UI workaround so the two selected configurations match the requirement. Original wording and choices are retained; the source key remains accepted. Separate record types can expose different allowed values for one picklist; separate picklist fields on separate layouts can also present different sets.",
+      "references": []
+    }
   },
   {
     "id": 97,
@@ -3249,13 +4168,21 @@ window.QUIZ_QUESTIONS = [
       "B": "“All marketing content” is an overbroad claim and ignores controls and review.",
       "C": "A basic web bot does not capture the sales-specific qualification capability."
     },
-    "notes": "Define lead qualification criteria, permitted communication channels, opt-out handling, and handoff conditions. An agent’s sales role does not imply authority to negotiate and close every deal autonomously."
+    "notes": [
+      "Define lead qualification criteria, permitted communication channels, opt-out handling, and handoff conditions. An agent’s sales role does not imply authority to negotiate and close every deal autonomously."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Automated lead qualification is an Agentforce sales use case, using approved interactions and business criteria.",
+      "references": []
+    }
   },
   {
     "id": 98,
     "section": "sales",
     "stem": [
-      "Sales reps miss key data during Opportunity entry. The administrator wants universally required UI fields, stage-specific guidance, and a save-time rule preventing unauthorized moves to a previous stage.",
+      "Sales reps miss key fields when filling out an opportunity record through the sales process. Reps need to move forward in stages but are unable to enter a previous stage.",
       {
         "ask": "Which three options should a Platform Administrator use to address this need?"
       },
@@ -3274,12 +4201,15 @@ window.QUIZ_QUESTIONS = [
     "type": "multi",
     "focus": "must",
     "group": "validation",
-    "why": "Page-layout requiredness collects the universally required fields in that UI; Path presents stage guidance; validation rules enforce the stated data or backward-transition restrictions. Path alone does not enforce stage order.",
+    "why": "A, C and D. Require key fields in the record-edit UI, use Path for stage guidance, and use validation rules to enforce stage-dependent completeness and permitted stage changes.",
     "wrong": {
-      "B": "Flow does not make a page-layout field required merely by “marking” it; its exact validation or error behavior must be designed.",
-      "E": "Guided selling is not the general standard opportunity stage-enforcement feature requested."
+      "B": "Flow does not mark fields required on the existing Opportunity page layout or Path simply by an assignment; a separate screen-flow design is not the listed configuration.",
+      "E": "Guided selling is not the standard Opportunity field/stage enforcement feature in this scenario."
     },
-    "notes": "Only some of these tools enforce all save channels. Page-layout requiredness is UI-specific, Path guides users, and validation rules enforce data and transition constraints. Account for skipped stages and legitimate manager exceptions.",
+    "notes": [
+      "Path guides users but does not itself enforce forward-only movement. Use validation rules for the actual stage-transition policy. Layout requiredness covers the UI; validation rules provide save-time enforcement.",
+      "Reference: https://help.salesforce.com/s/articleView?id=sales.path_considerations.htm&language=en_US&type=5"
+    ],
     "source": {
       "stem": [
         "Sales reps miss key fields when filling out an opportunity record through the sales process. Reps need to move forward in stages but are unable to enter a previous stage.",
@@ -3300,7 +4230,33 @@ window.QUIZ_QUESTIONS = [
       "answer": "A,C,D"
     },
     "printed": "A,C,D",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Scoring restored: required layout fields, Opportunity Path and validation rules are the three listed controls for field completeness and stage guidance/enforcement. The awkward prior-stage sentence does not invalidate this combination; the previous review required a more complete design than the choices ask for.",
+      "references": [
+        "https://www.p2pexams.com/free-questions/salesforce-tvb-201-dumps-by-lowery-18-01-2024-9qa-dumpshq.pdf",
+        "https://help.salesforce.com/s/articleView?id=sales.path_considerations.htm&language=en_US&type=5"
+      ],
+      "recovery": {
+        "date": "2026-10-17",
+        "status": "resolved",
+        "queries": [
+          "\"Reps need to move forward\" \"previous stage\""
+        ],
+        "candidates": [
+          "https://www.p2pexams.com/free-questions/salesforce-tvb-201-dumps-by-lowery-18-01-2024-9qa-dumpshq.pdf"
+        ],
+        "assessment": "Scoring restored: required layout fields, Opportunity Path and validation rules are the three listed controls for field completeness and stage guidance/enforcement. The awkward prior-stage sentence does not invalidate this combination; the previous review required a more complete design than the choices ask for."
+      },
+      "reassessment": {
+        "date": "2026-10-17",
+        "previousState": "not-scored",
+        "decision": "scoring-restored",
+        "reason": "Scoring restored: required layout fields, Opportunity Path and validation rules are the three listed controls for field completeness and stage guidance/enforcement. The awkward prior-stage sentence does not invalidate this combination; the previous review required a more complete design than the choices ask for."
+      }
+    },
+    "choose": 3
   },
   {
     "id": 99,
@@ -3326,7 +4282,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Downloading a chart creates a file and does not enable feed tracking.",
       "C": "Choosing the dashboard viewer changes data context rather than enables social sharing."
     },
-    "notes": "Review what the shared chart or dashboard post reveals. Sharing an aggregate image is not the same as giving access to the underlying records or dashboard folder."
+    "notes": [
+      "Review what the shared chart or dashboard post reveals. Sharing an aggregate image is not the same as giving access to the underlying records or dashboard folder."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Enabling dashboard feed tracking makes supported dashboard posts and discussion capabilities available in Chatter.",
+      "references": []
+    }
   },
   {
     "id": 100,
@@ -3352,7 +4316,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Testing a template can call the model before an agent is deployed.",
       "D": "The test is not universally a simulated response that never calls the actual model."
     },
-    "notes": "Variation does not by itself indicate a broken template. Ground the prompt, define the output format, evaluate multiple runs, and use deterministic validation when exact business outcomes matter."
+    "notes": [
+      "Variation does not by itself indicate a broken template. Ground the prompt, define the output format, evaluate multiple runs, and use deterministic validation when exact business outcomes matter."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Each test invokes the language model again, so a generative response can vary even when the prompt template is unchanged.",
+      "references": []
+    }
   },
   {
     "id": 101,
@@ -3378,13 +4350,20 @@ window.QUIZ_QUESTIONS = [
       "B": "A single category field alone does not implement distinct layouts.",
       "D": "Campaign hierarchy organizes related campaigns rather than supplies type-specific layouts."
     },
-    "notes": "Use record types for meaningful business-process variations and layouts for the relevant data-entry presentation. Avoid creating record types solely as substitutes for record-level security."
+    "notes": [
+      "Use record types for meaningful business-process variations and layouts for the relevant data-entry presentation. Avoid creating record types solely as substitutes for record-level security."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Campaign record types and page layouts support different marketing initiative types with their own visible fields and picklist options.",
+      "references": []
+    }
   },
   {
     "id": 102,
     "section": "experience",
     "stem": [
-      "The changed layout has already been saved. A sandbox contains its known-good version; the different profile's layout in option A has different content.",
       "Ursa Major Solar's Platform Administrator is editing the page layout for a new custom object. A text area field is accidentally removed from the page layout, and it needs to be restored to the page layout.",
       {
         "ask": "What are two methods for achieving this goal?"
@@ -3403,12 +4382,14 @@ window.QUIZ_QUESTIONS = [
     "type": "multi",
     "focus": "familiar",
     "group": "experience",
-    "why": "The field can be restored by recreating the layout from a known-good sandbox or by dragging it back from the fields palette.",
+    "why": "Dragging the existing field from the fields palette restores it directly. Restoring the layout metadata from a sandbox is the other listed recovery path when that sandbox contains the desired layout.",
     "wrong": {
-      "A": "Cloning an arbitrary different profile’s layout does not guarantee restoration of this layout’s original content.",
+      "A": "A different profile’s layout is not necessarily the desired layout; cloning it can introduce unrelated changes.",
       "C": "The field was removed from a layout, not deleted into the Recycle Bin."
     },
-    "notes": "A layout removal does not erase the field definition or stored values. If the change has not been saved, Undo or Cancel may be simpler; otherwise restore only the affected layout metadata.",
+    "notes": [
+      "A layout removal does not erase the field definition or stored values. If the change has not been saved, Undo or Cancel may be simpler; otherwise restore only the affected layout metadata."
+    ],
     "source": {
       "stem": [
         "Ursa Major Solar's Platform Administrator is editing the page layout for a new custom object. A text area field is accidentally removed from the page layout, and it needs to be restored to the page layout.",
@@ -3428,7 +4409,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "B,D"
     },
     "printed": "B,D",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Specify that the sandbox holds the matching layout, while the other profile layout is different. Original wording and choices are retained; the source key remains accepted. Dragging the existing field from the fields palette restores it directly. Restoring the layout metadata from a sandbox is the other listed recovery path when that sandbox contains the desired layout.",
+      "references": []
+    }
   },
   {
     "id": 103,
@@ -3454,13 +4440,21 @@ window.QUIZ_QUESTIONS = [
       "C": "A new custom field is unnecessary when the standard Subject behavior meets the requirement.",
       "D": "Task and Event have distinct subject choices rather than one combined generic activity picklist."
     },
-    "notes": "Subject can behave as an editable combo-style field rather than a strictly restricted picklist. Distinguish adding suggested subjects from enforcing that users can choose only those subjects."
+    "notes": [
+      "Subject can behave as an editable combo-style field rather than a strictly restricted picklist. Distinguish adding suggested subjects from enforcing that users can choose only those subjects."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Task and Event Subject fields support the predefined subject choices described in the source.",
+      "references": []
+    }
   },
   {
     "id": 104,
     "section": "experience",
     "stem": [
-      "A Platform Administrator creates a custom text field on the Account object and adds it to the service team's page layout. The service team manager loves the addition of this field and wants it to appear in the highlights panel so that the service reps can quickly find it when on the Account page.",
+      "A Platform Administrator creates a custom text area field on the Account object and adds it to the service team's page layout. The service team manager loves the addition of this field and wants it to appear in the highlights panel so that the service reps can quickly find it when on the Account page.",
       {
         "ask": "How should the administrator accomplish this?"
       }
@@ -3471,18 +4465,15 @@ window.QUIZ_QUESTIONS = [
       "Create a new page layout and a new section titled highlights panel.",
       "From the page layout editor, drag the field to the highlights panel."
     ],
-    "answer": "A",
+    "answer": "",
     "focus": "high",
     "group": "experience",
-    "why": "A custom compact layout can place a supported Text field in the record highlights panel.",
-    "wrong": {
-      "B": "Requiredness and position on the full page layout do not select highlights-panel fields.",
-      "C": "A page-layout section named highlights panel does not configure the actual component.",
-      "D": "Dragging a field on the full layout is not compact-layout configuration."
-    },
+    "why": "Not scored. A Text Area field is not supported in the compact-layout highlights panel. No original option removes that restriction; replacing Text Area with Text changes the stated requirement.",
+    "wrong": {},
     "notes": [
-      "Field type corrected: the source asked to place a Text Area field in a compact layout. Text Area, Long Text Area, Rich Text Area, and multi-select picklists are excluded; the repaired question uses a supported Text field.",
-      "Salesforce: https://help.salesforce.com/s/articleView?id=platform.compact_layout_notes.htm&language=en_US&type=5"
+      "Text Area, Long Text Area, Rich Text Area, and multi-select picklists are excluded from compact layouts. Use a supported Text field.",
+      "Salesforce: https://help.salesforce.com/s/articleView?id=platform.compact_layout_notes.htm&language=en_US&type=5",
+      "Reference: https://help.salesforce.com/s/articleView?id=compact_layout_notes.htm&language=en_US&type=5"
     ],
     "printed": "A",
     "source": {
@@ -3500,13 +4491,51 @@ window.QUIZ_QUESTIONS = [
       ],
       "answer": "A"
     },
-    "repaired": true
+    "ungraded": true,
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "unresolved",
+      "reason": "A Text Area field is not supported in the compact-layout highlights panel. No original option removes that restriction; replacing Text Area with Text changes the stated requirement.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=platform.compact_layout_notes.htm&language=en_US&type=5",
+        "https://help.salesforce.com/s/articleView?id=compact_layout_notes.htm&language=en_US&type=5",
+        "https://www.freecram.net/Salesforce.ADM-201.v2022-08-25.q79.pdf",
+        "https://www.p2pexams.com/free-questions/salesforce-plat-admn-201-dumps-by-browning.pdf"
+      ],
+      "recovery": {
+        "date": "2026-10-17",
+        "status": "unresolved",
+        "queries": [
+          "\"custom text area field\" \"highlights panel\"",
+          "Salesforce \"custom text field\" \"service team manager\" \"highlights\""
+        ],
+        "candidates": [
+          "https://www.freecram.net/Salesforce.ADM-201.v2022-08-25.q79.pdf",
+          "https://www.p2pexams.com/free-questions/salesforce-plat-admn-201-dumps-by-browning.pdf"
+        ],
+        "assessment": "A Text Area field is not supported in the compact-layout highlights panel. No original option removes that restriction; replacing Text Area with Text changes the stated requirement."
+      },
+      "reassessment": {
+        "date": "2026-10-17",
+        "previousState": "not-scored",
+        "decision": "still-unresolved",
+        "reason": "A Text Area field is not supported in the compact-layout highlights panel. No original option removes that restriction; replacing Text Area with Text changes the stated requirement."
+      },
+      "optionAudit": {
+        "date": "2026-10-17",
+        "status": "matched",
+        "comparedChoiceCount": 4,
+        "assessment": "Published PDFs contain the same four approaches in different orders, and also explicitly say text area in the stem. No missing choice or ordinary Text-field version was verified. The unsupported field type is not a DOCX-only omission.",
+        "references": [
+          "https://www.p2pexams.com/free-questions/salesforce-plat-admn-201-dumps-by-browning.pdf"
+        ]
+      }
+    }
   },
   {
     "id": 105,
     "section": "agentforce",
     "stem": [
-      "The existing session and its conversation history are successfully saved during the handoff. Authorized reps can find that history separately, but it is absent on their Case record page.",
       "Agentforce is escalating cases to the support team, but the support team complains they have no context and have to ask the customer to repeat everything.",
       {
         "ask": "Which configuration issue is the most likely cause of this issue?"
@@ -3521,13 +4550,15 @@ window.QUIZ_QUESTIONS = [
     "answer": "B",
     "focus": "high",
     "group": "agent-actions",
-    "why": "Because the session history was captured and the reps can access it, check the receiving page's supported conversation/history component and visibility. The stated problem is displaying existing context, not generating it.",
+    "why": "A missing agent-history component on the receiving page is the most plausible listed display issue. In practice also verify that the handoff captured context and that the receiving reps have permission to view it.",
     "wrong": {
-      "A": "The scenario states that these reps already have access to the saved history; the missing view on this page points to its component configuration.",
-      "C": "Instructions do not replace the configured storage and display of conversation history.",
-      "D": "The scenario specifies that the existing session was preserved; it does not describe replacing it with an unrelated new case."
+      "A": "A generic Agentforce User assignment is not by itself the configuration for displaying the transferred conversation on the receiving case page.",
+      "C": "Agent instructions alone do not establish how the receiving page displays saved handoff history.",
+      "D": "Creating a new case can cause context problems if the handoff loses its association, but a new case does not inherently prove that history cannot be displayed."
     },
-    "notes": "In a real handoff, verify both that context is transferred or stored and that the receiving console exposes it with the right permissions. Adding a component cannot recover context that was never captured.",
+    "notes": [
+      "In a real handoff, verify both that context is transferred or stored and that the receiving console exposes it with the right permissions. Adding a component cannot recover context that was never captured."
+    ],
     "source": {
       "stem": [
         "Agentforce is escalating cases to the support team, but the support team complains they have no context and have to ask the customer to repeat everything.",
@@ -3544,7 +4575,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "B"
     },
     "printed": "B",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: State that handoff history was captured; otherwise a missing component is only one possible cause. Original wording and choices are retained; the source key remains accepted. A missing agent-history component on the receiving page is the most plausible listed display issue. In practice also verify that the handoff captured context and that the receiving reps have permission to view it.",
+      "references": []
+    }
   },
   {
     "id": 106,
@@ -3570,7 +4606,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Standard report types are reporting definitions, not the visibility-management tool.",
       "D": "A joined report is a report format rather than the report-type catalog control."
     },
-    "notes": "Hiding a report type simplifies report creation; it is not a replacement for object, field, and record security. Review access to existing saved reports separately."
+    "notes": [
+      "Hiding a report type simplifies report creation; it is not a replacement for object, field, and record security. Review access to existing saved reports separately."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Hide Report Types controls which report types appear for users when they create reports.",
+      "references": []
+    }
   },
   {
     "id": 107,
@@ -3596,7 +4640,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Existing activity data does not make the absent component appear.",
       "D": "A custom button is not how the standard timeline is placed on a Lightning page."
     },
-    "notes": "Verify page activation and assignment to the user’s app, profile, and record type. Then check activity access, page-layout actions, and the object’s activity support."
+    "notes": [
+      "Verify page activation and assignment to the user’s app, profile, and record type. Then check activity access, page-layout actions, and the object’s activity support."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Add the standard Activities component to the Lightning record page to show the Activity Timeline.",
+      "references": []
+    }
   },
   {
     "id": 108,
@@ -3605,8 +4657,7 @@ window.QUIZ_QUESTIONS = [
       "A Platform Administrator at Universal Containers has a screen flow that helps users create new leads. When Lead Source is 'Search Engine', the administrator needs to require the user to choose a specific search engine from a picklist. If Lead Source is not 'Search Engine', this picklist should be hidden.",
       {
         "ask": "What is the most efficient way for the administrator to complete this requirement?"
-      },
-      "A and C both describe conditional visibility on the screen picklist. Either single selection is accepted; the visible picklist must also be configured as required."
+      }
     ],
     "choices": [
       "Use a conditional filter in the screen element to only show the Specific Search Engine field only when Lead Source is 'Search Engine'.",
@@ -3623,8 +4674,7 @@ window.QUIZ_QUESTIONS = [
       "D": "A validation rule can reject a save but cannot hide a screen component."
     },
     "notes": [
-      "Set requiredness appropriately for the visible component and test what happens when Lead Source changes back. Visibility, input collection, and save-time validation are separate concerns.",
-      "Online variants retain both descriptions; differences in answer letters do not make one visibility description invalid. Primary reference: https://help.salesforce.com/s/articleView?id=platform.flow_ref_elements_screen_conditional_visibility.htm&language=en_US&type=5"
+      "Set requiredness appropriately for the visible component and test what happens when Lead Source changes back. Visibility, input collection, and save-time validation are separate concerns."
     ],
     "source": {
       "stem": [
@@ -3643,7 +4693,27 @@ window.QUIZ_QUESTIONS = [
     },
     "printed": "C",
     "acceptAny": true,
-    "repaired": true
+    "type": "single",
+    "choose": 1,
+    "repaired": true,
+    "repair": "Both listed screen-component visibility descriptions implement the stated display condition. Accept either single selection without rewriting the prompt or replacing a valid choice.",
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "accepted-alternatives",
+      "reason": "Both listed screen-component visibility descriptions implement the stated display condition. Accept either single selection without rewriting the prompt or replacing a valid choice.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=platform.flow_ref_elements_screen_conditional_visibility.htm&language=en_US&type=5"
+      ],
+      "reassessment": {
+        "date": "2026-10-17",
+        "previousState": "repaired",
+        "decision": "retained",
+        "reason": "A and C both describe conditional screen-component visibility; requiredness remains an implementation detail to configure for the visible input."
+      }
+    },
+    "repairNotes": [
+      "Reference: https://help.salesforce.com/s/articleView?id=platform.flow_ref_elements_screen_conditional_visibility.htm&language=en_US&type=5"
+    ]
   },
   {
     "id": 109,
@@ -3672,7 +4742,15 @@ window.QUIZ_QUESTIONS = [
       "C": "URL fields store links and do not create relational integrity.",
       "D": "Two lookups can model associations, but do not provide the standard master-detail junction behavior asked for here."
     },
-    "notes": "Each junction record represents one association between two master records. Review inherited access, cascade deletion, and the primary-versus-secondary master relationship behavior."
+    "notes": [
+      "Each junction record represents one association between two master records. Review inherited access, cascade deletion, and the primary-versus-secondary master relationship behavior."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A junction custom object with two master-detail relationships implements the standard many-to-many relationship pattern.",
+      "references": []
+    }
   },
   {
     "id": 110,
@@ -3698,7 +4776,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Lead nurturing does not imply authority to negotiate pricing and close the deal.",
       "C": "Coaching human sales reps is a different sales-agent use case."
     },
-    "notes": "Keep qualification, nurturing, sales coaching, and deal closing distinct. Define escalation and scheduling boundaries and ensure generated communications respect consent and approved company content."
+    "notes": [
+      "Keep qualification, nurturing, sales coaching, and deal closing distinct. Define escalation and scheduling boundaries and ensure generated communications respect consent and approved company content."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "The sales-development agent can respond to lead questions using approved, grounded company information.",
+      "references": []
+    }
   },
   {
     "id": 111,
@@ -3724,7 +4810,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Deleting and replacing a standard field is unnecessary and may not be possible.",
       "D": "A global value set manages picklist values rather than changes the field label."
     },
-    "notes": "A label change does not change the field’s API identity or automatically rename every custom formula label, document, and integration reference. Update supporting user guidance consistently."
+    "notes": [
+      "A label change does not change the field’s API identity or automatically rename every custom formula label, document, and integration reference. Update supporting user guidance consistently."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Rename Tabs and Labels can change the displayed label of supported standard fields without replacing the field.",
+      "references": []
+    }
   },
   {
     "id": 112,
@@ -3750,7 +4844,15 @@ window.QUIZ_QUESTIONS = [
       "B": "A record-type change does not automatically define this manual-sharing lifecycle.",
       "D": "Deactivation does not universally remove every permission-set assignment as this option assumes."
     },
-    "notes": "Reactivation is not a full restoration of all previous sharing state. Review manual and team access explicitly; rebuilding default teams is not the same as restoring each record’s old manual shares."
+    "notes": [
+      "Reactivation is not a full restoration of all previous sharing state. Review manual and team access explicitly; rebuilding default teams is not the same as restoring each record’s old manual shares."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Manual record shares can be removed on deactivation and are not automatically recreated just by reactivating the user.",
+      "references": []
+    }
   },
   {
     "id": 113,
@@ -3779,7 +4881,15 @@ window.QUIZ_QUESTIONS = [
       "B": "User page is not a Lightning App Builder page type for this request.",
       "D": "Dashboards have their own builder rather than being this Lightning App Builder page type."
     },
-    "notes": "Use mobile-supported components and form factors and activate the page for the intended app. Home pages and utility experiences have separate support considerations."
+    "notes": [
+      "Use mobile-supported components and form factors and activate the page for the intended app. Home pages and utility experiences have separate support considerations."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Lightning App Builder supports app pages and record pages that can be configured for supported mobile use.",
+      "references": []
+    }
   },
   {
     "id": 114,
@@ -3805,7 +4915,15 @@ window.QUIZ_QUESTIONS = [
       "C": "A value set defines the available universe of values, not each opportunity type’s selected subset.",
       "D": "Fields and Relationships defines the field but does not alone assign a different value subset to each record type."
     },
-    "notes": "For opportunity Stage, the sales process supplies the stage set associated with a record type. For other picklists, maintain record-type value assignments and defaults."
+    "notes": [
+      "For opportunity Stage, the sales process supplies the stage set associated with a record type. For other picklists, maintain record-type value assignments and defaults."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Record types control which values from a picklist’s defined value set are available for a given business process.",
+      "references": []
+    }
   },
   {
     "id": 115,
@@ -3831,7 +4949,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Lead Scoring prioritizes unconverted leads rather than existing opportunities.",
       "D": "Activity Capture records communications and is not the opportunity-scoring feature."
     },
-    "notes": "A score is decision support, not a guarantee of a win. Availability, licensing, model eligibility, and data quality affect how scoring can be used."
+    "notes": [
+      "A score is decision support, not a guarantee of a win. Availability, licensing, model eligibility, and data quality affect how scoring can be used."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Einstein Opportunity Scoring helps prioritize opportunities using predicted likelihood and contributing signals.",
+      "references": []
+    }
   },
   {
     "id": 116,
@@ -3857,13 +4983,21 @@ window.QUIZ_QUESTIONS = [
       "C": "Reports and dashboards can monitor deals, but the specific threshold-alert feature is the direct answer.",
       "D": "Similar Opportunities helps compare deals rather than sends the threshold notification."
     },
-    "notes": "Check the org’s alert configuration and notification recipients. For richer routing or complex exceptions, Flow may be appropriate; that does not change the feature named by this question."
+    "notes": [
+      "Check the org’s alert configuration and notification recipients. For richer routing or complex exceptions, Flow may be appropriate; that does not change the feature named by this question."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Big Deal Alerts support notification thresholds based on opportunity amount and probability.",
+      "references": []
+    }
   },
   {
     "id": 117,
     "section": "security",
     "stem": [
-      "Cloud Kicks has an administrator team that manages the org. The company has asked for a small subset of leadership users to have Modify All access, like the administrators have. They need Modify All on a specified business object, not Modify All Data or setup administration.",
+      "Cloud Kicks has an administrator team that manages the org. The company has asked for a small subset of leadership users to have Modify All access, like the administrators have.",
       {
         "ask": "How should the administrator team accomplish this?"
       }
@@ -3883,7 +5017,9 @@ window.QUIZ_QUESTIONS = [
       "B": "System Administrator grants far more setup and data authority than required.",
       "D": "Roles do not grant object-level Modify All permissions."
     },
-    "notes": "Modify All on an object differs from Modify All Data across the org. Grant the minimum required scope and review the effect on sharing restrictions before assigning elevated permissions.",
+    "notes": [
+      "Modify All on an object differs from Modify All Data across the org. Grant the minimum required scope and review the effect on sharing restrictions before assigning elevated permissions."
+    ],
     "source": {
       "stem": [
         "Cloud Kicks has an administrator team that manages the org. The company has asked for a small subset of leadership users to have Modify All access, like the administrators have.",
@@ -3900,7 +5036,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "C"
     },
     "printed": "C",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Specify object-level Modify All rather than leaving its scope ambiguous. Original wording and choices are retained; the source key remains accepted. A permission set can add the specific Modify All object permissions without giving leadership a full System Administrator profile.",
+      "references": []
+    }
   },
   {
     "id": 118,
@@ -3926,7 +5067,15 @@ window.QUIZ_QUESTIONS = [
       "C": "The record highlights panel is not a dashboard narrative widget.",
       "D": "A mass email communicates outside the dashboard rather than annotates it."
     },
-    "notes": "Keep dashboard commentary concise and current. Text and image widgets should explain the metrics and assumptions, not obscure the source data or imply that a static note updates automatically."
+    "notes": [
+      "Keep dashboard commentary concise and current. Text and image widgets should explain the metrics and assumptions, not obscure the source data or imply that a static note updates automatically."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A text widget adds narrative context, instructions, or commentary alongside dashboard data.",
+      "references": []
+    }
   },
   {
     "id": 119,
@@ -3952,7 +5101,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Mass Delete is an administrator-initiated utility, not the requested field-driven automated process.",
       "D": "Orchestration coordinates multi-stage work rather than being necessary for straightforward deletion logic."
     },
-    "notes": "Define a narrow record scope, execution schedule or trigger, permissions, and failure handling. Automated deletion can affect related records and downstream integrations; test it carefully before activation."
+    "notes": [
+      "Define a narrow record scope, execution schedule or trigger, permissions, and failure handling. Automated deletion can affect related records and downstream integrations; test it carefully before activation."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Flow Builder can find and delete qualifying records through the appropriate flow type and Delete Records element.",
+      "references": []
+    }
   },
   {
     "id": 120,
@@ -3981,7 +5138,15 @@ window.QUIZ_QUESTIONS = [
       "A": "A validation rule can check data but does not provide the guided interview and approval chain.",
       "B": "A quick action can launch a process but does not itself implement the entire guided flow and approval mechanism."
     },
-    "notes": "Flow handles data collection and preparation; approval handles decisions, routing, and recorded outcomes. Define who can submit and which record qualifies before connecting them."
+    "notes": [
+      "Flow handles data collection and preparation; approval handles decisions, routing, and recorded outcomes. Define who can submit and which record qualifies before connecting them."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A screen flow can guide expense submission while an approval process routes the resulting record for review and authorization.",
+      "references": []
+    }
   },
   {
     "id": 121,
@@ -3994,23 +5159,20 @@ window.QUIZ_QUESTIONS = [
     ],
     "choices": [
       "Record Type",
-      "List view field selection (Select Fields to Display)",
+      "Compact Layout",
       "Page Layout",
       "Kanban Settings"
     ],
-    "answer": "B",
+    "answer": "",
     "focus": "high",
     "group": "experience",
-    "why": "Kanban card fields come from the corresponding list-view field selection.",
-    "wrong": {
-      "A": "Record types select business-process variations rather than the visible list columns used on cards.",
-      "C": "A full page layout does not directly select the displayed list-view card fields.",
-      "D": "Kanban Settings primarily selects grouping and summarization, not the list-view field selection."
-    },
+    "why": "Not scored. The question asks for Kanban card fields. The standard control is the list view’s selected fields; Compact Layout controls the record-details panel, and no original choice supplies the card-field control.",
+    "wrong": {},
     "notes": [
-      "Option B corrected: the source confused card content with the Kanban details panel. Compact layouts control the top fields in the details panel; list-view field selection controls the card fields.",
+      "Compact layouts control the top fields in the Kanban details panel; list-view field selection controls the card fields.",
       "Salesforce: https://trailhead.salesforce.com/content/learn/modules/lightning-experience-for-salesforce-classic-users/work-with-list-views",
-      "Salesforce: https://help.salesforce.com/s/articleView?id=sf.kanban_considerations_admin.htm&language=en_US&type=5"
+      "Salesforce: https://help.salesforce.com/s/articleView?id=sf.kanban_considerations_admin.htm&language=en_US&type=5",
+      "Reference: https://help.salesforce.com/s/articleView?id=xcloud.basics_navigate_list_views.htm&language=en_US&type=5"
     ],
     "printed": "B",
     "source": {
@@ -4028,7 +5190,46 @@ window.QUIZ_QUESTIONS = [
       ],
       "answer": "B"
     },
-    "repaired": true
+    "ungraded": true,
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "unresolved",
+      "reason": "The question asks for Kanban card fields. The standard control is the list view’s selected fields; Compact Layout controls the record-details panel, and no original choice supplies the card-field control.",
+      "references": [
+        "https://trailhead.salesforce.com/content/learn/modules/lightning-experience-for-salesforce-classic-users/work-with-list-views",
+        "https://help.salesforce.com/s/articleView?id=sf.kanban_considerations_admin.htm&language=en_US&type=5",
+        "https://help.salesforce.com/s/articleView?id=xcloud.basics_navigate_list_views.htm&language=en_US&type=5",
+        "https://www.pass4success.com/salesforce/discussions/exam-plat-admn-201-topic-4-question-17-discussion",
+        "https://help.salesforce.com/s/articleView?id=sfdo.ofm_create_a_kanban_view.htm&language=en_US&type=5"
+      ],
+      "recovery": {
+        "date": "2026-10-17",
+        "status": "unresolved",
+        "queries": [
+          "\"Opportunity cards\" \"more meaningful\" Kanban",
+          "Salesforce \"Kanban\" \"more meaningful\" \"Compact Layout\""
+        ],
+        "candidates": [
+          "https://www.pass4success.com/salesforce/discussions/exam-plat-admn-201-topic-4-question-17-discussion"
+        ],
+        "assessment": "The question asks for Kanban card fields. The standard control is the list view’s selected fields; Compact Layout controls the record-details panel, and no original choice supplies the card-field control."
+      },
+      "reassessment": {
+        "date": "2026-10-17",
+        "previousState": "not-scored",
+        "decision": "still-unresolved",
+        "reason": "The question asks for Kanban card fields. The standard control is the list view’s selected fields; Compact Layout controls the record-details panel, and no original choice supplies the card-field control."
+      },
+      "optionAudit": {
+        "date": "2026-10-17",
+        "status": "matched",
+        "comparedChoiceCount": 4,
+        "assessment": "All four options match the online copy: Record Type, Compact Layout, Page Layout, Kanban Settings. No Select Fields to Display option was recovered. The published B explanation conflates Kanban card fields with the details panel.",
+        "references": [
+          "https://www.pass4success.com/salesforce/discussions/exam-plat-admn-201-topic-4-question-17-discussion"
+        ]
+      }
+    }
   },
   {
     "id": 122,
@@ -4053,7 +5254,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Validation rules prevent invalid saves rather than request a reviewer’s decision.",
       "D": "Schema Builder displays and edits the data model rather than routes review work."
     },
-    "notes": "Learn the distinction between routing ownership and routing approval. Entry criteria select eligible records, steps select approvers, and actions handle the resulting outcomes."
+    "notes": [
+      "Learn the distinction between routing ownership and routing approval. Entry criteria select eligible records, steps select approvers, and actions handle the resulting outcomes."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "An approval process routes qualifying records to designated approvers for a decision.",
+      "references": []
+    }
   },
   {
     "id": 123,
@@ -4079,7 +5288,15 @@ window.QUIZ_QUESTIONS = [
       "B": "System Administrator access is excessive and does not represent a narrow business-rule exception.",
       "D": "A formula computes a value but does not implement the specified conditional requirement."
     },
-    "notes": "Prefer a custom permission for the exemption rather than hardcoding a manager’s name or profile label. Define whether the rule applies on every edit or only on stage transition."
+    "notes": [
+      "Prefer a custom permission for the exemption rather than hardcoding a manager’s name or profile label. Define whether the rule applies on every edit or only on stage transition."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A validation rule can require Amount at Negotiation while excluding authorized managers from that condition.",
+      "references": []
+    }
   },
   {
     "id": 124,
@@ -4087,7 +5304,7 @@ window.QUIZ_QUESTIONS = [
     "stem": [
       "A sales rep has a list of 300 accounts with contacts that they want to load at one time.",
       {
-        "ask": "Which built-in guided import tool is the simplest fit for these supported Account and Contact records?"
+        "ask": "Which tool should a Platform Administrator utilize to import the records to Salesforce?"
       }
     ],
     "choices": [
@@ -4099,13 +5316,15 @@ window.QUIZ_QUESTIONS = [
     "answer": "C",
     "focus": "low",
     "group": "data",
-    "why": "Data Import Wizard is the simplest built-in guided tool for this supported accounts-and-contacts import.",
+    "why": "Data Import Wizard is the simplest standard tool for this small supported Account/Contact import. Other import tools can also work; they are not technically incapable.",
     "wrong": {
       "A": "Dataloader.io can import data but is unnecessary for the straightforward built-in workflow.",
       "B": "Manual entry is inefficient and error-prone at this record count.",
       "D": "Data Loader can import data, but it is more operationally involved than the wizard for this simple request."
     },
-    "notes": "This repeats Question 60 with reordered choices. Preserve the concept rather than the letter: Data Import Wizard is B in Question 60 and C here.",
+    "notes": [
+      "This repeats Question 60 with reordered choices. Preserve the concept rather than the letter: Data Import Wizard is B in Question 60 and C here."
+    ],
     "source": {
       "stem": [
         "A sales rep has a list of 300 accounts with contacts that they want to load at one time.",
@@ -4122,7 +5341,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "C"
     },
     "printed": "C",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Apply the same built-in guided import wording as duplicate Q60. Original wording and choices are retained; the source key remains accepted. Data Import Wizard is the simplest standard tool for this small supported Account/Contact import. Other import tools can also work; they are not technically incapable.",
+      "references": []
+    }
   },
   {
     "id": 125,
@@ -4147,7 +5371,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Running as the author fixes the data context to that author.",
       "D": "Running as another specific person is also a fixed context rather than each current viewer."
     },
-    "notes": "Folder sharing still determines who can open the dashboard. Dynamic dashboards respect the viewer’s records; they are not a mechanism for bypassing Private sharing."
+    "notes": [
+      "Folder sharing still determines who can open the dashboard. Dynamic dashboards respect the viewer’s records; they are not a mechanism for bypassing Private sharing."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A dynamic dashboard runs using the current viewer’s access, creating an individualized view without maintaining a separate dashboard for each person.",
+      "references": []
+    }
   },
   {
     "id": 126,
@@ -4173,7 +5405,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Case Rules is not the specific standard configuration feature named here.",
       "D": "Workflow rules are not the direct case assignment mechanism and are a legacy automation tool."
     },
-    "notes": "Ensure the relevant account/tier information is available to the rule, using supported related fields or a suitable derived field. The assignment rule must be invoked by the creation channel."
+    "notes": [
+      "Ensure the relevant account/tier information is available to the rule, using supported related fields or a suitable derived field. The assignment rule must be invoked by the creation channel."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Case assignment rules can select the initial queue using criteria such as the related account’s support tier.",
+      "references": []
+    }
   },
   {
     "id": 127,
@@ -4202,7 +5442,15 @@ window.QUIZ_QUESTIONS = [
     "notes": [
       "Distinguish assigning a permission set from editing its permissions. Delegated administrators remain constrained by their delegated scope; additional separately granted permissions can expand their capabilities.",
       "Salesforce: https://help.salesforce.com/s/articleView?id=platform.admin_delegate.htm&language=en_US&type=5"
-    ]
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Delegated administration permits scoped assignments but does not by itself permit modifying permission-set definitions.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=platform.admin_delegate.htm&language=en_US&type=5"
+      ]
+    }
   },
   {
     "id": 128,
@@ -4228,7 +5476,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Picklists store constrained values rather than insert record data into a prompt.",
       "C": "Agent instructions guide behavior but are not the template’s record-field substitution mechanism."
     },
-    "notes": "Merge fields ground the prompt at execution time; the model still generates the response. Respect access controls and avoid including unnecessary sensitive fields."
+    "notes": [
+      "Merge fields ground the prompt at execution time; the model still generates the response. Respect access controls and avoid including unnecessary sensitive fields."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Merge fields insert actual record values into a prompt template so the generated response can use Salesforce data.",
+      "references": []
+    }
   },
   {
     "id": 129,
@@ -4254,7 +5510,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Campaign Member Status tracks a person’s campaign participation rather than links campaigns into a series.",
       "D": "Record types classify campaign variations but do not supply hierarchical roll-up relationships."
     },
-    "notes": "Keep campaign dates, costs, influenced opportunities, and member attribution consistent. A hierarchy supplies structure; useful ROI still depends on accurate campaign and revenue attribution data."
+    "notes": [
+      "Keep campaign dates, costs, influenced opportunities, and member attribution consistent. A hierarchy supplies structure; useful ROI still depends on accurate campaign and revenue attribution data."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Campaign hierarchy groups the monthly campaigns under a parent campaign for aggregate series reporting.",
+      "references": []
+    }
   },
   {
     "id": 130,
@@ -4280,7 +5544,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Debug logs help investigate behavior but do not configure the default case user.",
       "C": "Support processes define available case statuses rather than the system user and fallback owner."
     },
-    "notes": "Distinguish case owner, record creator, and automation-running user. Email-to-Case, assignment rules, integrations, and other automation can also affect these values; confirm the actual creation path."
+    "notes": [
+      "Distinguish case owner, record creator, and automation-running user. Email-to-Case, assignment rules, integrations, and other automation can also affect these values; confirm the actual creation path."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Support Settings contains case defaults such as the default owner and Automated Case User relevant to system-created case attribution.",
+      "references": []
+    }
   },
   {
     "id": 131,
@@ -4306,13 +5578,21 @@ window.QUIZ_QUESTIONS = [
       "B": "Mobile Only navigation does not provide arbitrary different menus per profile or permission set in the way claimed.",
       "D": "The menu is configured; it does not automatically include every permitted standard object."
     },
-    "notes": "This question explicitly concerns Mobile Only rather than a custom Lightning mobile app. App-based navigation and supported mobile behavior can differ, so avoid applying this rule to every app navigation experience."
+    "notes": [
+      "This question explicitly concerns Mobile Only rather than a custom Lightning mobile app. App-based navigation and supported mobile behavior can differ, so avoid applying this rule to every app navigation experience."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "For the Mobile Only navigation described, the first four navigation items also populate the bottom navigation bar.",
+      "references": []
+    }
   },
   {
     "id": 132,
     "section": "sales",
     "stem": [
-      "Universal Containers wants to implement collaborative selling where multiple roles work together on customer accounts. Sales reps need full access to their assigned accounts, while customer support reps and sales engineers need access to opportunities and cases related to specific accounts they support. The sales manager wants to streamline the process by reusing a default set of the same team members across multiple accounts.",
+      "Universal Containers wants to implement collaborative selling where multiple roles work together on customer accounts. Sales reps need full access to their assigned accounts, while customer support reps and sales engineers need access to opportunities and cases related to specific accounts they support. The sales manager wants to streamline the process by automatically adding the same team members to multiple accounts.",
       {
         "ask": "Which feature should a Platform Administrator configure to meet this requirement?"
       }
@@ -4352,7 +5632,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "A"
     },
     "printed": "A",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Clarify that default teams are reusable membership templates, not unconditional automatic assignment rules. Original wording and choices are retained; the source key remains accepted. Default account teams can reuse a defined set of collaborators with specified access levels across multiple accounts.",
+      "references": []
+    }
   },
   {
     "id": 133,
@@ -4381,7 +5666,15 @@ window.QUIZ_QUESTIONS = [
     "notes": [
       "Flow Approval Processes are distinct from simply placing a classic approval button on a page. Define trigger conditions, approvers, actions, and duplicate-submission behavior.",
       "Salesforce: https://help.salesforce.com/s/articleView?id=platform.automate_automated_approvals_concepts_trigger.htm&language=en_US"
-    ]
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A record-triggered Flow Approval Process can automatically route qualifying opportunities for the CFO’s decision.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=platform.automate_automated_approvals_concepts_trigger.htm&language=en_US"
+      ]
+    }
   },
   {
     "id": 134,
@@ -4407,7 +5700,15 @@ window.QUIZ_QUESTIONS = [
       "C": "A Data Cloud connection is unnecessary for a direct operational opportunity export.",
       "D": "Data Export Service is aimed at broader backup exports rather than this targeted field-and-date query."
     },
-    "notes": "Select Id, Name, CloseDate, and Amount and filter for the required closed-won/date conditions. Confirm whether “last ninety days” includes today and whether deleted records should be excluded."
+    "notes": [
+      "Select Id, Name, CloseDate, and Amount and filter for the required closed-won/date conditions. Confirm whether “last ninety days” includes today and whether deleted records should be excluded."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Data Loader supports selecting Opportunity fields and restricting exported records with a SOQL query.",
+      "references": []
+    }
   },
   {
     "id": 135,
@@ -4422,20 +5723,20 @@ window.QUIZ_QUESTIONS = [
       "Escalation Rules with Business Hours",
       "Record-Triggered Flows with Business Hours",
       "Case Assignment Rules with Business Hours",
-      "Case lifecycle/history reporting on ownership changes and ownership durations"
+      "Milestones with Business Hours"
     ],
     "answer": "D",
     "focus": "high",
     "group": "service",
-    "why": "Case lifecycle and history reporting can analyze ownership changes and the time associated with those support states.",
+    "why": "Milestones with Business Hours can time configured support-process steps and support milestone reporting. They require appropriate criteria and completion handling for the teams’ steps; they do not automatically produce every ownership interval.",
     "wrong": {
       "A": "Escalation rules respond to case age; they do not provide a complete time-per-owner history.",
-      "B": "Flow can timestamp transfers, but an accurate business-hours duration design requires additional implementation details.",
+      "B": "A record-triggered flow can capture transfer timestamps, but business-hours duration calculation and reporting need additional design; it is not the dedicated milestone timing feature.",
       "C": "Assignment rules route ownership without recording elapsed time per team."
     },
     "notes": [
-      "Option D corrected: the source proposed milestones, which measure defined SLA steps rather than automatically measuring every team’s residence time. Use ownership-history reporting, or explicit transfer timestamps when the required duration is not exposed by the available report type.",
-      "Salesforce: https://help.salesforce.com/s/articleView?id=service.reports_support_crts.htm&language=en_US&type=5"
+      "Configure milestone start/completion criteria and applicable business hours to represent the support steps being measured. For arbitrary historical ownership intervals, use captured ownership history or explicit transfer timestamps; milestones do not reconstruct that history automatically.",
+      "Reference: https://help.salesforce.com/s/articleView?id=sf.entitlements_milestone_adding_sla.htm&language=en_US&type=5"
     ],
     "printed": "D",
     "source": {
@@ -4453,7 +5754,14 @@ window.QUIZ_QUESTIONS = [
       ],
       "answer": "D"
     },
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Option D corrected: the source proposed milestones, which measure defined SLA steps rather than automatically measuring every team’s residence time. Use ownership-history reporting, or explicit transfer timestamps when the required duration is not exposed by the available report type. Original wording and choices are retained; the source key remains accepted. Milestones with Business Hours can time configured support-process steps and support milestone reporting. They require appropriate criteria and completion handling for the teams’ steps; they do not automatically produce every ownership interval.",
+      "references": [
+        "https://help.salesforce.com/s/articleView?id=sf.entitlements_milestone_adding_sla.htm&language=en_US&type=5"
+      ]
+    }
   },
   {
     "id": 136,
@@ -4479,7 +5787,15 @@ window.QUIZ_QUESTIONS = [
       "B": "A custom email service requires development when standard Email-to-Case meets the requirement.",
       "C": "Flow may augment routing, but standard Email-to-Case already supplies the relevant entry point."
     },
-    "notes": "Verify routing-address configuration, queue membership, case assignment behavior, and email forwarding. Email-to-Case creates cases; escalation and Omni-Channel address different routing stages."
+    "notes": [
+      "Verify routing-address configuration, queue membership, case assignment behavior, and email forwarding. Email-to-Case creates cases; escalation and Omni-Channel address different routing stages."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Email-to-Case routing addresses can create cases from incoming email and assign the appropriate case owner or queue.",
+      "references": []
+    }
   },
   {
     "id": 137,
@@ -4507,7 +5823,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Changing Priority is not one of the direct case escalation actions listed by the standard escalation configuration.",
       "C": "Reopening a case is not a direct standard escalation action."
     },
-    "notes": "An escalation can notify users and choose a new user or queue. Other field updates or lifecycle changes need the appropriate additional automation."
+    "notes": [
+      "An escalation can notify users and choose a new user or queue. Other field updates or lifecycle changes need the appropriate additional automation."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Case escalation actions can reassign the case and send notification emails.",
+      "references": []
+    }
   },
   {
     "id": 138,
@@ -4533,7 +5857,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Case lookup relationships do not generally provide native account roll-up fields.",
       "D": "Campaign is not the relevant account child for this native roll-up."
     },
-    "notes": "Do not assume every standard lookup supports roll-ups. Native roll-ups apply to supported master-detail relationships and selected standard relationships; other cases need a suitable alternative."
+    "notes": [
+      "Do not assume every standard lookup supports roll-ups. Native roll-ups apply to supported master-detail relationships and selected standard relationships; other cases need a suitable alternative."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Account supports native roll-up summary fields over related opportunities, a standard-relationship capability.",
+      "references": []
+    }
   },
   {
     "id": 139,
@@ -4559,7 +5891,15 @@ window.QUIZ_QUESTIONS = [
       "B": "A public/shared location alone does not explain which data the dashboard uses.",
       "D": "Subscriptions distribute dashboard output but are not the root running-user visibility setting."
     },
-    "notes": "Review both folder sharing and running-user configuration. A dynamic dashboard uses the viewer’s access; a fixed privileged running user can intentionally reveal broader aggregate data."
+    "notes": [
+      "Review both folder sharing and running-user configuration. A dynamic dashboard uses the viewer’s access; a fixed privileged running user can intentionally reveal broader aggregate data."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A fixed dashboard running user can expose aggregates from records that individual viewers cannot otherwise access.",
+      "references": []
+    }
   },
   {
     "id": 140,
@@ -4585,7 +5925,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Instructions are not a substitute for enforceable access controls.",
       "D": "Training or grounding on other content does not revoke access to sensitive fields."
     },
-    "notes": "Confirm whether the action runs as the current user or an agent-assigned user, then enforce the appropriate sharing, object permissions, and field-level security. Also minimize sensitive data supplied to prompts."
+    "notes": [
+      "Confirm whether the action runs as the current user or an agent-assigned user, then enforce the appropriate sharing, object permissions, and field-level security. Also minimize sensitive data supplied to prompts."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Restrict access to sensitive records and fields through the permissions and execution context actually used by the employee agent.",
+      "references": []
+    }
   },
   {
     "id": 141,
@@ -4604,7 +5952,6 @@ window.QUIZ_QUESTIONS = [
     ],
     "answer": "B",
     "printed": "A",
-    "corrected": true,
     "focus": "must",
     "group": "security",
     "why": "A permission set can grant needed Opportunity access because standard profile object permissions are not editable.",
@@ -4631,6 +5978,15 @@ window.QUIZ_QUESTIONS = [
         "Configure the assigned apps to include Opportunity."
       ],
       "answer": "A"
+    },
+    "corrected": true,
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "key-correction",
+      "reason": "A permission set can grant needed Opportunity access because standard profile object permissions are not editable.",
+      "references": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_objects"
+      ]
     }
   },
   {
@@ -4657,13 +6013,21 @@ window.QUIZ_QUESTIONS = [
       "B": "A formula cannot persistently copy a discount into other records.",
       "D": "A macro requires supported user-driven actions rather than automatically reacts to the opportunity change."
     },
-    "notes": "Specify exactly which product discount field and calculation should change. Prevent repeated discounting on later edits, and handle rounding, record volume, and failed related-record updates."
+    "notes": [
+      "Specify exactly which product discount field and calculation should change. Prevent repeated discounting on later edits, and handle rounding, record volume, and failed related-record updates."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "An after-save flow can react to the Closed Won transition and update the related Opportunity Product records.",
+      "references": []
+    }
   },
   {
     "id": 143,
     "section": "automation",
     "stem": [
-      "A Platform Administrator at Cloud Kicks has created a classic approval process for time-off requests.",
+      "A Platform Administrator at Cloud Kicks has created an approval process for time-off requests.",
       {
         "ask": "Which two automated actions are available for the administrator to add as part of the approval process?"
       },
@@ -4686,7 +6050,9 @@ window.QUIZ_QUESTIONS = [
       "C": "A Chatter post is not a direct classic approval-process action type.",
       "D": "An autolaunched flow is not a direct classic approval-process action type in this question’s context."
     },
-    "notes": "Classic approval actions include tasks, email alerts, field updates, and outbound messages. Do not mix that list with newer Flow Approval Processes or additional automation triggered by an approval field update.",
+    "notes": [
+      "Classic approval actions include tasks, email alerts, field updates, and outbound messages. Do not mix that list with newer Flow Approval Processes or additional automation triggered by an approval field update."
+    ],
     "source": {
       "stem": [
         "A Platform Administrator at Cloud Kicks has created an approval process for time-off requests.",
@@ -4706,7 +6072,12 @@ window.QUIZ_QUESTIONS = [
       "answer": "A,B"
     },
     "printed": "A,B",
-    "repaired": true
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "restored",
+      "reason": "Withdraw the previous rewrite: Put the classic-approval assumption in the question itself. Original wording and choices are retained; the source key remains accepted. Classic approval processes support Field Update and Email Alert actions as part of their configured outcomes.",
+      "references": []
+    }
   },
   {
     "id": 144,
@@ -4732,7 +6103,15 @@ window.QUIZ_QUESTIONS = [
       "C": "General permission sets do not define a selective cross-hierarchy sharing rule unless excessive all-record permissions are used.",
       "D": "Restriction rules narrow access rather than open the needed visibility."
     },
-    "notes": "A report only shows accessible records. First determine the intended sharing scope, then choose owner-based or criteria-based sharing; sharing a report folder does not share the business records."
+    "notes": [
+      "A report only shows accessible records. First determine the intended sharing scope, then choose owner-based or criteria-based sharing; sharing a report folder does not share the business records."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Sharing rules can grant the VP access to records from different ownership groups under a Private sharing baseline.",
+      "references": []
+    }
   },
   {
     "id": 145,
@@ -4757,7 +6136,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Custom Settings are application data/configuration structures, not the standard company setup area.",
       "D": "Feature Settings is a broader product-configuration area rather than the best answer for these company defaults."
     },
-    "notes": "Availability and impact vary: multi-currency and custom fiscal years can materially affect data and reporting. Treat viewing a setting separately from enabling or changing it."
+    "notes": [
+      "Availability and impact vary: multi-currency and custom fiscal years can materially affect data and reporting. Treat viewing a setting separately from enabling or changing it."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Company Settings is the relevant setup area for organization-level currency, fiscal-year, and business-hour configuration.",
+      "references": []
+    }
   },
   {
     "id": 146,
@@ -4783,7 +6170,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Creating a managed package means building a distributable product, not obtaining an existing merge solution.",
       "D": "Setup alone does not supply every required document-merge capability without an appropriate solution."
     },
-    "notes": "Evaluate licensing, document-template support, record access, generated-file storage, and data handling. Test the chosen package in a sandbox before production deployment."
+    "notes": [
+      "Evaluate licensing, document-template support, record access, generated-file storage, and data handling. Test the chosen package in a sandbox before production deployment."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "AppExchange provides packaged document-generation and merge solutions that can be evaluated and installed.",
+      "references": []
+    }
   },
   {
     "id": 147,
@@ -4809,7 +6204,15 @@ window.QUIZ_QUESTIONS = [
       "C": "Validation rules can enforce constraints but do not replace the sales-process and record-type configuration.",
       "D": "Public groups control sharing membership rather than select layouts and sales processes."
     },
-    "notes": "Sales processes define available Stage values; record types associate business-process variants with picklist subsets and layout assignments. Keep the record-type structure understandable for users and reporting."
+    "notes": [
+      "Sales processes define available Stage values; record types associate business-process variants with picklist subsets and layout assignments. Keep the record-type structure understandable for users and reporting."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Separate opportunity record types and sales processes provide different stages and associated page-layout assignments.",
+      "references": []
+    }
   },
   {
     "id": 148,
@@ -4835,7 +6238,15 @@ window.QUIZ_QUESTIONS = [
       "C": "A subscription distributes a report but does not define the completeness analysis.",
       "D": "Required layout fields can improve future entry but do not measure existing gaps or all API channels."
     },
-    "notes": "Define the business meaning of completeness before measuring it. Required fields, validation, monitoring reports, and user ownership work together; no single report guarantees that filled values are accurate."
+    "notes": [
+      "Define the business meaning of completeness before measuring it. Required fields, validation, monitoring reports, and user ownership work together; no single report guarantees that filled values are accurate."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A targeted report highlights missing account and opportunity fields so the administrator can measure current completeness.",
+      "references": []
+    }
   },
   {
     "id": 149,
@@ -4861,7 +6272,15 @@ window.QUIZ_QUESTIONS = [
       "B": "Email-to-Case creates cases from email and does not provide the full workload-routing capability.",
       "D": "Lead assignment rules route leads, not service cases."
     },
-    "notes": "Authorized business users can manage supported queues, availability, and supervisory operations within the configured design. Omni-Channel does not remove the need for setup permissions or let every user change routing rules."
+    "notes": [
+      "Authorized business users can manage supported queues, availability, and supervisory operations within the configured design. Omni-Channel does not remove the need for setup permissions or let every user change routing rules."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "Omni-Channel routes eligible work according to configured availability, capacity, and routing requirements.",
+      "references": []
+    }
   },
   {
     "id": 150,
@@ -4887,6 +6306,14 @@ window.QUIZ_QUESTIONS = [
       "B": "Filter logic controls which records appear rather than assigns range labels.",
       "C": "A detail column displays the original value rather than creates a categorical bucket."
     },
-    "notes": "Define clear inclusive/exclusive boundaries and decide how blank or unusual contract values should be handled. A report bucket is local reporting logic rather than a stored account classification."
+    "notes": [
+      "Define clear inclusive/exclusive boundaries and decide how blank or unusual contract values should be handled. A report bucket is local reporting logic rather than a stored account classification."
+    ],
+    "review": {
+      "date": "2026-10-17",
+      "treatment": "retained",
+      "reason": "A bucket column defines named numeric ranges such as small, medium, and large within a report.",
+      "references": []
+    }
   }
 ];

@@ -38,7 +38,7 @@
       this.searchText = new Map(this.rows.map(row => [row, row.textContent.toLowerCase().replace(/\s+/g, ' ')]));
       this.about = this.document.querySelector('.notice-about');
       this.sections = [...this.document.querySelectorAll('#notice-overview, [data-notice-section]')];
-      this.links = [...this.document.querySelectorAll('.notice-contents a')];
+      this.links = [...this.document.querySelectorAll('.notice-summary a')];
       this.listen(this.input, 'input', () => this.update());
       this.listen(this.input, 'keydown', event => {
         if (event.key !== 'Escape') return;
@@ -96,8 +96,8 @@
         count += found;
       }
       this.status.textContent = query
-        ? `${count} of ${this.rows.length} table notes match. Other review text stays visible.${count ? ' Press Enter to jump to the first match.' : ''}`
-        : `${this.rows.length} table notes. Try “Q20”, “127”, or a phrase such as “coverage”.`;
+        ? `${count} of ${this.rows.length} review notes match.${count ? ' Press Enter to jump to the first match.' : ''}`
+        : `${this.rows.length} review notes. Search by question number or keyword.`;
       this.empty.hidden = count > 0;
       this.clear.disabled = this.input.value.length === 0;
     }

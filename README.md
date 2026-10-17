@@ -49,10 +49,20 @@ Each quiz includes a standalone `notice.html` documenting issues in its source m
 | State | Meaning |
 | --- | --- |
 | Corrected | The source answer key was wrong, and the quiz uses a reviewed answer. |
-| Repaired | Question content was repaired while the source answer remains accepted. |
+| Repaired | A verified fix, recovery of missing content, or expanded accepted alternatives; the source answer remains accepted. |
 | Not scored | The question is unresolved and excluded from accuracy. |
 
 These states describe the source review. Correct and Missed describe your practice results. Some review notes only improve explanations and do not receive a Repaired badge.
+
+Not scored feedback includes the **Original mock answer (unverified)** with its original letters and full choice text. This preserves the mock's reference answer without treating it as a verified grading key. Unresolved questions remain excluded from scores.
+
+The source review covers all 519 playable questions. Each quiz's `notice.html` summarizes the affected questions and is updated directly without dated copies. Broad rewrites were withdrawn: missing assumptions, exhibits or unsupported answer sets now remain visible as Not scored. Original documents, question IDs, option order and progress keys are preserved. Saved exams retain their samples and selections; newly unresolved questions are excluded from their current score.
+
+Online searches covered all 68 questions initially marked Not scored. Missing content was verified for Developer Q130, Q154, Q184 and Marketing Cloud Q17; Developer Q202 returned to scoring after its original answer was revalidated. A further reassessment covered all 113 remaining Not scored or Repaired questions: 32 more returned to scoring, including 10 with corrected keys; one unnecessary wording repair was withdrawn and eight existing explanations were refined. There are now 488 scored questions and 31 Not scored. Developer Q12 and Q127 are scored with their recovered content. Full decisions, searches and supporting sources remain in the question data; notices show concise current findings.
+
+Repaired questions and partial online recoveries have a Question changes disclosure with the reason at the top, highlighted Original/Current comparisons and answer-key status. Recovery notes and sources appear at the bottom when needed. The comparisons preserve the original text without repeating the entire original question. Full explanation contains the study guidance.
+
+All 31 remaining Not scored questions have an online option comparison recording matches, damaged wording and missing context. Feedback shows the original DOCX mock answer as an unverified reference. The option review found three identifiable terminology repairs (Developer Q25 and Q96, Marketing Cloud Q16); their unresolved questions remain Not scored. Detailed comparisons remain in question feedback; notices show only the unresolved issue.
 
 The quizzes are study aids based on reviewed mock documents. Consult the notices for source limitations, assumptions, and version-sensitive guidance.
 
@@ -84,6 +94,9 @@ quiz/
     validate.js            Full regression suite
     validate-assets.js     Local script and stylesheet dependency checks
     validate-architecture.js Object isolation, injected policies/ports, and cleanup
+    validate-changes.js    Exact repair comparisons, code, and answer-key clarity
+    validate-source-review.js Full-bank audit coverage and original-source safeguards
+    validate-option-review.js Option comparisons and original mock answer references
     validate-notices.js    Notice checks, also runnable separately
     validate-shuffle.js    Answer-shuffling checks
     validate-exam.js       Mock-exam and countdown checks

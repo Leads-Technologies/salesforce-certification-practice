@@ -27,6 +27,12 @@ Read [architecture.md](architecture.md) for the JavaScript objects, patterns, de
 
 Quiz content and certification-specific settings stay in each quiz's `quiz.js`, `questions.js`, and `notice.html`. Keep source documents there too. See [guideline.md](guideline.md) for content-review conventions and required UI checks.
 
+Full-bank reviews record a dated `review` decision on every question and publish a concise summary of affected questions in the quiz's notice. Preserve original scenario/option meanings; new assumptions belong only in a separately identified, unscored study variant. Verified fixes, externally recovered missing content and accepted single-choice alternatives use Repaired. Online searches record `review.recovery` queries, candidate URLs, outcome and assessment. Partial recoveries show exact changes but remain Not scored, with no accepted key. Retired questions stay in existing saved exam samples, with selections and deadlines preserved, but do not contribute to the current score; new exam samples exclude them.
+
+Fair-grading reassessments use `review.reassessment` to record the previous review state, decision and individual reason. Each current `notice.html` summarizes current Corrected, Repaired and Not scored outcomes without repeating reassessment history. Keep best-answer interpretation tied to the supplied choices and put implementation caveats in the explanation. Preserve the original answer as an unverified reference whenever a question remains Not scored.
+
+`review.optionAudit` records the compared option count, matching/different/incomplete outcome, assessment and comparison URLs. Feedback reveals the option review after the review action, alongside the original unverified DOCX mock answer. Saved exam feedback identifies original letters in source comparisons. `tools/validate-option-review.js` checks unresolved-question notice coverage and ensures no added answer suggestions appear.
+
 ## Loading
 
 Practice and exam HTML use ordinary scripts in this order, without `async` or `type="module"`:
@@ -70,6 +76,6 @@ node quiz/tools/validate.js
 git diff --check
 ```
 
-Node is optional development tooling and uses only built-in modules. The suite checks local asset paths, startup for all entry points, grading, drafts/resume, independent progress, shuffled choices, deadline behavior, notices, and keyboard handling. Its browser fixture uses an in-memory storage map.
+Node is optional development tooling and uses only built-in modules. The suite checks local asset paths, startup for all entry points, grading, drafts/resume, independent progress, shuffled choices, deadline behavior, notices, and keyboard handling. `tools/validate-changes.js` verifies exact original/current content, edit highlights, unchanged keys, expanded alternatives, code, and safe escaping for every Repaired question. Its browser fixture uses an in-memory storage map.
 
 For visual changes, also inspect home, question, results, exam, and review pages in a real browser. Compare outer edges at desktop and mobile widths; include short windows, long titles/code, help dialogs, and enlarged text. Tests do not replace rendered UI review.

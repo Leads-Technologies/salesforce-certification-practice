@@ -43,6 +43,7 @@ body:has(.question-shell) { background: #f3f6f8; }
 .question-shell .option { grid-template-columns: 32px minmax(0, 1fr) 20px; column-gap: 14px; padding: 16px; border-color: #d9e3eb; }
 .question-shell .option .body { font-size: 15px; line-height: 1.65; }
 .question-shell .option.selected { border-color: #739cb7; }
+.question-shell .option.selection-disabled { opacity: 0.55; cursor: not-allowed; }
 .choice-indicator { width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; border: 1.5px solid #b7c8d4; color: var(--navy); font-size: 12px; font-weight: 600; align-self: start; margin-top: 5px; }
 .choice-indicator.multi { border-radius: 5px; }
 .option.selected .choice-indicator { background: var(--navy); border-color: var(--navy); color: white; }
@@ -61,12 +62,43 @@ body:has(.question-shell) { background: #f3f6f8; }
 .question-shell .feedback-heading h2 { font-size: 18px; letter-spacing: -0.02em; text-transform: none; margin: 0 0 5px; }
 .feedback-heading p { margin: 0; font-size: 12px; line-height: 1.6; color: var(--muted); }
 .answer-heading { margin: 0 0 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; }
+.mock-answer-note { margin: 0 0 12px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.explain .mock-answer-reference .answer-line .letter { background: var(--muted); }
+.explain .mock-answer-reference .answer-line .body { font-weight: 400; }
+.mock-answer-reference .codeblock { margin: 0; }
+.option-review-sources { margin: 12px 0 0; font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
 .question-shell .why-title { margin-top: 20px; padding-left: 0; }
 .question-shell .explain .prose { padding-left: 0; }
 .question-shell .explain .prose p.lead { font-family: var(--sans); font-size: 15.5px; font-weight: 400; line-height: 1.75; letter-spacing: 0; }
 .question-shell .explain .prose p, .question-shell .why-not p { font-size: 15px; line-height: 1.75; }
 .question-shell details.more { padding-top: 14px; border-top: 1px solid rgba(20, 40, 60, 0.08); }
 .question-shell details.more summary { min-height: 32px; display: flex; align-items: center; gap: 5px; }
+.question-changes h3 { margin: 16px 0 10px; font-size: 13px; font-weight: 600; color: var(--navy); }
+.question-shell .question-changes .prose { margin-top: 0; padding-top: 0; border-top: 0; }
+.change-overview { margin: 12px 0 16px; padding: 4px 12px; border: 1px solid var(--line); border-radius: 8px; background: #f5f8fa; font-size: 13px; line-height: 1.7; }
+.change-overview > div { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 8px; padding: 8px 0; }
+.change-overview > div + div { border-top: 1px solid var(--line); }
+.change-overview dt { font-weight: 600; color: var(--navy); }
+.change-overview dd { margin: 0; }
+.question-comparison del { background: #fbe2df; color: #772d27; text-decoration: line-through; }
+.question-comparison ins { background: #dcefe0; color: #215a33; text-decoration: underline; text-underline-offset: 3px; }
+.change-item { margin: 16px 0; }
+.change-item h4 { margin: 0 0 8px; font-size: 13px; color: var(--navy); }
+.change-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.change-version { min-width: 0; padding: 12px; background: white; border: 1px solid var(--line); border-radius: 8px; }
+.change-version h5 { margin: 0 0 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.change-version p { margin: 0 0 12px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; line-height: 1.75; }
+.change-version p:last-child { margin-bottom: 0; }
+.question-shell .change-version .codeblock { margin: 0 0 12px; padding: 10px; }
+.question-shell .change-version .codeblock code { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12px; }
+.change-empty { color: var(--muted); font-style: italic; }
+.repair-summary { margin-top: 12px; }
+.repair-summary .source-letter-key { margin-bottom: 10px; }
+.change-review-notes { margin-top: 16px; padding-top: 4px; border-top: 1px solid var(--line); }
+.question-shell .change-review-notes .prose p { font-size: 13px; color: var(--muted); }
+@media (max-width: 1000px) {
+  .change-columns { grid-template-columns: minmax(0, 1fr); }
+}
 .question-shell .side { padding: 12px 14px 14px; }
 .question-shell .side > summary { min-height: 44px; padding-block: 8px; gap: 8px; }
 .question-shell .side[open] > summary { margin-bottom: 12px; }

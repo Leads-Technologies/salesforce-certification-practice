@@ -10,376 +10,86 @@
   <link rel="stylesheet" href="../quiz/css/styles.css">
   <link rel="stylesheet" href="../quiz/css/notice.css">
 </head>
-<body class="notice-page">
+
+<body class="notice-page notice-compact">
 <a class="notice-skip" href="#notice-overview">Skip to review notes</a>
 <div class="wrap notice-shell">
   <div data-site-header></div>
-  <div class="notice-header">
-    <a class="ghost nav-control notice-back" href="index.html"><span aria-hidden="true">←</span> Back to quiz</a>
-    <div class="notice-header-actions"><span>Study resources / Mock review</span><button type="button" class="ghost nav-control" data-notice-print hidden>Print notes</button></div>
-  </div>
-  <div class="notice-layout">
-    <nav class="notice-contents" aria-label="On this page">
-      <h2>In this review</h2>
-      <ul><li><a href="#notice-overview">Overview</a></li><li><a href="#full-question-review--16-october-2026">Review summary</a></li><li><a href="#incorrect-answer-keys">Corrected answers</a></li><li><a href="#wording-and-option-repairs">Question repairs &amp; study notes</a></li><li><a href="#source-and-study-caveats">Source &amp; study caveats</a></li><li><a href="#official-references">Official references</a></li><li><a href="#additional-verification-and-online-comparison">Additional references</a></li></ul>
-      <p>Review states describe the mock. They are separate from your practice score.</p>
-    </nav>
-    <main class="notice-article">
-      <header class="notice-hero" id="notice-overview" tabindex="-1" aria-labelledby="mock-notices--sales-cloud-platform-admin">
-        <p class="notice-kicker">Sales Cloud Platform Admin</p>
-        <h1 id="mock-notices--sales-cloud-platform-admin">Mock review notes</h1>
-        <p class="notice-intro">See which answers changed, what was repaired, and which questions need more context before they can be scored.</p>
-        <div class="notice-meta"><span>150 questions</span><span>150 scored</span><span>Reviewed 16 October 2026</span></div>
-        <div class="notice-summary"><a class="notice-stat corrected" href="#incorrect-answer-keys" data-review-count="corrected"><span class="notice-stat-top">Corrected<span aria-hidden="true">↗</span></span><strong>4</strong><span>The source answer key was wrong.</span></a><a class="notice-stat repaired" href="#wording-and-option-repairs" data-review-count="repaired"><span class="notice-stat-top">Repaired<span aria-hidden="true">↗</span></span><strong>42</strong><span>Content repaired; source key accepted.</span></a><a class="notice-stat ungraded" href="#full-question-review--16-october-2026" data-review-count="ungraded"><span class="notice-stat-top">Not scored<span aria-hidden="true">↗</span></span><strong>0</strong><span>Every playable question is scored.</span></a></div>
-        <details class="notice-about"><summary>Source document &amp; review scope</summary><div><p>Source: <a href="Salesforce Sales Cloud Platform Admin Mork.docx">Salesforce Sales Cloud Platform Admin Mork.docx</a>. Reviewed 16 October 2026. The original document is unchanged.</p>
-<p>This quiz contains <strong>150 scored questions</strong>. There are <strong>4 incorrect source keys</strong> marked <strong>Corrected</strong>, plus <strong>45 other documented repairs or review notes</strong> with accepted source keys. Every question has study priority, a conceptual group, correct-answer reasoning, distractor explanations, and notes.</p>
-<p><strong>Repaired: 42 questions.</strong> These have repaired question wording, code, choices, or necessary assumptions while their original answer remains accepted. Explanation-only review notes do not receive this badge. Corrected and Not scored questions use their own states; the lists are separate.</p>
-<p>Open <a href="index.html">index.html</a> and use the navigator’s Go to question field to find the original question number. The player uses the reviewed wording without an Earlier wording disclosure.</p></div></details>
-      </header>
-      <section class="notice-tools" aria-labelledby="notice-search-title" data-notice-tools hidden>
-        <div><h2 id="notice-search-title">Find a review note</h2><p>Search question numbers or keywords in the review tables.</p></div>
-        <form class="notice-search-form" role="search">
-          <label for="notice-search" class="sr-only">Search review tables</label>
-          <div class="notice-search-field"><span aria-hidden="true">⌕</span><input id="notice-search" type="search" placeholder="Question number or keyword…" autocomplete="off" aria-describedby="notice-search-status"><button type="button" class="quiet" data-notice-clear disabled>Clear</button></div>
-        </form>
-        <p class="notice-search-status" id="notice-search-status" role="status" aria-live="polite"></p>
-        <p class="notice-search-empty" hidden>No matching table notes. Try another question number or a shorter phrase. Other review sections remain available below.</p>
-      </section>
-      <section class="notice-section summary" aria-labelledby="full-question-review--16-october-2026" data-notice-section>
-<div class="notice-section-heading"><p class="notice-kicker">Review outcome</p></div>
-<h2 id="full-question-review--16-october-2026">Full question review — 16 October 2026</h2>
-<p>All <strong>150 questions</strong> were read again, including the previous corrections, complete option sets, correct-answer reasoning, distractor explanations, and study notes. This pass improved <strong>34 questions</strong>. Problematic variants were compared online; technical claims were checked against relevant primary documentation.</p>
-<p>All <strong>150 playable questions remain scored</strong> under the explicit assumptions shown in the repaired questions.</p>
-<p><strong>Q94 accepts C or D, and Q108 accepts A or C, one selection only.</strong> Each pair contains overlapping valid descriptions. Their original keys remain accepted, so neither has a Corrected badge.</p>
-<a class="notice-section-top" href="#notice-overview">Back to overview <span aria-hidden="true">↑</span></a>
-</section><section class="notice-section corrected" aria-labelledby="incorrect-answer-keys" data-notice-section>
-<div class="notice-section-heading"><p class="notice-kicker">Changed keys</p><span class="notice-section-count">4 notes</span></div>
-<h2 id="incorrect-answer-keys">Incorrect answer keys</h2>
-<p>Only demonstrably wrong source keys are marked Corrected. Wording, explanation, or assumption repairs do not receive the badge when the source key remains accepted. Unresolved keys are excluded from scoring.</p>
-<div class="notice-table" role="region" tabindex="0" aria-label="Incorrect answer keys table"><table role="table">
-<thead role="rowgroup">
-<tr role="row">
-<th scope="col" role="columnheader">Question</th>
-<th scope="col" role="columnheader">Source key</th>
-<th scope="col" role="columnheader">Quiz key</th>
-<th scope="col" role="columnheader">Reason</th>
+  <div class="notice-header"><a class="ghost nav-control notice-back" href="index.html">← Back to quiz</a><button type="button" class="ghost nav-control" data-notice-print hidden>Print</button></div>
+  <main class="notice-article">
+    <header class="notice-hero" id="notice-overview" tabindex="-1" aria-labelledby="mock-review-title">
+      <p class="notice-kicker">Sales Cloud Platform Admin</p>
+      <h1 id="mock-review-title">Mock review notes</h1>
+      <p class="notice-intro">Key corrections, repairs, and unresolved questions. Open a question in Practice for its full explanation and exact changes.</p>
+      <div class="notice-meta"><span>150 questions</span><span>145 scored</span></div>
+      <nav class="notice-summary" aria-label="Review categories"><a class="notice-stat corrected" href="#incorrect-answer-keys" data-review-count="corrected"><span class="notice-stat-top">Corrected answers</span><strong>5</strong></a>
+<a class="notice-stat repaired" href="#wording-options-code-and-assumptions" data-review-count="repaired"><span class="notice-stat-top">Repaired questions</span><strong>3</strong></a>
+<a class="notice-stat ungraded" href="#not-scored" data-review-count="ungraded"><span class="notice-stat-top">Not scored</span><strong>5</strong></a></nav>
+      <details class="notice-about"><summary>Original mock</summary><div><p><a href="Salesforce Sales Cloud Platform Admin Mork.docx">Salesforce Sales Cloud Platform Admin Mork.docx</a>. Original question numbers and DOCX answers are preserved.</p></div></details>
+    </header>
+    <section class="notice-tools" aria-label="Find a review note" data-notice-tools hidden>
+      <form class="notice-search-form" role="search"><label for="notice-search" class="sr-only">Search review notes</label><div class="notice-search-field"><input id="notice-search" type="search" placeholder="Question number or keyword…" autocomplete="off" aria-describedby="notice-search-status"><button type="button" class="quiet" data-notice-clear disabled>Clear</button></div></form>
+      <p class="notice-search-status" id="notice-search-status" role="status" aria-live="polite"></p>
+      <p class="notice-search-empty" hidden>No matching review notes. Try another question number or keyword.</p>
+    </section>
+<section class="notice-section corrected" aria-labelledby="incorrect-answer-keys" data-notice-section>
+<h2 id="incorrect-answer-keys">Corrected answers <span class="notice-section-count">5</span></h2>
+<p>The quiz uses a different answer from the DOCX mock.</p>
+<div class="notice-table" role="region" tabindex="0" aria-label="Corrected answers"><table role="table"><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Question</th><th scope="col" role="columnheader">DOCX answer</th><th scope="col" role="columnheader">Quiz answer</th><th scope="col" role="columnheader">Reason</th></tr></thead><tbody role="rowgroup">
+<tr role="row" id="note-corrected-9" data-questions="9">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-9">Q9</a></td><td role="cell" data-label="DOCX answer" class="source-key">A</td><td role="cell" data-label="Quiz answer" class="reviewed-key">B</td><td role="cell" data-label="Reason">A user referenced by a case assignment rule can be blocked from deactivation until the routing dependency is removed.</td>
 </tr>
-</thead>
-<tbody role="rowgroup">
-<tr role="row" id="note-incorrect-answer-keys-1" data-questions="9">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-1" aria-label="Link to review note for question 9"><span aria-hidden="true">Q</span>9</a></td>
-<td role="cell" data-label="Source key" class="source-key">A</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">B</td>
-<td role="cell" data-label="Reason">A user referenced by a case assignment rule can be blocked from deactivation until the routing dependency is removed.</td>
+<tr role="row" id="note-corrected-10" data-questions="10">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-10">Q10</a></td><td role="cell" data-label="DOCX answer" class="source-key">C</td><td role="cell" data-label="Quiz answer" class="reviewed-key">D</td><td role="cell" data-label="Reason">Distinct, descriptive action names using related verbs can help the reasoning engine differentiate similar retrieval actions.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-2" data-questions="10">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-2" aria-label="Link to review note for question 10"><span aria-hidden="true">Q</span>10</a></td>
-<td role="cell" data-label="Source key" class="source-key">C</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">D</td>
-<td role="cell" data-label="Reason">Distinct, descriptive action names using related verbs can help the reasoning engine differentiate similar retrieval actions.</td>
+<tr role="row" id="note-corrected-23" data-questions="23">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-23">Q23</a></td><td role="cell" data-label="DOCX answer" class="source-key">B</td><td role="cell" data-label="Quiz answer" class="reviewed-key">A</td><td role="cell" data-label="Reason">For an Opportunity, Log a Call is an activity action shown in the Activities component rather than the highlights panel.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-3" data-questions="23">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-3" aria-label="Link to review note for question 23"><span aria-hidden="true">Q</span>23</a></td>
-<td role="cell" data-label="Source key" class="source-key">B</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">A</td>
-<td role="cell" data-label="Reason">For an Opportunity, Log a Call is an activity action shown in the Activities component rather than the highlights panel.</td>
+<tr role="row" id="note-corrected-71" data-questions="71">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-71">Q71</a></td><td role="cell" data-label="DOCX answer" class="source-key">B</td><td role="cell" data-label="Quiz answer" class="reviewed-key">C</td><td role="cell" data-label="Reason">Keep topic instructions focused and concise.</td>
 </tr>
-<tr role="row" id="note-incorrect-answer-keys-4" data-questions="141">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-incorrect-answer-keys-4" aria-label="Link to review note for question 141"><span aria-hidden="true">Q</span>141</a></td>
-<td role="cell" data-label="Source key" class="source-key">A</td>
-<td role="cell" data-label="Quiz key" class="reviewed-key">B</td>
-<td role="cell" data-label="Reason">A permission set can grant needed Opportunity access because standard profile object permissions are not editable.</td>
+<tr role="row" id="note-corrected-141" data-questions="141">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-corrected-141">Q141</a></td><td role="cell" data-label="DOCX answer" class="source-key">A</td><td role="cell" data-label="Quiz answer" class="reviewed-key">B</td><td role="cell" data-label="Reason">A permission set can grant needed Opportunity access because standard profile object permissions are not editable.</td>
 </tr>
-</tbody>
-</table></div>
-<p class="notice-table-empty" hidden>No matching notes in this table.</p>
-<a class="notice-section-top" href="#notice-overview">Back to overview <span aria-hidden="true">↑</span></a>
-</section><section class="notice-section repaired" aria-labelledby="wording-and-option-repairs" data-notice-section>
-<div class="notice-section-heading"><p class="notice-kicker">Accepted keys</p><span class="notice-section-count">45 notes</span></div>
-<h2 id="wording-and-option-repairs">Wording and option repairs</h2>
-<p>These questions retain an accepted source key and have no Corrected badge. This table includes wording, code, assumptions, and explanation-only review notes. Changed option meanings can affect an older saved selection; revisit these items instead of relying only on remembered letters. Supplied constraints are study repairs, not recovered DOCX text.</p>
-<div class="notice-table" role="region" tabindex="0" aria-label="Wording and option repairs table"><table role="table">
-<thead role="rowgroup">
-<tr role="row">
-<th scope="col" role="columnheader">Question</th>
-<th scope="col" role="columnheader">Accepted answer</th>
-<th scope="col" role="columnheader">Issue and review action</th>
-</tr>
-</thead>
-<tbody role="rowgroup">
-<tr role="row" id="note-wording-and-option-repairs-1" data-questions="1">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-1" aria-label="Link to review note for question 1"><span aria-hidden="true">Q</span>1</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">State that initial assignment is configured; escalation is the remaining missing tool.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-2" data-questions="2">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-2" aria-label="Link to review note for question 2"><span aria-hidden="true">Q</span>2</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Specify roll-ups dependent on the relationship being converted, rather than any unrelated master roll-up.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-3" data-questions="5">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-3" aria-label="Link to review note for question 5"><span aria-hidden="true">Q</span>5</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Ask about executing a custom business operation rather than attributing all adaptive reasoning to custom actions.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-4" data-questions="7">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-4" aria-label="Link to review note for question 7"><span aria-hidden="true">Q</span>7</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Make missing information explicit; clarification is not an automatic outcome of every unsuccessful agent loop.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-5" data-questions="8">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-5" aria-label="Link to review note for question 8"><span aria-hidden="true">Q</span>8</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B,D</td>
-<td role="cell" data-label="Issue and review action">Limit the undo-import question to new records on a Mass Delete-supported object; updates need a pre-import backup.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-6" data-questions="11">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-6" aria-label="Link to review note for question 11"><span aria-hidden="true">Q</span>11</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Make the action instructions consistently describe the customer address instead of switching to an order address.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-7" data-questions="15">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-7" aria-label="Link to review note for question 15"><span aria-hidden="true">Q</span>15</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">State folder-management access and ownership assumptions for moving the dashboard.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-8" data-questions="17">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-8" aria-label="Link to review note for question 17"><span aria-hidden="true">Q</span>17</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C,D,E</td>
-<td role="cell" data-label="Issue and review action">Describe inherited detail ownership without implying a separately editable detail Owner field.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-9" data-questions="21">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-9" aria-label="Link to review note for question 21"><span aria-hidden="true">Q</span>21</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Wording corrected: the source implies an automatically dated delegation period. A delegated approver is the substitute approver; set and remove that delegation according to the leave period and permit delegation in the approval configuration.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-10" data-questions="26">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-10" aria-label="Link to review note for question 26"><span aria-hidden="true">Q</span>26</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Align deactivation reasoning with the documented system-error response.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-11" data-questions="28">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-11" aria-label="Link to review note for question 28"><span aria-hidden="true">Q</span>28</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Use unclaimed queue-owned cases rather than implying a Case can have no Owner.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-12" data-questions="29">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-12" aria-label="Link to review note for question 29"><span aria-hidden="true">Q</span>29</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Qualify username uniqueness by the applicable production or sandbox namespace.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-13" data-questions="33">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-13" aria-label="Link to review note for question 33"><span aria-hidden="true">Q</span>33</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Wording corrected: trusted network ranges reduce identity-verification challenges, not normal authentication or required MFA. Profile login IP ranges are a different control that can block access outside an allowed network.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-14" data-questions="34">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-14" aria-label="Link to review note for question 34"><span aria-hidden="true">Q</span>34</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B,C</td>
-<td role="cell" data-label="Issue and review action">Ask for available recovery actions rather than suggesting both unlock and password reset are always necessary.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-15" data-questions="35">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-15" aria-label="Link to review note for question 35"><span aria-hidden="true">Q</span>35</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Explain that Mobile Home must be enabled and the report pinned; enabling it alone does not choose a report.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-16" data-questions="37">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-16" aria-label="Link to review note for question 37"><span aria-hidden="true">Q</span>37</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Wording corrected: the validation rule requires users to enter Source__c; it does not automatically populate that field. The invalid state is LeadSource = Other and Source__c blank.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-17" data-questions="40">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-17" aria-label="Link to review note for question 40"><span aria-hidden="true">Q</span>40</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Retain the feature-license answer while avoiding an absolute claim that Platform licenses can never have console add-ons.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-18" data-questions="42">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-18" aria-label="Link to review note for question 42"><span aria-hidden="true">Q</span>42</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Remove the claim that Data Cloud is a universal Agentforce activation prerequisite.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-19" data-questions="55">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-19" aria-label="Link to review note for question 55"><span aria-hidden="true">Q</span>55</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Ask for the restrictive record-access baseline rather than promising Private sharing alone means owner-only reporting.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-20" data-questions="56">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-20" aria-label="Link to review note for question 56"><span aria-hidden="true">Q</span>56</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B,C,D</td>
-<td role="cell" data-label="Issue and review action">Describe inherited detail ownership without implying a separately editable detail Owner field.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-21" data-questions="58">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-21" aria-label="Link to review note for question 58"><span aria-hidden="true">Q</span>58</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B,D</td>
-<td role="cell" data-label="Issue and review action">Make the list-view deletion claim conditional on the documented data-loss conversion scenario.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-22" data-questions="59">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-22" aria-label="Link to review note for question 59"><span aria-hidden="true">Q</span>59</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C,D</td>
-<td role="cell" data-label="Issue and review action">Option A corrected: the source offered two overlapping names for header color. Replacing one with an unsupported per-field text-color setting leaves C and D as a clear two-answer question.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-23" data-questions="60">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-23" aria-label="Link to review note for question 60"><span aria-hidden="true">Q</span>60</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Specify a built-in guided import so other capable tools are not dismissed as incapable.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-24" data-questions="62">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-24" aria-label="Link to review note for question 62"><span aria-hidden="true">Q</span>62</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Scope the architecture choice to a classic approval process within its supported limits.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-25" data-questions="64">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-25" aria-label="Link to review note for question 64"><span aria-hidden="true">Q</span>64</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Mention both account-team and opportunity-team preservation options.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-26" data-questions="70">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-26" aria-label="Link to review note for question 70"><span aria-hidden="true">Q</span>70</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Wording corrected: the source named a manager and a finance reviewer but also said up to three sign-offs. The repaired question consistently requires those two sequential approvals.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-27" data-questions="71">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-27" aria-label="Link to review note for question 71"><span aria-hidden="true">Q</span>71</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Option B corrected: the source recommended an “extended list,” which could encourage excessive prompt length. Use a few representative examples, explicit boundaries, plain language, and realistic tests.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-28" data-questions="75">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-28" aria-label="Link to review note for question 75"><span aria-hidden="true">Q</span>75</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Add the primary Atlas workflow reference confirming prompt-injection checks.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-29" data-questions="76">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-29" aria-label="Link to review note for question 76"><span aria-hidden="true">Q</span>76</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Option B corrected: the source filtered Opportunity Owner and assumed a universal $USER report-filter value. Use the report type’s supported current-user ownership scope or a suitable formula comparing order ownership to the current user.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-30" data-questions="77">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-30" aria-label="Link to review note for question 77"><span aria-hidden="true">Q</span>77</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Option D corrected: the source called the tool “Lightning App Builder Analytics.” The actual command is Analyze, providing Performance Analysis for the record page.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-31" data-questions="82">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-31" aria-label="Link to review note for question 82"><span aria-hidden="true">Q</span>82</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Make the scheduled, unattended existing-record cleanup requirement explicit.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-32" data-questions="94">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-32" aria-label="Link to review note for question 94"><span aria-hidden="true">Q</span>94</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C or D (select one)</td>
-<td role="cell" data-label="Issue and review action">Accept the overlapping private-folder and missing-folder-share explanations as single-choice alternatives. Compare the same overlapping folder options online; its published key does not remove their overlap.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-33" data-questions="95">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-33" aria-label="Link to review note for question 95"><span aria-hidden="true">Q</span>95</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Ask for the activation check rather than inferring a definite cause from missing output.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-34" data-questions="96">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-34" aria-label="Link to review note for question 96"><span aria-hidden="true">Q</span>96</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C,D</td>
-<td role="cell" data-label="Issue and review action">Explicitly permit the two-field UI workaround so the two selected configurations match the requirement.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-35" data-questions="98">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-35" aria-label="Link to review note for question 98"><span aria-hidden="true">Q</span>98</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,C,D</td>
-<td role="cell" data-label="Issue and review action">State that backward stage movement must be prevented and distinguish guidance from enforcement.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-36" data-questions="102">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-36" aria-label="Link to review note for question 102"><span aria-hidden="true">Q</span>102</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B,D</td>
-<td role="cell" data-label="Issue and review action">Specify that the sandbox holds the matching layout, while the other profile layout is different.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-37" data-questions="104">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-37" aria-label="Link to review note for question 104"><span aria-hidden="true">Q</span>104</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Field type corrected: the source asked to place a Text Area field in a compact layout. Text Area, Long Text Area, Rich Text Area, and multi-select picklists are excluded; the repaired question uses a supported Text field.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-38" data-questions="105">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-38" aria-label="Link to review note for question 105"><span aria-hidden="true">Q</span>105</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">State that handoff history was captured; otherwise a missing component is only one possible cause.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-39" data-questions="108">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-39" aria-label="Link to review note for question 108"><span aria-hidden="true">Q</span>108</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A or C (select one)</td>
-<td role="cell" data-label="Issue and review action">Accept equivalent component-visibility descriptions rather than penalizing option A for being less verbose. Compare online variants and verify the underlying screen component-visibility behavior.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-40" data-questions="117">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-40" aria-label="Link to review note for question 117"><span aria-hidden="true">Q</span>117</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Specify object-level Modify All rather than leaving its scope ambiguous.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-41" data-questions="121">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-41" aria-label="Link to review note for question 121"><span aria-hidden="true">Q</span>121</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">B</td>
-<td role="cell" data-label="Issue and review action">Option B corrected: the source confused card content with the Kanban details panel. Compact layouts control the top fields in the details panel; list-view field selection controls the card fields.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-42" data-questions="124">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-42" aria-label="Link to review note for question 124"><span aria-hidden="true">Q</span>124</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">C</td>
-<td role="cell" data-label="Issue and review action">Apply the same built-in guided import wording as duplicate Q60.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-43" data-questions="132">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-43" aria-label="Link to review note for question 132"><span aria-hidden="true">Q</span>132</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A</td>
-<td role="cell" data-label="Issue and review action">Clarify that default teams are reusable membership templates, not unconditional automatic assignment rules.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-44" data-questions="135">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-44" aria-label="Link to review note for question 135"><span aria-hidden="true">Q</span>135</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">D</td>
-<td role="cell" data-label="Issue and review action">Option D corrected: the source proposed milestones, which measure defined SLA steps rather than automatically measuring every team’s residence time. Use ownership-history reporting, or explicit transfer timestamps when the required duration is not exposed by the available report type.</td>
-</tr>
-<tr role="row" id="note-wording-and-option-repairs-45" data-questions="143">
-<td role="cell" data-label="Question"><a class="notice-question" href="#note-wording-and-option-repairs-45" aria-label="Link to review note for question 143"><span aria-hidden="true">Q</span>143</a></td>
-<td role="cell" data-label="Accepted answer" class="reviewed-key">A,B</td>
-<td role="cell" data-label="Issue and review action">Put the classic-approval assumption in the question itself.</td>
-</tr>
-</tbody>
-</table></div>
-<p class="notice-table-empty" hidden>No matching notes in this table.</p>
-<a class="notice-section-top" href="#notice-overview">Back to overview <span aria-hidden="true">↑</span></a>
-</section><section class="notice-section source" aria-labelledby="source-and-study-caveats" data-notice-section>
-<div class="notice-section-heading"><p class="notice-kicker">Source notes</p></div>
-<h2 id="source-and-study-caveats">Source and study caveats</h2>
-<ul>
-<li>The document’s final numbered answer appendix was used as the source key. Handwritten/standalone answers near the first questions were not treated as the authoritative key.</li>
-<li>The DOCX contained no embedded media/drawing exhibits or identified missing-figure references. No questions were excluded from scoring because of an unreadable image.</li>
-<li>Verified reference-number artifacts were removed during extraction. Original question numbers and the full 150-question set were retained.</li>
-<li>Must/High/Familiar/Low are AI study priorities, not predictions of live exam questions. Topic percentages describe this mock’s custom categories rather than the official exam outline.</li>
-<li>Wording/option changes are study repairs. The source snapshots and original DOCX are retained internally, while this notice summarizes the issues for review.</li>
-</ul>
-<a class="notice-section-top" href="#notice-overview">Back to overview <span aria-hidden="true">↑</span></a>
-</section><section class="notice-section reference" aria-labelledby="official-references" data-notice-section>
-<div class="notice-section-heading"><p class="notice-kicker">Context &amp; references</p></div>
-<h2 id="official-references">Official references</h2>
-<ul>
-<li><a href="https://help.salesforce.com/s/articleView?id=000383178&amp;language=en_US&amp;type=1">User deactivation restrictions</a></li>
-<li><a href="https://help.salesforce.com/s/articleView?id=005134944&amp;language=en_US&amp;type=1">Agent action instruction guidance</a></li>
-<li><a href="https://help.salesforce.com/s/articleView?id=xcloud.lex_enable_existing_features.htm&amp;language=en_US&amp;type=5">Activity actions and Lightning placement</a></li>
-<li><a href="https://help.salesforce.com/s/articleView?id=salesforce_app_customize_branding.htm&amp;language=en_US&amp;type=0">Mobile branding</a></li>
-<li><a href="https://help.salesforce.com/s/articleView?id=platform.lightning_page_performance.htm&amp;language=en_US&amp;type=5">Lightning page performance</a></li>
-<li><a href="https://help.salesforce.com/s/articleView?id=platform.compact_layout_notes.htm&amp;language=en_US&amp;type=5">Compact layout limitations</a></li>
-<li><a href="https://trailhead.salesforce.com/content/learn/modules/lightning-experience-for-salesforce-classic-users/work-with-list-views">List views and Kanban</a></li>
-<li><a href="https://help.salesforce.com/s/articleView?id=sf.kanban_considerations_admin.htm&amp;language=en_US&amp;type=5">Kanban considerations</a></li>
-<li><a href="https://help.salesforce.com/s/articleView?id=service.reports_support_crts.htm&amp;language=en_US&amp;type=5">Case reporting</a></li>
-<li><a href="https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_objects">Object permissions and standard profiles</a></li>
-</ul>
-<p>This was a document/documentation review, not a live Salesforce-org test. Product behavior and release-sensitive guidance should be checked against the applicable current documentation.</p>
-<a class="notice-section-top" href="#notice-overview">Back to overview <span aria-hidden="true">↑</span></a>
-</section><section class="notice-section reference" aria-labelledby="additional-verification-and-online-comparison" data-notice-section>
-<div class="notice-section-heading"><p class="notice-kicker">Context &amp; references</p></div>
-<h2 id="additional-verification-and-online-comparison">Additional verification and online comparison</h2>
-<ul>
-<li><a href="https://help.salesforce.com/s/articleView?id=005134880&amp;language=en_US&amp;type=1">Atlas reasoning workflow</a> confirms the grounding/prompt-injection point in Q75; <a href="https://www.salesforce.com/agentforce/guide/">Agentforce reasoning</a> supports clarification when required inputs are missing, rather than a universal failure outcome.</li>
-<li><a href="https://help.salesforce.com/s/articleView?id=ai.agent_versions_commit.htm&amp;language=en_US&amp;type=5">Agent activation/deactivation</a> supports Q26’s interrupted conversations and subsequent system-error response.</li>
-<li><a href="https://help.salesforce.com/s/articleView?id=service.console2_assign_service_feature_license.htm&amp;language=en_US">Service Cloud feature license</a> supports the scoped Q40 scenario and its licensing caveat.</li>
-<li><a href="https://help.salesforce.com/s/articleView?id=admin_transfer.htm&amp;language=en_US&amp;type=5">Mass Transfer Records</a> documents both team-preservation options for Q64.</li>
-<li><a href="https://www.actual4test.com/discussions/Salesforce/exam-plat-admn-201-topic-5-question-40-discussion-p1240389.html">Q94 online option set</a> retains the overlapping folder choices. <a href="https://help.salesforce.com/s/articleView?id=platform.flow_ref_elements_screen_conditional_visibility.htm&amp;language=en_US&amp;type=5">Screen conditional visibility</a> supports the equivalent implementation descriptions in Q108.</li>
-</ul>
-<p>The full review was a source/documentation review, not a live Salesforce-org execution of every scenario. All local validation checks passed, including question metadata, scoring, equivalent answers, unscored exclusion, saved-answer regrading, and direct-file startup. Existing question IDs, choice order, progress storage keys, original DOCX files, and existing source snapshots were preserved.</p>
-<a class="notice-section-top" href="#notice-overview">Back to overview <span aria-hidden="true">↑</span></a>
+</tbody></table></div><p class="notice-table-empty" hidden>No matching questions in this section.</p>
 </section>
-      <footer class="notice-footer"><p>Ready to put these notes into practice?</p><a class="primary nav-control notice-return" href="index.html">Return to quiz <span aria-hidden="true">→</span></a></footer>
-    </main>
-  </div>
+<section class="notice-section repaired" aria-labelledby="wording-options-code-and-assumptions" data-notice-section>
+<h2 id="wording-options-code-and-assumptions">Repaired questions <span class="notice-section-count">3</span></h2>
+<p>Content was repaired or accepted alternatives were expanded. The original answer remains accepted.</p>
+<div class="notice-table" role="region" tabindex="0" aria-label="Repaired questions"><table role="table"><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Question</th><th scope="col" role="columnheader">What changed</th></tr></thead><tbody role="rowgroup">
+<tr role="row" id="note-repaired-77" data-questions="77">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-77">Q77</a></td><td role="cell" data-label="What changed">Correct only the misnamed Lightning App Builder Analytics label to Performance Analysis (Analyze) in Lightning App Builder; retain the original scenario, other choices and D key.</td>
+</tr>
+<tr role="row" id="note-repaired-94" data-questions="94">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-94">Q94</a></td><td role="cell" data-label="What changed">A private dashboard folder and missing folder View access overlap as explanations.</td>
+</tr>
+<tr role="row" id="note-repaired-108" data-questions="108">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-repaired-108">Q108</a></td><td role="cell" data-label="What changed">Both listed screen-component visibility descriptions implement the stated display condition.</td>
+</tr>
+</tbody></table></div><p class="notice-table-empty" hidden>No matching questions in this section.</p>
+</section>
+<section class="notice-section ungraded" aria-labelledby="not-scored" data-notice-section>
+<h2 id="not-scored">Not scored <span class="notice-section-count">5</span></h2>
+<p>Excluded from scores and new mock exams. The DOCX answer is shown for reference only.</p>
+<div class="notice-table" role="region" tabindex="0" aria-label="Not scored"><table role="table"><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Question</th><th scope="col" role="columnheader">DOCX answer (unverified)</th><th scope="col" role="columnheader">Issue</th></tr></thead><tbody role="rowgroup">
+<tr role="row" id="note-ungraded-7" data-questions="7">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-7">Q7</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">D</td><td role="cell" data-label="Issue">The question does not define when the agent should clarify the request versus escalate.</td>
+</tr>
+<tr role="row" id="note-ungraded-59" data-questions="59">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-59">Q59</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">C, D</td><td role="cell" data-label="Issue">Two header-color options overlap, leaving no unique pair.</td>
+</tr>
+<tr role="row" id="note-ungraded-76" data-questions="76">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-76">Q76</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">B</td><td role="cell" data-label="Issue">The question asks about Orders, but the owner-filter option names Opportunities.</td>
+</tr>
+<tr role="row" id="note-ungraded-104" data-questions="104">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-104">Q104</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">A</td><td role="cell" data-label="Issue">Text Area fields cannot be included in the compact layout used by the highlights panel.</td>
+</tr>
+<tr role="row" id="note-ungraded-121" data-questions="121">
+<td role="cell" data-label="Question"><a class="notice-question" href="#note-ungraded-121">Q121</a></td><td role="cell" data-label="DOCX answer (unverified)" class="source-key">B</td><td role="cell" data-label="Issue">Kanban card fields use the list view’s selected fields; that control is missing from the choices.</td>
+</tr>
+</tbody></table></div><p class="notice-table-empty" hidden>No matching questions in this section.</p>
+</section>
+  </main>
   <div data-site-footer></div>
 </div>
 <script src="../quiz/js/ui/navigation.js" defer></script>

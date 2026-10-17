@@ -88,17 +88,19 @@
     }
 
     examSelectionComplete(q, picked) {
+      if (q.ungraded) return true;
       return Array.isArray(picked) && picked.length === (q.type === "multi" ? q.choose || q.answer.length : 1);
     }
 
     examAnswered(attempt = this.app.state.examAttempt) {
-      return attempt.ids.filter(id => this.examSelectionComplete(this.app.byId.get(id), attempt.drafts[id])).length;
+      return attempt.ids.filter(id => !this.app.byId.get(id).ungraded && this.examSelectionComplete(this.app.byId.get(id), attempt.drafts[id])).length;
     }
 
     examResults(attempt) {
       return Object.fromEntries(attempt.ids.map(id => {
         const picked = (attempt.drafts[id] || []).slice();
-        return [id, { picked, status:picked.length ? this.app.grader.grade(this.app.byId.get(id), picked) : "unanswered" }];
+        const question = this.app.byId.get(id);
+        return [id, { picked, status:question.ungraded || picked.length ? this.app.grader.grade(question, picked) : "unanswered" }];
       }));
     }
 

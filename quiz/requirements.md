@@ -1,6 +1,6 @@
 # Quiz requirements and UI/UX design
 
-Status: current product baseline. Last reviewed: 16 October 2026.
+Status: current product baseline. Last reviewed: 17 October 2026.
 
 This document explains what the quiz must do, the quality constraints it must preserve, and the reasons behind its interface. It is for human maintainers and AI coding assistants. Requirements describe existing behavior and standing design constraints, not proposed features or a claim of complete browser/accessibility certification.
 
@@ -53,7 +53,7 @@ The current product has no accounts, backend, cloud sync, import/export UI, atte
 | Study group | A narrower concept; configured group order can determine teaching order. |
 | Must / High / Familiar / Low | Study priorities, not predictions of official exam coverage. |
 | Corrected | The source key was demonstrably wrong; grading uses the reviewed key. |
-| Repaired | Content/assumptions were repaired while an accepted source answer remains valid. |
+| Repaired | A verified minimal wording/code fix, externally recovered missing content, or expanded accepted single-choice alternatives; the original answer remains accepted. |
 | Not scored / ungraded | Unresolved content available for study, excluded from scored accuracy and exam sampling. |
 | Draft | An unfinished saved selection, not a practice grade. |
 | Correct / Missed | A checked practice result or submitted exam result. |
@@ -62,6 +62,16 @@ The current product has no accounts, backend, cloud sync, import/export UI, atte
 | Not answered in a submitted exam | No saved selection; earns no points and remains distinct from a wrong selection. |
 
 Corrected, Repaired, and Not scored are mutually exclusive source-review categories. They are independent of learner grades. Explanation-only edits do not by themselves justify a Repaired badge.
+
+Not scored means a reliable grading key has not been established for the supplied question. Use it for essential missing content, no defensible option set, incompatible answer counts, or unresolved wording/version/setup ambiguity that materially changes the answer. A minor typo, an incorrect printed key, or an irrelevant edge case alone does not justify withholding scoring. Preserve the intended task and use supported repairs, key corrections or accepted alternatives when possible.
+
+When opening feedback for a Not scored question, show **Original mock answer (unverified)** with the original key and full corresponding source choice text/code. Keep it neutral and excluded from grading. In saved exam review, retain the original letters and identify their displayed equivalents. If no original key is available, say so. Hide reference answers before feedback, as with scored questions.
+
+Not scored feedback uses the original DOCX mock answer as its answer reference; do not add suggested answer selections. An Online option review disclosure records what was compared and whether missing choices or damaged terms were actually verified. Notices show only a concise unresolved issue; detailed comparison outcomes stay in question feedback.
+
+Not scored multiple-choice questions retain their stated Choose N count independently of the empty grading key. Allow at most N selections, show the selected count, and let users deselect an answer before choosing another. Reading the explanation remains available with no selections. Existing saved selections remain available for review and removal.
+
+Search online papers for matching complete versions of unresolved questions, recording queries, candidate URLs and the outcome in `review.recovery`. Summarize only the current issue or repair in the notice. Restore scoring only after the full task, options and answer are verified. A partial recovery remains Not scored and may show Question changes, with the original key explicitly unverified. Preserve original DOCX snapshots, IDs and option order; distinguish recovered material from invented scenarios.
 
 ### Calculation contract
 
@@ -73,7 +83,7 @@ Corrected, Repaired, and Not scored are mutually exclusive source-review categor
 | Multiple answers | The selected set exactly matches the key, regardless of selection order; no partial credit. |
 | Equivalent alternatives (`acceptAny`) | Exactly one choice is selected; any listed accepted alternative is correct. This is not multi-select. |
 | Unscored progress | Reviewed items / unscored items, separate from scored progress. |
-| Exam score | Correct questions / the entire sampled set, including skipped questions. Display percentages rounded to whole numbers. |
+| Exam score | Correct questions / all currently scored questions in the saved sample, including skipped questions. Retired source items do not contribute; an entirely retired attempt has no score. Display percentages rounded to whole numbers. |
 | Incomplete exam answer | A nonempty partial/nonmatching selection is incorrect on submission; an empty selection is not answered. |
 
 Practice headings use stable bank/source question IDs and show set position separately. Exam headings, jumps, navigator entries, and result rows use positions `1–N`. Canonical bank/choice IDs remain internal for saving and grading.
@@ -114,10 +124,10 @@ Practice headings use stable bank/source question IDs and show set position sepa
 | --- | --- |
 | FR-19 | Practice is untimed, preserves original choice order, and does not randomly sample questions. All/topic lists use bank ID order; ordered priorities use configured teaching order. |
 | FR-20 | Show topic/group, priority, stable question number, applicable source-review badge, scenario/prompt/code, and selection count. Explain missing exhibits and unscored status visibly. |
-| FR-21 | A single selection replaces the previous one; multiple selections toggle independently. Show remaining/extra selections. Do not silently truncate an over-selection. |
+| FR-21 | A single selection replaces the previous one; multiple selections toggle independently up to the requested maximum. At the maximum, disable unselected options and keep selected options enabled for deselection; re-enable options when below the limit. Apply this to practice, Not scored questions and active exams, including keyboard shortcuts. Show remaining/extra selections without silently truncating older saved over-selections. |
 | FR-22 | Enable checking only for exactly the requested selection count. Allow Clear selection before checking. Unscored items allow Read explanation with no selection. |
 | FR-23 | Checking saves and reveals chosen versus correct answer/accepted alternatives, reasoning, and distractor explanations. Lock checked choices until Try again. Never invent an answer for an unresolved item. |
-| FR-24 | Put additional notes, code, references, and caveats in Full explanation. Corrected keys may show concise source-versus-reviewed key feedback. Do not add an Earlier wording/source-history disclosure. |
+| FR-24 | Put study notes, code, technical references, and caveats in Full explanation. For Repaired questions, use one Question changes disclosure, collapsed by default. Lead with Reason for the change, followed by a compact Changed / Unchanged / Answer key summary, distinguishing unchanged letters from changed correct-choice text or expanded accepted alternatives. Show comparisons of the changed question wording/code and each changed choice with Original/Current labels and exact highlights. Keep the removal/addition highlights without a Removed text / Added text legend or a redundant Text changes heading. End with a separate Review notes & sources footer only when needed. Do not repeat the complete original question or nest disclosures. Keep repair reasons out of Full explanation. Preserve original wording, code, and letters in comparisons, with an exam letter key. Stack comparisons at narrow widths. Reveal these only with answer feedback, including submitted exam review. Corrected keys may show concise source-versus-reviewed key feedback. |
 | FR-25 | Try again resets only the current practice result/draft and restores editability. Preserve other questions and original choice order. |
 | FR-26 | Support Previous, Next, Skip for now, Home, View results, jump, and navigator access as appropriate. Save unfinished selections on navigation. Forward navigation after the final item opens results. |
 | FR-27 | Practice jumps accept only a question ID in the current set. Show invalid-input errors without changing questions or losing selections. |
@@ -136,7 +146,7 @@ Practice headings use stable bank/source question IDs and show set position sepa
 | FR-35 | Default duration is validated `examMinutes`, with a shared 105-minute fallback. Accept whole minutes `1–1440`. Count changes do not scale duration. Invalid input preserves the saved attempt and explains the error. |
 | FR-36 | Uniformly sample scored IDs without replacement, shuffle sample order and choices, and create new permutations for a new attempt. Do not mutate source data or imply official topic quotas/pass thresholds. |
 | FR-37 | Use exam positions `1–N` consistently. Jump K selects sampled position K, not source ID K. Store/grade canonical IDs. |
-| FR-38 | Preserve sample/order, choice permutations, position, selections, and timing across navigation/reload/resume. Repair an invalid permutation without discarding otherwise valid progress. |
+| FR-38 | Preserve sample/order, choice permutations, position, selections, and timing across navigation/reload/resume. Repair an invalid permutation without discarding otherwise valid progress. If a source review marks a sampled question Not scored, preserve it and its selections in the saved attempt, explain the adjustment, and exclude it from the current score; new samples still exclude all ungraded items. |
 | FR-39 | Before submission show neutral complete/incomplete selection progress, no grades/explanations. Practice grades must not pre-answer/color the exam. Hide the Missed navigator filter while active. |
 | FR-40 | Save and next requires a complete selection; skipping/navigation may retain incomplete drafts. Allow clearing and revisiting until submission; auto-save selections. |
 | FR-41 | Review & finish is a checkpoint, not submission. Show numbered Answered / Incomplete selection / Not answered states and allow returning, continuing, saving/exiting, or explicit submission. |
@@ -176,8 +186,8 @@ Practice headings use stable bank/source question IDs and show set position sepa
 | FR-60 | Enhanced search matches exact/grouped question numbers or all words of a phrase. Filter table rows only; keep narrative findings visible. Announce counts, explain empty results, preserve input, clear with Escape/Clear, and focus the first match with Enter. |
 | FR-61 | Print every review row despite active search, include source/scope, omit interactive chrome, and restore the prior disclosure state afterward. |
 | FR-62 | Follow the shared schema: unique runtime IDs, valid section/focus/group references, at least two choices, valid answer letters/counts, complete metadata, reasoning, distractor explanations, and notes. |
-| FR-63 | Preserve original documents and retained source snapshots/keys. Document missing/repeated source identities and recovery provenance. Never fill a source gap with an unrelated question or describe a supplied assumption as recovered wording. |
-| FR-64 | Verify disputed/version-sensitive content with primary documentation. Explain each answer/distractor and keep repeated scenarios consistent. Leave unresolved content unscored. Follow the detailed review process in [guideline.md](guideline.md). |
+| FR-63 | Preserve original documents and source keys. Source snapshots must reflect the document, not earlier reconstructed content or appended commentary; explicitly document corrections to an inaccurate snapshot. Document missing/repeated source identities and recovery provenance. Never fill a source gap with an unrelated question or describe a supplied assumption as recovered wording. |
+| FR-64 | Verify disputed/version-sensitive content with primary documentation. Preserve the original scenario and answer meanings; allow only verified small transcription fixes. Accept supported equivalent single-choice alternatives and leave materially ambiguous, incomplete or unsupported questions unscored. Never supply assumptions or replace option meanings to force a key. Record a dated decision for every question in a full review and publish concise current Corrected, Repaired and Not scored summaries in its notice. Substantial rewrites must be separate study variants outside original-mock scoring/exams. Follow [guideline.md](guideline.md). |
 | FR-65 | Support text, prompt, and code blocks; escape imported markup. Inspect source images before declaring them missing. Document replacements/missing context; actual image/diagram support requires a schema/renderer extension. |
 
 ## 4. Non-functional requirements
@@ -332,7 +342,7 @@ Different breakpoints serve different components: 860px for gutters/reader scrol
 
 | Layer | Ownership |
 | --- | --- |
-| Per-quiz files | Configuration, question bank, entry HTML, complete static notices, original documents. No parallel JSON copies or per-quiz runtime loaders. |
+| Per-quiz files | Configuration, question bank, entry HTML, concise static notices, original documents. No parallel JSON copies or per-quiz runtime loaders. |
 | [js/core/model.js](js/core/model.js) | Normalize/validate, grade, and order choices; no DOM/storage access. |
 | [js/core/storage.js](js/core/storage.js) | Validate/read/write saved practice, sessions, and exams. |
 | [js/core/exam.js](js/core/exam.js) | Attempt lifecycle, practice isolation, absolute deadline, warnings/expiry. |
@@ -390,5 +400,5 @@ For documentation-only changes, check references and consistency with source/gui
 - The bank and keys are client-side files. Delaying feedback is a UI rule, not protection from source inspection.
 - CSS/dialog behavior assumes a modern browser, including grid/flex, `:has()`, `dvh`, and `scrollbar-gutter`. Chrome has been used for visual QA; no complete browser/version matrix or formal WCAG conformance audit is established.
 - Optional Google Fonts and user-opened external references can require networking. Core quiz data and local interactions do not.
-- Automated checks do not establish every question's factual truth, live Salesforce behavior, or future release compatibility. Follow the content review process and preserve evidence in notices.
+- Automated checks do not establish every question's factual truth, live Salesforce behavior, or future release compatibility. Follow the content review process and preserve evidence in question data and feedback.
 - No official pass threshold, topic distribution, difficulty equivalence, performance SLA, or unlimited-bank-size guarantee is specified. Adding one needs an explicit product decision and validation.

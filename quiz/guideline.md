@@ -42,6 +42,8 @@ quiz/
     validate-notices.js
     validate-shuffle.js
     validate-exam.js
+    validate-changes.js
+    validate-source-review.js
     lib/player.js
     lib/player-access.js
 <quiz-name>/
@@ -73,10 +75,12 @@ quiz/
 ## Images and incomplete questions
 
 - Inspect embedded images before concluding an exhibit is missing. For code screenshots, transcribe into code blocks and visually verify every operator, loop bound, annotation, bracket, and DML statement.
-- Do not invent missing source content and present it as recovered. If a responsible repair supplies an assumption, code, or distractor, explain exactly what was supplied in `notice.html` and the relevant study notes.
+- Do not invent missing source content, assumptions, code or distractors in the main mock. A substantially rewritten example may be offered only as a separately identified study variant, excluded from the original mock's scoring and exam pool. Documenting an invented assumption does not make it an original-question repair.
 - The current block format supports text, prompts, and code. If a real diagram is essential, extend the shared schema/renderer for images, store assets under `/quiz/media/<quiz-id>/`, and verify local-file display.
-- If essential content cannot be recovered and the question cannot be repaired reliably, use `ungraded: true` and, for a missing exhibit, `exhibitMissing: true`. State the problem visibly and list it in `notice.html`.
+- If essential content cannot be recovered, retain the incomplete original, use `ungraded: true` and, for a missing exhibit, `exhibitMissing: true`. State the problem visibly and list it in `notice.html`. Do not supply a replacement exhibit to force a key.
 - An ungraded question without a verified answer may use `answer: ""`. Preserve any known source key internally; never fabricate a grading key. Mark it scored only after the uncertainty is resolved.
+- Compare unresolved options by text and count against online copies, recording reordered choices, malformed terms, differing variants and failed exhibit retrieval in `review.optionAudit`. A repeated online mistake is not proof that the DOCX omitted material.
+- For Not scored questions, keep the original DOCX mock answer as the answer reference. Do not add provisional or suggested answer selections. Keep option-comparison evidence separate from the source answer and excluded from grading.
 
 ## Config and study metadata
 
@@ -98,7 +102,7 @@ window.QUIZ_QUESTIONS = [
     "focus": "must",
     "group": "limits",
     "stem": [
-      "A complete scenario with the assumptions needed to answer.",
+      "The original source scenario, with only verified small transcription fixes.",
       { "ask": "What should the developer do?" }
     ],
     "choices": ["First option", "Second option", "Third option"],
@@ -121,7 +125,7 @@ window.QUIZ_QUESTIONS = [
 - `acceptAny: true` is only for a single selection among equivalent correct alternatives. Explain the exception clearly; it is not a multi-select question.
 - `why` must explain the mechanism behind every selected answer, not just repeat the letters.
 - `wrong` must explain every non-answer option. Do not dismiss an otherwise valid approach as impossible merely because it is not the best fit for this scenario.
-- Check for overlapping valid choices before imposing a single answer. Accept equivalent single-choice alternatives with `acceptAny`, or clarify a supported requirement. Do not reject one description just because another is more detailed.
+- Check for overlapping valid choices before imposing a single answer. Accept supported single-choice alternatives with `acceptAny`. Do not add a requirement to disqualify an otherwise valid choice or reject one description just because another is more detailed. If a multi-select source does not establish one supported set, leave it unscored.
 - Distinguish required steps from alternative available actions. A Choose 2 question must say whether both actions are necessary, both are independently available, or they are two properties being identified.
 - `notes` should add useful detail rather than repeat `why` and the distractors. Duplicate questions still need self-contained explanations.
 
@@ -130,8 +134,12 @@ window.QUIZ_QUESTIONS = [
 The home page provides separate Corrected, Repaired, and Not scored review lists. These describe the source review, independently of the learner's Correct/Missed progress.
 
 - **Corrected** (`corrected: true`): the source answer key is demonstrably wrong. A corrected question may also have content repairs, but show it in Corrected.
-- **Repaired** (`repaired: true`): a scored question's wording, code, choices, or necessary assumptions were repaired while its source answer remains accepted. This includes an `acceptAny` repair that continues to accept the source key. Preserve `source` and `printed`, describe the repair in notes and the notice, and keep the flag explicit in the editable question data.
+- **Repaired** (`repaired: true`): a verified small wording/code fix, externally recovered missing content, or expanded accepted single-choice alternatives, while the source answer remains accepted. Preserve `source` and `printed`, describe the exact change in `repair` and the notice, and keep the flag explicit in the editable question data. Necessary new assumptions, replacement scenarios and changed option meanings are not minimal repairs.
 - **Not scored** (`ungraded: true`): the question remains unresolved and is excluded from accuracy, even if some wording has been repaired.
+- Apply Not scored when a material problem prevents fair grading of the supplied task: essential missing content, no defensible option set, incompatible selection count, or unresolved wording/version/setup ambiguity that changes the answer. Do not withhold scoring for minor wording issues, a correctable printed key, or an irrelevant hypothetical edge case. It is an unresolved review status, not proof that the mock's key is wrong.
+- For a best-solution question, compare the supplied choices against the stated requirement. A question need not specify an entire production design to support its best listed answer. Do not introduce an unstated integration or mailbox-deliverability requirement to disqualify a valid server-side validation answer. Keep practical redundancy or implementation caveats in the explanation when they do not change that comparison.
+- Reassess old Not scored and Repaired decisions when this standard was applied too literally. Distinguish a capability from a guarantee, a setup location from a complete procedure, general wording from a named platform object, and a related code defect from the specific best practice being tested. A directly applicable known limitation is still material; do not overlook a missing valid option or force a unique multi-answer set when the source actually offers too many valid answers. Record the previous state, individual decision and reason in `review.reassessment`. Summarize the current outcome in the notice only when the question is Corrected, Repaired or Not scored. Content additions still need exact comparisons; explanation-only refinements do not create new repair badges.
+- In Not scored feedback, show Original mock answer (unverified), its printed letters and full original option text/code. Preserve this reference separately from the empty graded answer and avoid correct/incorrect styling. Retain original keys while mapping their letters for submitted saved exams. If the source provides no key, state that explicitly. Do not reveal reference answers before feedback.
 - Use only one of these states for a question. Do not add Repaired for explanation-only edits, formatting alone, or simply having a source snapshot. Review changes against the actual source before assigning it.
 
 ## Review and repair
@@ -143,22 +151,27 @@ Review all questions, including previously corrected ones. Treat earlier AI expl
 - For a truncated stem, missing choice, inconsistent selection count, disputed key, or missing source number, search for complete online variants before supplying replacement content. Match the scenario and option text; question numbers and answer letters often differ between banks.
 - A bank or discussion can establish what wording was published, but its answer key and votes are not technical authority. Check the answer against primary documentation and explain each choice. If sources disagree, resolve the actual behavior rather than counting matching answer keys.
 - When recovering a missing numbered question, compare neighboring questions as well as its number. Keep its stable ID and place it in source order only when that match is credible. Do not fill gaps with unrelated questions. State that the item was absent from the DOCX and added from an external source.
-- Distinguish recovered content from a supplied study repair. If no reliable complete version exists, define necessary assumptions or rebuild the question using documented behavior, recording exactly what changed. Do not call an invented assumption recovered wording. Paraphrase externally recovered questions and respect source quotation limits.
-- Preserve existing original snapshots and DOCX keys. Record the external recovery URL, its published key when relevant, and the primary references in question notes and the quiz's notice. For externally added items, identify that provenance clearly; a wrong external source key can be marked Corrected, but a still-accepted key cannot.
+- Distinguish verified recovery from a new study example. If no reliable complete version exists, preserve the original as Not scored. Never rebuild its scenario or replace an answer's meaning to retain a preferred letter. Paraphrase externally recovered questions and respect source quotation limits; identify any added external item explicitly.
+- Preserve existing original snapshots and DOCX keys. Record the external recovery URL, its published key when relevant, and the primary references in question notes. Keep the notice to a concise description of the current issue. For externally added items, identify that provenance clearly; a wrong external source key can be marked Corrected, but a still-accepted key cannot.
 - Re-enable scoring only when the final stem, choices, selection count, and answer are supportable together. Leave a genuinely unresolved item unscored and report what evidence is still missing. Update counts, distractors, notices, and saved-answer regrading checks after recovery.
+- Record each search in `review.recovery`: date, queries, candidate URLs, resolved/partial/unresolved status and an individual assessment. Candidate URLs establish comparison provenance, not technical correctness. Partial recoveries can update the displayed missing text while retaining the DOCX snapshot; provide `repair` and `repairNotes` so Question changes shows the exact additions and explicitly labels the source key unverified. Keep these items Not scored without a Repaired badge. A verified resolved recovery uses treatment `online-recovery`.
 
-Trace code carefully: initialization, branch conditions, iteration count, actual DML, Id assignment, exceptions, rollback, limits, and automation re-entry. State API-version, permissions, caller, transaction, or configuration assumptions when they affect the result. Fix ambiguous prompts or malformed choices where evidence supports a clear repair; otherwise leave the item ungraded.
+Trace code carefully: initialization, branch conditions, iteration count, actual DML, Id assignment, exceptions, rollback, limits, and automation re-entry. Explain API-version, permissions, caller, transaction or configuration dependencies without silently adding them to the source. Fix only verified small transcription errors. Leave a materially ambiguous or incomplete item ungraded.
 
 For each repair:
 
-1. Preserve the original document. Retain an existing `source: { stem, choices, answer }` snapshot internally; do not overwrite it with a later repaired version.
+1. Preserve the original document. Retain `source: { stem, choices, answer }` as a source transcription, not a later rewrite. If an earlier snapshot itself contains reconstructed content or appended commentary, correct it against the actual DOCX and explicitly document that provenance correction in the review history.
 2. Retain the original key in `printed`. Use `corrected: true` **only if the mock's answer key is wrong**. For repaired question content with an accepted source key, use `repaired: true` instead. Explanation-only edits receive neither badge. For `acceptAny`, an already accepted printed answer is not wrong.
    Recheck previous AI corrections too. If a correction depended on an unstated assumption about an alternative implementation or historical API behavior, do not call the original key demonstrably wrong. Withdraw the badge and leave the unresolved question unscored until the missing context is established.
 3. Update the playable content, answer, selection count, and explanations consistently. Do not reorder options unnecessarily.
-4. Describe the issue and repair in the quiz's `notice.html`, adding primary references where helpful. Keep material caveats in the question's study notes too.
-5. Do not add an Earlier wording/source-history disclosure to the player. Learners see the reviewed question; the notice is where they review mock problems. Keep the short original-key versus graded-key message for genuinely incorrect keys.
+4. Describe the issue and repair in the quiz's `notice.html`, adding primary references where helpful. Keep technical caveats in the question's study notes; put source-edit history and recovery references in `repair` and optional `repairNotes` instead.
+5. For Repaired questions, provide a `repair` summary explaining the actual changes and reasons, consistent with the notice. Use one Question changes disclosure, collapsed by default like Full explanation, without nested disclosures. Lead with Reason for the change, followed by a compact Changed / Unchanged / Answer key summary and exact Original/Current comparisons of changed question wording/code and choices. Keep the removal/addition highlights without a Removed text / Added text legend or a redundant Text changes heading. An unchanged answer letter can still refer to repaired choice text: make that visible. End with a separate Review notes & sources footer only when `repairNotes` exist. Do not duplicate the entire original question after the comparisons; retain the full source snapshot in data. Remove duplicated repair reasons from Full explanation while retaining technical study guidance there. Keep original wording, code, and letters literal, including during submitted exam review; never substitute the repaired content or shuffle the reference. Show an exam letter key for repair-summary references. Keep the short original-key versus graded-key message for genuinely incorrect keys.
 
 Preserve storage keys when fixing answers. Saved selections are regraded against the current key. If option meaning changes, mention that in the notice so users can revisit affected selections.
+
+For a complete bank review, record `review: { date, treatment, reason, references }` on every question, including retained items. Use the schema's treatment values and publish only concise current summaries of Corrected, Repaired and Not scored questions in that quiz's `notice.html`. Update this file directly; do not create dated notice copies or link to superseded reports. Reconcile withdrawn conclusions into the current decisions. Keep notice headings and review labels free of date suffixes. Do not call the review a live Salesforce test.
+
+When a previously scored question becomes Not scored, preserve saved exam IDs, selections, ordering and timing. Exclude the retired item from the current score and explain that adjustment on setup/results. An old attempt containing only retired items has no score. New exams must still sample only scored questions.
 
 Apply factual fixes consistently to repeated questions, even when their answer letters differ. Keep distinctions such as feature availability versus configuration, notification versus rejected-row export, and character encoding versus file structure explicit; similar-sounding controls are not necessarily interchangeable.
 
@@ -166,20 +179,19 @@ Apply factual fixes consistently to repeated questions, even when their answer l
 
 Use `class="wrap notice-shell"` on the review page container so its outer edges match every quiz screen. Load `../quiz/js/ui/navigation.js` before the optional notice script.
 
-Write a standalone HTML page with `lang="en"`, UTF-8, a viewport meta tag, and a descriptive title. Link `../quiz/css/styles.css` and `../quiz/css/notice.css`, provide a Back to quiz link to `index.html`, and use the existing notices as layout examples. Include a contents navigation with section anchors and put wide tables in keyboard-focusable `.notice-table` regions. Keep all notice content in the HTML file so it opens directly from disk without JavaScript, a server, or a Markdown renderer. Escape literal code and markup.
+Write a standalone HTML page with `lang="en"`, UTF-8, a viewport meta tag, and a descriptive title. Link `../quiz/css/styles.css` and `../quiz/css/notice.css`, provide a Back to quiz link to `index.html`, and use the existing notices as layout examples. Use the three category count cards as section links and put wide tables in keyboard-focusable `.notice-table` regions. Keep all notice content in the HTML file so it opens directly from disk without JavaScript, a server, or a Markdown renderer. Escape literal code and markup.
 
-Use the shared notice layout: a short overview with Corrected, Repaired, and Not scored counts; a native Source document & review scope disclosure; section cards; and links back to the quiz. Keep counts aligned with `questions.js`, distinguishing Repaired badges from broader review-note totals. Preserve existing section IDs and all review findings when changing the presentation. Give table headers `scope="col"` and cells matching `data-label` values so rows remain understandable in the mobile card layout. Review rows have stable IDs and a `data-questions` list for exact question-number search; grouped rows list every relevant ID. Keep hidden accessibility text anchored so it cannot enlarge the page.
+Use the shared notice layout: a short overview with Corrected, Repaired, and Not scored counts; a native Original mock disclosure; section cards; and links back to the quiz. Keep counts aligned with `questions.js`. Preserve the three category anchors and retain detailed findings in question data and feedback. Give table headers `scope="col"` and cells matching `data-label` values so rows remain understandable in the mobile card layout. Each affected question appears once, with a stable row ID and `data-questions` for exact question-number search. Keep hidden accessibility text anchored so it cannot enlarge the page.
 
-Load the optional classic script `../quiz/js/ui/notice.js` with `defer` for local table search, current-section navigation, and printing. All findings and references must still be readable if JavaScript is disabled. Search matches complete question numbers or all words in a phrase, filters only table rows, keeps the input stable, supports Escape to clear and Enter to focus the first matching note, and announces the result count. Other review text remains visible. Printing includes every table row, even when a search is active. Keep all shared notice development under `/quiz`.
+Load the optional classic script `../quiz/js/ui/notice.js` with `defer` for local table search, current-section navigation, and printing. All concise review notes must still be readable if JavaScript is disabled. Search matches complete question numbers or all words in a phrase, filters only table rows, keeps the input stable, supports Escape to clear and Enter to focus the first matching note, and announces the result count. Other review text remains visible. Printing includes every table row, even when a search is active. Keep all shared notice development under `/quiz`.
 
 Keep notices specific to the mock and understandable without developer context. Include:
 
 - Original DOCX filename, number of questions, and counts of incorrect keys, wording/option/code repairs, and unscored items.
 - An answer-correction table covering **all** incorrect mock keys: question number, original key, reviewed key, and reason.
-- A separate table for wording, syntax, assumptions, misleading explanations, or option changes. Make clear that unchanged answer keys have no Corrected badge.
-- Counts of Repaired questions, distinguished from the broader table that can also contain explanation-only review notes.
-- Missing/unreadable images, supplied replacement content, unresolved questions, accepted duplicate options, and version/legacy caveats.
-- Relevant official references and practical limits of the review. Do not claim live application execution when only the document/documentation was reviewed.
+- A Repaired table with one short description of what changed per question.
+- A Not scored table with the original DOCX answer clearly marked unverified and the unresolved issue.
+- Keep exact comparisons, technical caveats, sources and recovery details on question pages. Omit unchanged questions, repeated history tables and long reference lists from notices. Do not claim live application execution when only the document/documentation was reviewed.
 
 Do not put mock-specific review logs in `/quiz` or mix a shared UI change history into a mock notice. Update the existing notice when reviewing that quiz again.
 
@@ -207,7 +219,7 @@ Keep the home page focused on the learner's next action. Offer priority/topic br
 
 Home coverage and accuracy count scored questions only. Put unscored reading progress below the description in Mock review’s Not scored card as “X of Y reviewed”, including zero before the first review. Do not duplicate it in Your progress or append a second Not started/complete status to that card. Put one Reset practice progress button at the bottom of Your progress after the metrics and review shortcuts, separated by a subtle divider. Do not add a disclosure, separate reset section, or instructions beside the button. Keep the existing confirmation and disable the button when no answers, drafts, or resume point are saved; explain reset scope in the confirmation and shared help. Consolidate the study guide and quiz-specific caveats in the footer’s How to use dialog; do not duplicate them inside the question browser. Reserve the page header for quiz identity and Mock Exam navigation. The unanswered-practice shortcut must exclude previously answered and unscored questions. Resume should restore saved selections and advance past a completed question to the next unfinished one. When scored practice is complete, offer missed-question review or revisiting the quiz. Keep study-priority caveats accessible without making them the main action.
 
-Run `node quiz/tools/validate.js` from the project root. Node is optional development tooling; learners still just open HTML. Check counts against the DOCX, complete metadata, schema, answer/distractor consistency, Corrected-label rules, direct-file startup, grading, saved regrading, navigation, and absence of the removed source-history disclosure.
+Run `node quiz/tools/validate.js` from the project root. Node is optional development tooling; learners still just open HTML. Check counts against the DOCX, complete metadata, schema, answer/distractor consistency, Corrected-label rules, direct-file startup, grading, saved regrading, navigation, and original-question references for Repaired feedback.
 
 ## Required UI/UX review for every UI change
 

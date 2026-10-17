@@ -40,26 +40,33 @@
     return [...printed].sort().join(",") !== [...answer].sort().join(",");
   }
 
-  function normalizeQuestion(raw) {
-    if (raw.options && raw.explain && !raw.choices && raw.why == null && raw.wrong == null) return raw;
-    const answer = parseLetters(raw.answer);
-    const type = raw.type || (raw.acceptAny ? "single" : (answer.length > 1 ? "multi" : "single"));
-    const options = (raw.choices || []).map((choice, index) => {
+  function asOptions(choices) {
+    return (choices || []).map((choice, index) => {
       if (typeof choice === "string") return { id: CHOICE_LETTERS[index], text: choice };
       if (choice.code != null && choice.text == null) {
         return { id: choice.id || CHOICE_LETTERS[index], text: codeText(choice.code), code: true };
       }
       return { id: choice.id || CHOICE_LETTERS[index], text: choice.text, code: !!choice.code };
     });
+  }
+
+  function normalizeQuestion(raw) {
+    if (raw.options && raw.explain && !raw.choices && raw.why == null && raw.wrong == null) return raw;
+    const answer = parseLetters(raw.answer);
+    const stem = asBlocks(raw.stem);
+    const promptCount = raw.ungraded
+      ? Number(stem.filter(block => block.type !== "code").map(block => block.text).join("\n").match(/\bChoose\s+([1-9]\d*)\s+answers?\b/i)?.[1]) || null
+      : null;
+    const type = raw.type || (raw.acceptAny ? "single" : ((raw.choose || promptCount || answer.length) > 1 ? "multi" : "single"));
     const question = {
       id: raw.id,
       section: raw.section,
       focus: raw.focus,
       group: raw.group || raw.pattern,
       type,
-      choose: raw.choose != null ? raw.choose : (type === "multi" ? answer.length : null),
-      stem: asBlocks(raw.stem),
-      options,
+      choose: raw.choose != null ? raw.choose : (type === "multi" ? promptCount || answer.length : null),
+      stem,
+      options: asOptions(raw.choices),
       answer,
       explain: {
         why: asBlocks(raw.why),
@@ -71,8 +78,20 @@
       question.corrected = true;
       question.printed = parseLetters(raw.printed || []);
     }
-    if (raw.repaired && !raw.ungraded && !isAnswerCorrection(raw)) question.repaired = true;
-    if (raw.ungraded) question.ungraded = true;
+    if (raw.repaired && !raw.ungraded && !isAnswerCorrection(raw)) {
+      question.repaired = true;
+    }
+    if (question.repaired || (raw.repair && raw.review?.recovery && raw.source)) {
+      question.explain.repair = asBlocks(raw.repair);
+      question.explain.repairNotes = asBlocks(raw.repairNotes);
+      if (raw.source) question.source = { stem: asBlocks(raw.source.stem), options: asOptions(raw.source.choices), answer: parseLetters(raw.source.answer) };
+    }
+    if (raw.ungraded) {
+      question.ungraded = true;
+      question.printed = parseLetters(raw.printed || raw.source?.answer || []);
+      if (raw.source) question.source = { stem: asBlocks(raw.source.stem), options: asOptions(raw.source.choices), answer: parseLetters(raw.source.answer) };
+      if (raw.review?.optionAudit) question.explain.optionAudit = raw.review.optionAudit;
+    }
     if (raw.acceptAny) question.acceptAny = true;
     if (raw.exhibitMissing) question.exhibitMissing = true;
     return question;

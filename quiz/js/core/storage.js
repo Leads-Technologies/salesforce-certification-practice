@@ -55,7 +55,9 @@
       try {
         const saved = JSON.parse(this.storage.getItem(`${this.key}:exam`));
         if (!Array.isArray(saved?.ids) || !saved.ids.length || new Set(saved.ids).size !== saved.ids.length) return null;
-        if (saved.ids.some(id => !this.byId.has(id) || this.byId.get(id).ungraded)) return null;
+        // A source review may retire a question from scoring. Preserve the
+        // saved attempt and selections; its current score excludes that item.
+        if (saved.ids.some(id => !this.byId.has(id))) return null;
         const drafts = {};
         const optionOrders = {};
         for (const id of saved.ids) {

@@ -145,8 +145,10 @@
         "choose": { "type": "number" },
         "acceptAny": { "type": "boolean" },
         "corrected": { "type": "boolean", "description": "True only when the original mock answer key is wrong. Do not flag wording-only repairs, unchanged answer sets, or acceptAny additions that still accept the printed answer." },
-        "repaired": { "type": "boolean", "description": "True for a scored question with repaired wording, code, choices, or necessary assumptions whose original answer remains accepted. Excludes explanation-only edits and questions marked Corrected or Not scored. Preserve source content for the repair." },
-        "printed": { "type": "string", "description": "Letters printed in the original mock. Retain for source history even when corrected is absent." },
+        "repaired": { "type": "boolean", "description": "True for a scored question with a verified minimal fix, externally recovered missing content, or expanded accepted alternatives while its original answer remains accepted. Recovery requires documented matching evidence. Never invent scenario assumptions or replace option meanings to force a key. Excludes explanation-only edits, formatting, Corrected and Not scored." },
+        "repair": { "type": "string", "description": "Explain the exact edit, verified recovery or accepted-answer change and its reason. Shown in Question changes above exact comparisons. Partial online recoveries may show this while remaining Not scored; references use original mock letters." },
+        "repairNotes": { "type": "array", "items": { "$ref": "#/$defs/block" }, "description": "Optional recovery references and source-review details shown only in Question changes, separate from Full explanation study notes." },
+        "printed": { "type": "string", "description": "Letters printed in the original mock. Retain for source history even when corrected is absent. Not scored feedback displays these as an unverified reference, never as the graded answer." },
         "source": {
           "type": "object",
           "additionalProperties": false,
@@ -160,6 +162,53 @@
         },
         "ungraded": { "type": "boolean" },
         "exhibitMissing": { "type": "boolean" },
+        "review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["date", "treatment", "reason", "references"],
+          "description": "Per-question source review decision. Full decisions remain in question data; the static notice summarizes only current Corrected, Repaired and Not scored questions.",
+          "properties": {
+            "date": { "type": "string" },
+            "treatment": { "enum": ["retained", "restored", "formatting", "minimal-repair", "online-recovery", "key-correction", "accepted-alternatives", "unresolved"] },
+            "reason": { "type": "string" },
+            "references": { "type": "array", "items": { "type": "string" } },
+            "optionAudit": {
+              "type": "object", "additionalProperties": false,
+              "required": ["date", "status", "comparedChoiceCount", "assessment", "references"],
+              "description": "Online comparison of option text and count, independently of the published answer key. Explicitly record reordered/damaged variants and unavailable material.",
+              "properties": {
+                "date": { "type": "string" },
+                "status": { "enum": ["matched", "variant", "incomplete", "partial-repair"] },
+                "comparedChoiceCount": { "type": "number" },
+                "assessment": { "type": "string" },
+                "references": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+              }
+            },
+            "reassessment": {
+              "type": "object", "additionalProperties": false,
+              "required": ["date", "previousState", "decision", "reason"],
+              "description": "Individual best-answer and source-fidelity reassessment of a previously Not scored or Repaired question.",
+              "properties": {
+                "date": { "type": "string" },
+                "previousState": { "enum": ["not-scored", "repaired"] },
+                "decision": { "enum": ["scoring-restored", "key-corrected", "repair-withdrawn", "explanation-refined", "retained", "still-unresolved"] },
+                "reason": { "type": "string" }
+              }
+            },
+            "recovery": {
+              "type": "object", "additionalProperties": false,
+              "required": ["date", "status", "queries", "candidates", "assessment"],
+              "description": "Online search audit for a previously Not scored item. Candidates are comparison evidence, not authoritative answer keys.",
+              "properties": {
+                "date": { "type": "string" },
+                "status": { "enum": ["resolved", "partial", "unresolved"] },
+                "queries": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+                "candidates": { "type": "array", "items": { "type": "string" } },
+                "assessment": { "type": "string" }
+              }
+            }
+          }
+        },
         "why": {
           "oneOf": [
             { "type": "string" },

@@ -19,6 +19,7 @@ for (const folder of folders) {
   const data = { window: {} };
   vm.runInNewContext(fs.readFileSync(path.join(root, folder, "questions.js"), "utf8"), data);
   const questions = JSON.parse(JSON.stringify(data.window.QUIZ_QUESTIONS));
+  assert.equal((html.match(/<section class="notice-section /g) || []).length, 3, `${folder}: only Corrected, Repaired and Not scored sections`);
   for (const flag of ["corrected", "repaired", "ungraded"]) {
     const count = Number(html.match(new RegExp(`data-review-count="${flag}"[\\s\\S]*?<strong>(\\d+)</strong>`))[1]);
     assert.equal(count, questions.filter(q => q[flag]).length, `${folder}: ${flag} count`);
@@ -46,16 +47,19 @@ for (const folder of folders) {
     return { region, rows };
   });
   const rows = tables.flatMap(table => table.rows);
+  const flaggedIds = questions.filter(q=>q.corrected||q.repaired||q.ungraded).map(q=>q.id).sort((a,b)=>a-b);
+  assert.deepEqual(rows.map(row=>Number(row.dataset.questions)).sort((a,b)=>a-b), flaggedIds, `${folder}: affected questions appear once, without unchanged-question or history tables`);
+  assert.ok(rows.every(row=>row.textContent.length<=290), `${folder}: each question has a short review note`);
   const nodes = new Map(["#notice-search", "[data-notice-clear]", "#notice-search-status", ".notice-search-empty", ".notice-search-form", "[data-notice-print]", ".notice-about", "[data-notice-tools]"].map(selector => [selector, node()]));
   nodes.get("[data-notice-tools]").hidden = true;
   const sections = ["notice-overview", ...[...html.matchAll(/<section class="notice-section[^>]*aria-labelledby="([^"]+)"/g)].map(m => m[1])].map((id, i) => ({ id, top: i * 1000, getBoundingClientRect() { return { top: this.top }; } }));
-  const links = sections.map(section => { const link = node(); link.attributes.set("href", `#${section.id}`); return link; });
+  const links = sections.slice(1).map(section => { const link = node(); link.attributes.set("href", `#${section.id}`); return link; });
   const events = new Map();
   let prints = 0;
   const context = {
     document: {
       querySelector: selector => nodes.get(selector),
-      querySelectorAll: selector => selector === ".notice-table" ? tables.map(table => table.region) : selector === ".notice-contents a" ? links : sections,
+      querySelectorAll: selector => selector === ".notice-table" ? tables.map(table => table.region) : selector === ".notice-summary a" ? links : sections,
     },
     window: { addEventListener: (name, callback) => events.set(name, callback), removeEventListener: (name, callback) => { if (events.get(name) === callback) events.delete(name); }, requestAnimationFrame: callback => callback(), print: () => prints++ },
   };
@@ -100,7 +104,7 @@ for (const folder of folders) {
   assert.ok(!nodes.get(".notice-about").open, `${folder}: printing restores the disclosure state`);
   sections[0].top = -2000; sections[1].top = -1000; sections[2].top = 50;
   events.get("scroll")();
-  assert.equal(links[2].getAttribute("aria-current"), "location", `${folder}: current section is indicated`);
+  assert.equal(links[1].getAttribute("aria-current"), "location", `${folder}: current section is indicated`);
   const controller = context.window.QuizModules.notice;
   const inputHandler = input.events.get('input');
   controller.mount();
@@ -116,6 +120,6 @@ for (const folder of folders) {
   assert.equal(events.size, 0, `${folder}: notice disposal removes window handlers`);
   sections[2].top = 2000;
   pendingFrame();
-  assert.equal(links[2].getAttribute('aria-current'), 'location', `${folder}: an already queued callback cannot update a disposed notice`);
+  assert.equal(links[1].getAttribute('aria-current'), 'location', `${folder}: an already queued callback cannot update a disposed notice`);
   console.log(`PASS notice ${folder}: ${rows.length} table notes, counts, complete correction list, anchors, exact/grouped lookup, keyword search, empty state, keyboard, navigation, printing`);
 }

@@ -123,6 +123,7 @@
       const available = this.app.questions.filter(q => !q.ungraded).length;
       const defaultCount = Math.min(DEFAULT_EXAM_COUNT, available);
       const attempt = this.app.state.examAttempt;
+      const retired = attempt?.ids.filter(id => this.app.byId.get(id).ungraded).length || 0;
       return `<section class="card exam-setup" aria-labelledby="exam-setup-title">
         <div class="exam-setup-intro"><p class="eyebrow">A fresh challenge</p><h2 id="exam-setup-title">${available ? "Build your attempt" : "No scored questions available"}</h2><p>${available ? `Draw a fresh set from ${available} scored questions. Questions and choices are shuffled; answers stay hidden until you submit.` : "This quiz currently contains only review items. You can read them in practice; a mock exam needs scored questions."}</p><span class="exam-mode-note">Timed · Random sample · Separate from practice progress</span></div>
         <div class="exam-setup-controls">
@@ -134,7 +135,7 @@
             <p class="exam-timing-help">The timer starts immediately and keeps running if you leave. At zero, your saved answers are submitted automatically.</p>
             <button type="submit" class="primary">${attempt ? "Start new exam" : "Start mock exam"} <span aria-hidden="true">→</span></button>
           </form>` : '<a class="ghost nav-control" href="index.html">Review in practice <span aria-hidden="true">→</span></a>'}
-          ${attempt ? `<section class="saved-exam" aria-labelledby="saved-exam-title"><div class="saved-exam-header"><h3 id="saved-exam-title">${attempt.submitted ? "Your latest exam" : "Exam in progress"}</h3><p>${attempt.submitted ? attempt.timedOut ? "Time expired · Auto-submitted" : "Submitted" : `${this.app.examController.examAnswered(attempt)} answered`} · ${attempt.ids.length} ${attempt.ids.length === 1 ? "question" : "questions"}</p></div>${!attempt.submitted ? attempt.deadlineAt ? this.app.examController.examTimerHtml() : `<p class="saved-exam-note">This older attempt gets a ${this.app.exam.examMinutes}-minute timer when you resume.</p>` : ""}<div class="saved-exam-actions"><button type="button" class="ghost nav-control" data-action="resume-exam">${attempt.submitted ? "View results" : "Resume exam"}</button><button type="button" class="ghost nav-control danger" data-action="clear-exam">Clear saved attempt</button></div><p class="saved-exam-note">Starting a new exam replaces this saved attempt.</p></section>` : ""}
+          ${attempt ? `<section class="saved-exam" aria-labelledby="saved-exam-title"><div class="saved-exam-header"><h3 id="saved-exam-title">${attempt.submitted ? "Your latest exam" : "Exam in progress"}</h3><p>${attempt.submitted ? attempt.timedOut ? "Time expired · Auto-submitted" : "Submitted" : `${this.app.examController.examAnswered(attempt)} answered`} · ${attempt.ids.length} ${attempt.ids.length === 1 ? "question" : "questions"}</p></div>${retired ? `<p class="saved-exam-note">${retired} ${retired === 1 ? "question is" : "questions are"} now Not scored after source review. Your attempt and selections are preserved; these items are excluded from its score.</p>` : ""}${!attempt.submitted ? attempt.deadlineAt ? this.app.examController.examTimerHtml() : `<p class="saved-exam-note">This older attempt gets a ${this.app.exam.examMinutes}-minute timer when you resume.</p>` : ""}<div class="saved-exam-actions"><button type="button" class="ghost nav-control" data-action="resume-exam">${attempt.submitted ? "View results" : "Resume exam"}</button><button type="button" class="ghost nav-control danger" data-action="clear-exam">Clear saved attempt</button></div><p class="saved-exam-note">Starting a new exam replaces this saved attempt.</p></section>` : ""}
         </div>
       </section>`;
     }
@@ -267,27 +268,30 @@
     examSummaryHtml() {
       const list = this.app.pool();
       const submitted = this.app.state.examAttempt.submitted;
+      const scored = list.filter(q => !q.ungraded);
+      const retired = list.length - scored.length;
       const answered = this.app.examController.examAnswered();
-      const incomplete = list.length - answered;
+      const incomplete = scored.length - answered;
       const correct = list.filter(q => this.app.state.results[q.id]?.status === "correct").length;
       const wrong = list.filter(q => this.app.state.results[q.id]?.status === "wrong").length;
       const unanswered = list.filter(q => this.app.state.results[q.id]?.status === "unanswered").length;
-      const score = Math.round(correct / list.length * 100);
+      const score = scored.length ? Math.round(correct / scored.length * 100) : null;
       const attempt = this.app.state.examAttempt;
       const timing = submitted && attempt.startedAt && attempt.submittedAt
         ? `<p class="exam-time-summary">Time used: <strong>${this.app.examController.clockText(Math.min(attempt.durationMinutes * 60, (attempt.submittedAt - attempt.startedAt) / 1000))}</strong> of ${this.app.examController.clockText(attempt.durationMinutes * 60)}.</p>` : "";
       const rows = list.map((q, index) => {
         const status = this.app.state.results[q.id]?.status;
         const complete = this.app.examController.examSelectionComplete(q, this.app.state.drafts[q.id]);
-        const label = submitted ? status === "correct" ? "Correct" : status === "wrong" ? "Missed" : "Not answered"
+        const label = q.ungraded ? "Not scored" : submitted ? status === "correct" ? "Correct" : status === "wrong" ? "Missed" : "Not answered"
           : complete ? "Answered" : this.app.state.drafts[q.id]?.length ? "Incomplete selection" : "Not answered";
         return `<button type="button" class="exam-review-row ${submitted ? this.app.content.esc(status) : ""}" data-jump="${index}"><strong>Question ${index + 1}</strong><span>${this.app.content.esc(label)} <span aria-hidden="true">→</span></span></button>`;
       }).join("");
       return `<div class="wrap">${this.siteHeader("exam")}<div class="top exam-summary-top"><div class="brand"><strong>Mock Exam</strong><span>${this.app.content.esc(this.filterTitle())}</span></div><div class="page-header-actions">${submitted ? "" : this.app.examController.examTimerHtml()}<button class="ghost nav-control" data-action="home"><span aria-hidden="true">←</span> Exam setup</button></div></div>${this.storageNoteHtml()}
-        <main class="card session-summary exam-summary"><p class="eyebrow">${submitted ? "Your exam result" : "Review before submitting"}</p><h1 class="summary-title" tabindex="-1">${submitted ? `${correct} / ${list.length} correct` : "Ready to finish?"}</h1>
-        <p>${submitted ? `Score: ${score}%. ${list.length === 1 ? "The question counts toward the result, even if skipped." : `All ${list.length} questions count toward the result, including skipped questions.`} This attempt has not changed your regular practice progress.` : `${answered} of ${list.length} ${list.length === 1 ? "question has" : "questions have"} a complete selection. ${incomplete ? `${incomplete} ${incomplete === 1 ? "is" : "are"} unanswered or incomplete.` : "Every question is answered."} You can change your selections until you submit.`}</p>
-        ${attempt.timedOut ? '<p class="exam-time-expired" role="status">Time is up. Your saved answers were submitted automatically; unanswered questions earn no points.</p>' : ""}${timing}
-        ${submitted ? `<div class="stat-row summary-stats"><div class="stat good"><b>${correct}</b><span>Correct</span></div><div class="stat bad"><b>${wrong}</b><span>Missed</span></div><div class="stat"><b>${unanswered}</b><span>Unanswered</span></div><div class="stat"><b>${score}%</b><span>Score</span></div></div>` : `<p class="exam-submit-note">The countdown continues on this screen. Submitting reveals the answers and locks this attempt. Skipped questions earn no points; incomplete selections are incorrect.</p>`}
+        <main class="card session-summary exam-summary"><p class="eyebrow">${submitted ? "Your exam result" : "Review before submitting"}</p><h1 class="summary-title" tabindex="-1">${submitted ? scored.length ? `${correct} / ${scored.length} correct` : "Review only · no scored questions" : "Ready to finish?"}</h1>
+        <p>${submitted ? scored.length ? `Score: ${score}%. ${scored.length === 1 ? "The scored question counts toward the result, even if skipped." : `All ${scored.length} scored questions count toward the result, including skipped questions.`} This attempt has not changed your regular practice progress.` : "This saved attempt now contains only review items. No score applies, and your regular practice progress is unchanged." : `${answered} of ${scored.length} scored ${scored.length === 1 ? "question has" : "questions have"} a complete selection. ${incomplete ? `${incomplete} ${incomplete === 1 ? "is" : "are"} unanswered or incomplete.` : "No scored questions remain unanswered."} You can change your selections until you submit.`}</p>
+        ${retired ? `<p class="note">${retired} ${retired === 1 ? "question is" : "questions are"} now Not scored after source review and excluded from this result. Your original sample and selections are preserved.</p>` : ""}
+        ${attempt.timedOut ? '<p class="exam-time-expired" role="status">Time is up. Your saved answers were submitted automatically; unanswered scored questions earn no points.</p>' : ""}${timing}
+        ${submitted && scored.length ? `<div class="stat-row summary-stats"><div class="stat good"><b>${correct}</b><span>Correct</span></div><div class="stat bad"><b>${wrong}</b><span>Missed</span></div><div class="stat"><b>${unanswered}</b><span>Unanswered</span></div><div class="stat"><b>${score}%</b><span>Score</span></div></div>` : submitted ? "" : `<p class="exam-submit-note">The countdown continues on this screen. Submitting reveals the answers and locks this attempt. Skipped scored questions earn no points; incomplete selections are incorrect.</p>`}
         <div class="actions">${submitted ? `<button class="primary" data-action="review-set">Review answers</button>` : `<button class="primary" data-action="submit-exam">Submit exam</button><button class="ghost" data-action="exam-return">${incomplete ? "Continue answering" : "Review selections"}</button>`}<button class="quiet" data-action="home">${submitted ? "Back to exam setup" : "Save and exit"}</button></div>
         <h2 class="exam-review-title">${submitted ? "Review each question" : "Check your selections"}</h2><div class="exam-review-list">${rows}</div></main>${this.siteFooter()}</div>`;
     }
@@ -316,12 +320,17 @@
       const takingExam = inExam && !this.app.state.examAttempt.submitted;
       const stats = this.app.tally(list.filter((item) => !item.ungraded));
       const needed = q.type === "multi" ? q.choose || q.answer.length : 1;
-      const choose = locked ? (result.status === "correct" ? this.app.t("correct") : result.status === "wrong" ? this.app.t("missed") : result.status === "unanswered" ? "Not answered" : "Reviewed") : q.ungraded ? "Review only" : q.type === "multi"
+      const selectionFull = q.type === "multi" && needed > 0 && this.app.state.picked.length >= needed;
+      const choose = locked ? (result.status === "correct" ? this.app.t("correct") : result.status === "wrong" ? this.app.t("missed") : result.status === "unanswered" ? "Not answered" : "Reviewed") : q.ungraded ? q.type === "multi" && needed > 0 ? `${this.app.state.picked.length} of ${needed} ${this.app.t("ofSelected")} · Review only` : "Review only" : q.type === "multi"
         ? (this.app.state.picked.length ? `${this.app.state.picked.length} of ${needed} ${this.app.t("ofSelected")}${this.app.state.picked.length > needed ? ` · Remove ${this.app.state.picked.length - needed}` : ""}` : `${this.app.t("selectN")} ${needed}`)
         : (this.app.state.picked.length ? this.app.t("selected") : this.app.t("selectOne"));
-      const selectionHelp = q.ungraded ? "You can read the explanation without selecting an answer."
+      const selectionHelp = q.ungraded ? q.type === "multi" && needed > 0
+        ? this.app.state.picked.length > needed ? `Remove ${this.app.state.picked.length - needed} ${this.app.state.picked.length - needed === 1 ? "selection" : "selections"} to keep at most ${needed}. You can read the explanation at any time.`
+          : this.app.state.picked.length === needed ? `${needed} answers selected. Deselect one to choose another, or read the explanation.`
+          : `Select up to ${needed} answers, or read the explanation without selecting.`
+        : "You can read the explanation without selecting an answer."
         : q.type === "multi" ? this.app.state.picked.length > needed ? `Remove ${this.app.state.picked.length - needed} ${this.app.state.picked.length - needed === 1 ? "selection" : "selections"} to check your answers.`
-          : this.app.state.picked.length === needed ? "Ready to check your answers."
+          : this.app.state.picked.length === needed ? "Ready to check your answers. Deselect one to choose another."
           : `Choose ${needed - this.app.state.picked.length} ${this.app.state.picked.length ? "more " : ""}${needed - this.app.state.picked.length === 1 ? "answer" : "answers"}.`
         : this.app.state.picked.length ? "Ready to check your answer." : "Choose the best answer, then check your reasoning.";
       const answered = inExam ? this.app.examController.examAnswered() : stats.done;
@@ -329,7 +338,7 @@
       const coverage = stats.total ? answered / stats.total * 100 : 0;
       const accuracy = stats.done ? `${Math.round(stats.correct / stats.done * 100)}%` : "—";
       const nextUnanswered = this.app.nextUnansweredIndex();
-      const helpText = this.app.state.storageIssue ? "Selection kept in this tab; saving is unavailable. Keep this tab open." : takingExam ? this.app.canCheck(q) ? "Selection saved. You can change it before submitting."
+      const helpText = this.app.state.storageIssue ? "Selection kept in this tab; saving is unavailable. Keep this tab open." : takingExam && q.ungraded ? "This question is no longer scored. Continue to the next question; explanations appear after submission." : takingExam ? this.app.canCheck(q) ? `Selection saved. You can change it before submitting.${selectionFull ? " Deselect one to choose another." : ""}`
         : this.app.state.picked.length > needed ? `Remove ${this.app.state.picked.length - needed} ${this.app.state.picked.length - needed === 1 ? "selection" : "selections"} before continuing.`
         : `Choose ${needed - this.app.state.picked.length} ${this.app.state.picked.length ? "more " : ""}${needed - this.app.state.picked.length === 1 ? "answer" : "answers"}. Selections save automatically.` : selectionHelp;
       const focus = this.app.focusMeta(q.focus);
@@ -350,11 +359,12 @@
         const code = option.code;
         const right = locked && !q.ungraded && q.answer.includes(option.id);
         const picked = this.app.state.picked.includes(option.id);
+        const selectionDisabled = !locked && selectionFull && !picked;
         const status = locked && !q.ungraded
           ? [right ? this.app.t("answerCorrect") : "", picked ? this.app.t("yourAnswer") : ""].filter(Boolean).join(" · ")
           : "";
         const symbol = locked && !q.ungraded ? (right ? "✓" : picked ? "×" : "") : picked ? "✓" : "";
-        return `<button type="button" class="${this.app.content.optionClass(q, option, result)}" data-pick="${option.id}" aria-pressed="${picked}" ${locked ? "disabled" : ""}>
+        return `<button type="button" class="${this.app.content.optionClass(q, option, result)}${selectionDisabled ? " selection-disabled" : ""}" data-pick="${option.id}" aria-pressed="${picked}" ${locked || selectionDisabled ? "disabled" : ""}>
           <span class="letter">${option.label}</span>
           <span class="body${code ? " code" : ""}">${body}${status ? `<span class="option-status">${this.app.content.esc(status)}</span>` : ""}</span>
           <span class="choice-indicator${q.type === "multi" ? " multi" : ""}" aria-hidden="true">${symbol}</span>
@@ -364,12 +374,13 @@
       const pills = list.map((item, index) => {
         const status = this.app.state.results[item.id]?.status;
         const mark = index === this.app.state.index ? "on " : "";
-        const complete = takingExam && this.app.examController.examSelectionComplete(item, this.app.state.drafts[item.id]);
-        const tone = status === "correct" ? "ok" : status === "wrong" ? "no" : status === "ungraded" ? "skip" : complete ? "answered" : "";
+        const retired = takingExam && item.ungraded;
+        const complete = takingExam && !retired && this.app.examController.examSelectionComplete(item, this.app.state.drafts[item.id]);
+        const tone = retired ? "skip" : status === "correct" ? "ok" : status === "wrong" ? "no" : status === "ungraded" ? "skip" : complete ? "answered" : "";
         const draft = !status && this.app.state.drafts[item.id]?.length;
         const currentAttr = index === this.app.state.index ? ' aria-current="true"' : "";
-        const statusLabel = status === "correct" ? this.app.t("correct") : status === "wrong" ? this.app.t("missed") : status === "ungraded" ? "Reviewed (not scored)" : status === "unanswered" ? "Not answered" : complete ? "Answered" : draft ? "Draft selection" : this.app.t("notStarted");
-        const symbol = status === "correct" ? "✓" : status === "wrong" ? "×" : status === "ungraded" ? "–" : draft || complete ? "•" : "";
+        const statusLabel = retired ? "Not scored" : status === "correct" ? this.app.t("correct") : status === "wrong" ? this.app.t("missed") : status === "ungraded" ? "Reviewed (not scored)" : status === "unanswered" ? "Not answered" : complete ? "Answered" : draft ? "Draft selection" : this.app.t("notStarted");
+        const symbol = retired ? "–" : status === "correct" ? "✓" : status === "wrong" ? "×" : status === "ungraded" ? "–" : draft || complete ? "•" : "";
         const number = inExam ? index + 1 : item.id;
         return `<button class="${mark}${tone}" data-jump="${index}"${currentAttr}${this.navigatorMatches(item) ? "" : " hidden"} aria-label="${this.app.content.esc(`${this.app.t("question")} ${number}: ${statusLabel}`)}" title="${this.app.content.esc(`${this.app.t("question")} ${number}: ${statusLabel}`)}">${number}${symbol ? `<span class="nav-mark" aria-hidden="true">${symbol}</span>` : ""}</button>`;
       }).join("");

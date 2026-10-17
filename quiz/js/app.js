@@ -331,6 +331,8 @@
       } else if (this.state.picked.includes(letter)) {
         this.state.picked = this.state.picked.filter((item) => item !== letter);
       } else {
+        const maximum = q.choose || q.answer.length;
+        if (maximum > 0 && this.state.picked.length >= maximum) return;
         this.state.picked = this.state.picked.concat(letter);
       }
       this.rememberDraft();
